@@ -1,0 +1,6 @@
+; $Id$
+name = "Postcode Anywhere"
+description = "Postcode Anywhere module for receiving postcode using PostcodeAnywhere service"
+package = XComplete
+core = 6.x
+

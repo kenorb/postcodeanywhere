@@ -1,0 +1,20 @@
+<?php
+/*
+	version: $Id$
+	author: kenorb@gmail.com
+*/
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
+    $forms = postcodeanywhere_get_forms();
+    if (in_array($form_id,$forms)) {
+        drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js');
+    }
+}
+
+function postcodeanywhere_get_forms() {
+    return array('company_node_form', 'parent_node_form'); /* TODO: move into settings page */
+}
+
