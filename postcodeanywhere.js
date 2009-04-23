@@ -1,23 +1,4 @@
 // $Id$
-// FOLLOWED VARIABLES SHOULD BE CHANGE DEPENDS OF YOUR FORM 
-// TODO: later should be moved into settings page
-var pca_account_code = 'account_code'; /* CHANGE THIS */
-var pca_licence = 'n***-**3*-p*8*-g*9*'; /* CHANGE THIS INTO YOUR LICENCE CODE */
-
-var pca_id_postcode = "div[id*='wrapper'][id*='postcode']"; // TYPE HERE YOUR ID OF POSTCODE FIELD
-var pca_id_input_postcode = "input[id*='postcode']";
-var pca_id_house_number = "input[id*='house-']";
-var pca_id_property_name = "input[id*='property']";  // TYPE HERE YOUR ID OF PROPERTY_NAME FIELD
-
-var pca_id_street = "input[id*='address-0-value']";  // TYPE HERE YOUR ID OF STREET_NAME FIELD
-var pca_id_city = "input[id*='address-city-0-value']";  // TYPE HERE YOUR ID OF CITY FIELD
-var pca_id_county = "input[id*='address-county-0-value']";  // TYPE HERE YOUR ID OF COUNTY FIELD
-var pca_id_country = "input[id*='address-country-0-value']";  // TYPE HERE YOUR ID OF COUNTRY FIELD (NOT NECESSARY)
-var pca_id_uk_value = '226';  // TYPE HERE YOUR VALUE OF COUNTRY WHICH IS UK (other choices will show error) (NOT NECESSARY)
-
-var pca_showAlert = 1; // SHOW PCA ERRORS
-var pca_url = 'http://services.postcodeanywhere.co.uk/inline.aspx?'; // USUALLY YOU DON'T NEED TO CHANGE THAT
-
 if (Drupal.jsEnabled) {
   // When the DOM is ready, try an AJAX content load
   
@@ -31,7 +12,7 @@ function pcaAfterLoad() {
 // author: kenorb@gmail.com (27/10/2008)
 
     // init variables
-    postcode_wrapper = $(pca_id_postcode)[0];
+    postcode_wrapper = $(pca_id_postcode_wrapper)[0];
 
     house_number = $(pca_id_house_number)[0];
     property_name = $(pca_id_property_name)[0];
@@ -73,7 +54,7 @@ function pcaByPostcodeFilteredBegins(building, postcode, account_code, license_c
     var strUrl = "";
 
     //Build the url
-    strUrl = pca_url;
+    strUrl = pca_url + "?";
     strUrl += "&action=lookup";
     strUrl += "&type=by_postcode";
     strUrl += "&building=" + escape(building.value);
@@ -272,7 +253,7 @@ function pcaFetchAddressEnd() {
             var el=$(pca_id_county)[0];
             if(el) el.value=pca_county[0];
 
-            var el=$(pca_id_postcode)[0];
+            var el=$(pca_id_input_postcode)[0];
             if(el) el.value=pca_postcode[0];
 
             document.getElementById("objAddressFinder").style.display = "none";
