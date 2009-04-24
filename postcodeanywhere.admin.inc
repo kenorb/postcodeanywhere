@@ -1,5 +1,5 @@
 <?php
-// $Id
+// $Id$
 
 /**
  * Implementation of menu callback

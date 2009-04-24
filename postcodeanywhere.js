@@ -11,14 +11,18 @@ if (Drupal.jsEnabled) {
 function pcaAfterLoad() {
 // author: kenorb@gmail.com (27/10/2008)
 
+    // make sure we have config loaded
+    if( window.pca_id_postcode_wrapper === undefined )
+        return;
+    
     // init variables
     postcode_wrapper = $(pca_id_postcode_wrapper)[0];
-
     house_number = $(pca_id_house_number)[0];
     property_name = $(pca_id_property_name)[0];
-    if (postcode_wrapper == null) {
-        return; // if wrapped doesn't exist, RETURN the function (please check the proper configuration)
-    }
+
+    // check if we got wrapper defined
+    if (postcode_wrapper === undefined)
+        return;
 
     // create Find Postcode button on the fly
     var pca_button = document.createElement('input');
