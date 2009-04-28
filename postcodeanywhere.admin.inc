@@ -103,7 +103,7 @@ function postcodeanywhere_settings_form(&$form_state) {
   $form['form_settings']['pca_id_city'] = array(
     '#type' => 'textfield',
     '#title' => t('City Name'),
-    '#default_value' => variable_get('pca_id_city', "input[id*='city-0-value']"),
+    '#default_value' => variable_get('pca_id_city', "input[id*='city-0-value'],input[id*='town-0-value']"),
   );
   
   $form['form_settings']['pca_id_county'] = array(
