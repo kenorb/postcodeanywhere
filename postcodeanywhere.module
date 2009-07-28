@@ -1,8 +1,15 @@
 <?php
-/*
-	version: $Id$
-	author: kenorb@gmail.com
-*/
+
+/**
+ * @file
+ *   Form settings per user
+ *
+ * @version
+ *   $Id$
+ *
+ * @developers:
+ *    Rafal Wieczorek <kenorb@gmail.com>
+ */
 
 /**
  * Implementation of hook_menu().
@@ -37,7 +44,7 @@ function postcodeanywhere_perm() {
  * Implementation of hook_form_alter().
  */
 function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
-    $forms = postcodeanywhere_pca_forms();
+    $forms = array_flip(variable_get('pca_forms', array()));
     if (in_array($form_id, $forms)) {
         // load config
         drupal_add_js("
@@ -57,14 +64,5 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
             var pca_url = '". variable_get('pca_url', 'http://services.postcodeanywhere.co.uk/inline.aspx') ."';", 'inline');
         drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js');
     }
-}
-
-function postcodeanywhere_pca_forms() {
-    $config = variable_get('pca_forms', array());
-    if( !is_array( $config ) ) {
-      $config = unserialize( $config );
-    }
-    
-    return $config;
 }
 

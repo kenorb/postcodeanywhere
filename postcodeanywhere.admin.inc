@@ -1,5 +1,15 @@
 <?php
-// $Id$
+
+/**
+ * @file
+ *   Form settings include file
+ *
+ * @version
+ *   $Id$
+ *
+ * @developers
+ *   Rafal Wieczorek <kenorb@gmail.com>
+ */
 
 /**
  * Implementation of menu callback
@@ -133,51 +143,20 @@ function postcodeanywhere_settings_form(&$form_state) {
     '#default_value' => variable_get('pca_id_uk_value', 226),
   );
   
-  $form['other_settings']['showerror'] = array(
+  $form['other_settings']['pca_showalert'] = array(
     '#type' => 'select',
     '#title' => t('Show PCA Errors'),
     '#default_value' => variable_get('pca_showalert', 1),
     '#options' => $yesno_option,
   );
   
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Save Configuration'),
-  );
-
-  return $form;
+  return system_settings_form($form);
 }
 
 /**
-* General submit handler for Booking Timeslots configuration form.
-*
-* Assign values to db variables.
-*
-*/
-function postcodeanywhere_settings_form_submit($form, &$form_state) {
-  variable_set('pca_account_code', $form_state['values']['pca_account_code']);
-  variable_set('pca_licence', $form_state['values']['pca_licence']);
-  variable_set('pca_url', $form_state['values']['pca_url']);
-  variable_set('pca_id_postcode_wrapper', $form_state['values']['pca_id_postcode_wrapper']);
-  variable_set('pca_id_input_postcode', $form_state['values']['pca_id_input_postcode']);
-  variable_set('pca_id_house_number', $form_state['values']['pca_id_house_number']);
-  variable_set('pca_id_property_name', $form_state['values']['pca_id_property_name']);
-  variable_set('pca_id_street', $form_state['values']['pca_id_street']);
-  variable_set('pca_id_city', $form_state['values']['pca_id_city']);
-  variable_set('pca_id_county', $form_state['values']['pca_id_county']);
-  variable_set('pca_id_country', $form_state['values']['pca_id_country']);
-  variable_set('pca_id_uk_value', $form_state['values']['pca_id_uk_value']);
-  variable_set('pca_showalert', $form_state['values']['pca_showalert']);
-  
-  $forms = array();
-  $data = $form_state['values']['pca_forms'];
-  foreach($data as $key => $value) {
-    if( strlen( $value ) > 1 ) {
-      $forms[$key] = $value;
-    }
-  }
-  variable_set('pca_forms', serialize($forms));
-  
-  drupal_set_message('The configuration has been saved.');
-  $form_state['redirect'] = 'admin/settings/postcodeanywhere';
+ * Form API callback to validate the settings form.
+ */
+function postcodeanywhere_settings_form_validate($form, &$form_state) {
+  $values = &$form_state['values'];
 }
+
