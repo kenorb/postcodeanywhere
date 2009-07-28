@@ -51,25 +51,12 @@ function postcodeanywhere_settings_form(&$form_state) {
     '#collapsed' => FALSE,
   );
   
-  $types = content_types();
-  $options = array();
-  
-  foreach ($types as $key => $value) {
-    $key .= "_node_form";
-    $options[$key] = $value['name'];
-  }
-  
-  $enabled_types = variable_get('pca_forms', array());
-  if(!is_array($enabled_types)) {
-    $enabled_types = unserialize($enabled_types);
-  }
-  
   $form['ct_settings']['pca_forms'] = array(
    '#type' => 'checkboxes',
    '#title' => t('Form IDs'),
    '#description' => t('Select content types for which you want to enable Postcodeanywhere.'),
-   '#options' => $options,
-   '#default_value' => $enabled_types,
+   '#options' => node_get_types('names'),
+   '#default_value' => drupal_map_assoc(variable_get('pca_forms', array())),
   );
 
   $form['form_settings'] = array(
