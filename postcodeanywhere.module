@@ -11,6 +11,9 @@
  *    Rafal Wieczorek <kenorb@gmail.com>
  */
 
+/* Lookups of this postcode do not cost any credit */
+define('PCA_TEST_PC', 'WR2 6NJ');
+
 /**
  * Implementation of hook_menu().
  *
