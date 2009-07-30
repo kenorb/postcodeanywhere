@@ -50,24 +50,25 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
   $forms = array_flip( is_string( $pca_forms = variable_get('pca_forms', array())) ? unserialize($pca_forms) : $pca_forms );
   unset($forms[0]);
   // drupal_set_message($form_id . ' - ' . print_r($forms, true)); // use it for testing purposes
-  if (in_array(str_replace('_node_form', '', $form_id), $forms)) {
-    // load variables
-    drupal_add_js("
-        var pca_account_code = '". variable_get('pca_account_code', '') ."';
-        var pca_licence = \"". variable_get('pca_licence', '') . "\";
-        var pca_id_postcode_wrapper = \"". variable_get('pca_id_postcode_wrapper', '') . "\";
-        var pca_id_input_postcode = \"". variable_get('pca_id_input_postcode', '') . "\";
-        var pca_id_house_number = \"". variable_get('pca_id_house_number', '') . "\";
-        var pca_id_property_name = \"". variable_get('pca_id_property_name', '') . "\";
-
-        var pca_id_street = \"". variable_get('pca_id_street', '') . "\";
-        var pca_id_city = \"". variable_get('pca_id_city', '') . "\";
-        var pca_id_county = \"". variable_get('pca_id_county', '') . "\";
-        var pca_id_country = \"". variable_get('pca_id_country', '') . "\";
-        var pca_id_uk_value = '". variable_get('pca_id_uk_value', 226) . "';
-        var pca_showAlert = ". variable_get('pca_showalert', 1) . "; 
-        var pca_url = '". variable_get('pca_url', 'http://services.postcodeanywhere.co.uk/inline.aspx') ."';", 'inline');
+  foreach ($forms as $pca_form_name) {
+    if (substr($form_id, 0, strlen($pca_form_name)) == $pca_form_name) {
+      // load variables
+      drupal_add_js("
+          var pca_account_code = '". variable_get('pca_account_code', '') ."';
+          var pca_licence = \"". variable_get('pca_licence', '') . "\";
+          var pca_id_postcode_wrapper = \"". variable_get('pca_id_postcode_wrapper', '') . "\";
+          var pca_id_input_postcode = \"". variable_get('pca_id_input_postcode', '') . "\";
+          var pca_id_house_number = \"". variable_get('pca_id_house_number', '') . "\";
+          var pca_id_property_name = \"". variable_get('pca_id_property_name', '') . "\";
+          var pca_id_street = \"". variable_get('pca_id_street', '') . "\";
+          var pca_id_city = \"". variable_get('pca_id_city', '') . "\";
+          var pca_id_county = \"". variable_get('pca_id_county', '') . "\";
+          var pca_id_country = \"". variable_get('pca_id_country', '') . "\";
+          var pca_id_uk_value = '". variable_get('pca_id_uk_value', 226) . "';
+          var pca_showAlert = ". variable_get('pca_showalert', 1) . "; 
+          var pca_url = '". variable_get('pca_url', 'http://services.postcodeanywhere.co.uk/inline.aspx') ."';", 'inline');
     drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js');
+    }
   }
 }
 
