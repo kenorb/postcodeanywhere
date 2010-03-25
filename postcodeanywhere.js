@@ -130,7 +130,7 @@ function PostcodeFinder() {
         country.value = pca_id_uk_value;
     }
 
-    if ((pca_id_uk_value == "" || pca_id_country == "") || (country && country.value == pca_id_uk_value)) {
+    if ((pca_id_uk_value == "" || pca_id_country == "") || (country && (country.value == pca_id_uk_value || country.value == ""))) {
         if(postcode=='') {
             alert('Please supply a complete valid Postcode');
             postcode.focus();
