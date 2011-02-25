@@ -1,4 +1,3 @@
-// $Id$
 if (Drupal.jsEnabled) {
   // When the DOM is ready, try an AJAX content load
   

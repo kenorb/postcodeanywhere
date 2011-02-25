@@ -6,7 +6,6 @@
  *   FIXME: Not proper tested
  *
  * @version
- *   $Id$
  *
  * @developers:
  *    Rafal Wieczorek <kenorb@gmail.com>

@@ -1,4 +1,3 @@
-; $Id$
 name = "Postcode Anywhere"
 description = "Find a Postcode using PostcodeAnywhere service"
 package = CCK
