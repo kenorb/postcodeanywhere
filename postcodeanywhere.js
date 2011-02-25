@@ -1,4 +1,3 @@
-// $Id$
 // FOLLOWED VARIABLES SHOULD BE CHANGE DEPENDS OF YOUR FORM 
 // TODO: later should be moved into settings page
 var pca_account_code = 'account_code'; /* CHANGE THIS */
