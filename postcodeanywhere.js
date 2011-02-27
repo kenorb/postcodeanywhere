@@ -245,7 +245,7 @@ function pcaFetchAddressEnd() {
             if(el) el.value=pnumber;
 
             var el=$(pca_id_property_name)[0];
-            if(el) el.value=pname;
+            if(el && pname != "" && pname != "undefined") el.value=pname;
 
             var el=$(pca_id_street)[0];
             if(el) el.value=street;
