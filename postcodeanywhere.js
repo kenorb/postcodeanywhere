@@ -1,266 +1,111 @@
-if (Drupal.jsEnabled) {
-  // When the DOM is ready, try an AJAX content load
-  
-  $(document).ready(function() {
-    pcaAfterLoad();
-  }
-  );
-}
+(function ($) {
+  // Store our function as a property of Drupal.behaviors.
+  Drupal.behaviors.postCodeAnywhere = {
+    attach: function () {
+    	  	
+      // Only apply if postcodeanywhere wrapper is present.
+      if ($(Drupal.settings.postcodeanywhere.id_wrapper)){
+		    
+    	  	// @todo Manage case where there is no country box selection (ie. UK only sites).
+		    if(($(Drupal.settings.postcodeanywhere.id_country).val() == Drupal.settings.postcodeanywhere.id_country_uk_value) && (!$(Drupal.settings.postcodeanywhere.id_postcode).val())) {
+		    			$(Drupal.settings.postcodeanywhere.id_company_wrapper).hide();
+						$(Drupal.settings.postcodeanywhere.id_line1_wrapper).hide();
+						$(Drupal.settings.postcodeanywhere.id_line2_wrapper).hide();
+						$(Drupal.settings.postcodeanywhere.id_line3_wrapper).hide();
+						$(Drupal.settings.postcodeanywhere.id_town_wrapper).hide();
+						$(Drupal.settings.postcodeanywhere.id_county_wrapper).hide();
+		  	}
+		    
+		    // create lookup button.
+		    var postcodeanywhereLookupButton = '<input type="button" name="postcodeanywhere-lookup-button" id="postcodeanywhere-lookup-button" value="'+
+		    									Drupal.t(Drupal.settings.postcodeanywhere.submit_label_value)+'">';
+			  // create address list list on the fly.
+				var postcodeanywhereAddressList = '<select style ="display:none" size = "10" name="postcodeanywhere-address-list" id="postcodeanywhere-address-list">';
 
-function pcaAfterLoad() {
-// author: kenorb@gmail.com (27/10/2008)
+				// append lookup button and address list to postcodeanywhere wrapper.
+				$(postcodeanywhereLookupButton + '<br>' + postcodeanywhereAddressList).appendTo(Drupal.settings.postcodeanywhere.id_wrapper);
 
-    // make sure we have config loaded
-    if( window.pca_id_postcode_wrapper === undefined )
-        return;
-    
-    // init variables
-    postcode_wrapper = $(pca_id_postcode_wrapper)[0];
-    house_number = $(pca_id_house_number)[0];
-    property_name = $(pca_id_property_name)[0];
+				// add onclick event to lookup button.
+				$('#postcodeanywhere-lookup-button').click(function() {
+				  if(!$(Drupal.settings.postcodeanywhere.id_postcode).val()) {
+	   			  alert(Drupal.t('Please supply a complete valid Postcode'));
+	          $(Drupal.settings.postcodeanywhere.id_postcode).focus();
+	          return false;
+				 	}
+				 	else{
+				 		$.getJSON(Drupal.settings.basePath+"postcodeanywhere/findbypostcode/"+$(Drupal.settings.postcodeanywhere.id_postcode).val(), function(data){
+                var html = '';
+                if(data != null){
+                  if(data['error'] != null){
+                    $(Drupal.settings.postcodeanywhere.id_company_wrapper).show();
+          					$(Drupal.settings.postcodeanywhere.id_line1_wrapper).show();
+          					$(Drupal.settings.postcodeanywhere.id_line2_wrapper).show();
+          					$(Drupal.settings.postcodeanywhere.id_line3_wrapper).show();
+          					$(Drupal.settings.postcodeanywhere.id_town_wrapper).show();
+          					$(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
+          					alert(Drupal.t("Sorry there was an issue with the postcode lookup functionality, please enter address manually."));
+          			// @todo This needs to allow the user to manually enter a postcode still.
+                    $(Drupal.settings.postcodeanywhere.id_wrapper).hide()
+                  }
+                  else{
+                    var len = data.length;
+                    for (var i = 0; i< len; i++) {
+                        html += '<option value="' + data[i].Id[0] + '">' + data[i].StreetAddress[0] + ', ' + data[i].Place[0] + '</option>';
+                    }
+                    $('#postcodeanywhere-address-list').html(html);
+                    $('#postcodeanywhere-address-list').show();
+                  }
+                }
+                else{
+                   alert(Drupal.t("Sorry, no matching addresses found.\nPlease check Postcode"));
+                }
+            });
+				 		return true;
+				  }      
+  			});
+  			
+			// add onchange event to address list.
+			$('#postcodeanywhere-address-list').change(function() {
 
-    // check if we got wrapper defined
-    if (postcode_wrapper === undefined)
-        return;
-
-    // create Find Postcode button on the fly
-    var pca_button = document.createElement('input');
-    pca_button.type = 'button';
-    pca_button.name = 'FindPostcode';
-    pca_button.id = 'FindPostcode';
-    pca_button.value = 'Find Postcode';
-    pca_button.onclick = function() { PostcodeFinder() }; // IE compability syntax
-    postcode_wrapper.appendChild(pca_button);
-    // add br tag after button on the fly
-    var pca_br = document.createElement('br');
-    postcode_wrapper.appendChild(pca_br);
-    // create objAddressFinder list on the fly
-    var pca_list = document.createElement('select');
-    pca_list.name = 'objAddressFinder';
-    pca_list.id = 'objAddressFinder';
-    pca_list.width = '100%';
-    pca_list.size = '10';
-    pca_list.onchange = function() { FetchAddress(this.options[this.selectedIndex].value) }; // IE compability syntax
-    pca_list.setAttribute('style','display:none');
-    pca_list.style.cssText = 'display:none'; // IE issue fix
-    postcode_wrapper.appendChild(pca_list);
-    //postcode_wrapper.setAttribute('align','center'); // center the postcode wrapper // ENABLE IT IF NECESSARY
-}
-
-function pcaByPostcodeFilteredBegins(building, postcode, account_code, license_code, machine_id, bname) {
-    if (!building) {
-        building = bname;
+          $.getJSON(Drupal.settings.basePath+"postcodeanywhere/retrievebyid/"+$('#postcodeanywhere-address-list').val(), function(data){
+        	  		// Set the Values
+  					$(Drupal.settings.postcodeanywhere.id_company).val(data[0].Company[0]);
+  					$(Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1[0]);
+  					$(Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2[0]);
+  					$(Drupal.settings.postcodeanywhere.id_line3).val(data[0].Line3[0]);
+  					$(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]);
+  					$(Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]);
+  					$(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]);
+          });	
+				  
+				// Show the Wrappers.
+			  	$(Drupal.settings.postcodeanywhere.id_company_wrapper).show();
+					$(Drupal.settings.postcodeanywhere.id_line1_wrapper).show();
+					$(Drupal.settings.postcodeanywhere.id_line2_wrapper).show();
+					$(Drupal.settings.postcodeanywhere.id_line3_wrapper).show();
+					$(Drupal.settings.postcodeanywhere.id_town_wrapper).show();
+					$(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
+					
+					// Hide the list
+					$('#postcodeanywhere-address-list').hide();
+  			});
+  			
+  			// If we choose a non uk option hide postcode lookup.
+  			$(Drupal.settings.postcodeanywhere.id_country).change(function() {
+	  			if($(Drupal.settings.postcodeanywhere.id_country).val() == Drupal.settings.postcodeanywhere.id_country_uk_value){
+	  				$(Drupal.settings.postcodeanywhere.id_wrapper).show();
+	  			}
+	  			else{
+	  				$(Drupal.settings.postcodeanywhere.id_wrapper).hide();
+						$(Drupal.settings.postcodeanywhere.id_company_wrapper).show();
+						$(Drupal.settings.postcodeanywhere.id_line1_wrapper).show();
+						$(Drupal.settings.postcodeanywhere.id_line2_wrapper).show();
+						$(Drupal.settings.postcodeanywhere.id_line3_wrapper).show();
+						$(Drupal.settings.postcodeanywhere.id_town_wrapper).show();
+						$(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
+	  			}
+	  		});
+		  }
     }
-        
-    var scriptTag = document.getElementById("pcaScript");
-    var headTag = document.getElementsByTagName("head").item(0);
-    var strUrl = "";
-
-    //Build the url
-    strUrl = pca_url + "?";
-    strUrl += "&action=lookup";
-    strUrl += "&type=by_postcode";
-    strUrl += "&building=" + escape(building.value);
-    strUrl += "&postcode=" + escape(postcode.value);
-    strUrl += "&account_code=" + escape(account_code);
-    strUrl += "&license_code=" + escape(license_code);
-    strUrl += "&machine_id=" + escape(machine_id);
-    strUrl += "&callback=pcaByPostcodeFilteredEnd";
-
-    //Make the request
-    if (scriptTag) {
-        try {
-            headTag.removeChild(scriptTag);
-        }
-    catch (e) {
-        //Ignore
-        }
-    }
-    scriptTag = document.createElement("script");
-    scriptTag.src = strUrl
-    scriptTag.type = "text/javascript";
-    scriptTag.id = "pcaScript";
-    headTag.appendChild(scriptTag);
-}
-
-function pcaByPostcodeFilteredEnd() {
-    //Test for an error
-    if (pcaIsError) {
-        msgArr = pcaErrorMessage.split(' ');
-        pca_showAlert = 1;
-        for(i=0; i < msgArr.length; i++) {
-            if(msgArr[i] == 'credit')
-            showAlert=0;
-        }
-        if(pca_showAlert == 1) {
-            alert(pcaErrorMessage);
-        } else {
-            alert("Sorry, there was an unknown error. Please enter the address manually\nor try again later.");
-        }
-    } else {
-        //Check if there were any items found
-        if (pcaRecordCount == 0) {
-            alert("Sorry, no matching address found.\nPlease check House Number/Property Name or leave empty");
-        } else if (pcaRecordCount == 1) {
-            FetchAddress(pca_id[0]);
-            void(0);//return true;  
-        } else if (pcaRecordCount > 1) {
-            //Populate the select list
-            selBox = document.getElementById("objAddressFinder")
-            selBox.length=pcaRecordCount;
-            for (intCounter=0; intCounter < pcaRecordCount; intCounter++) {
-                selBox.options[intCounter].text = pca_description[intCounter];
-                selBox.options[intCounter].value = pca_id[intCounter];
-                selBox.options[intCounter].title = pca_description[intCounter];
-            }
-            selBox.disabled=false;
-            selBox.style.display = "block";
-        }
-    }
-}
-
-function PostcodeFinder() {
-    postcode = $(pca_id_input_postcode)[0]; // get element
-    house_number = $(pca_id_house_number)[0]; // get element
-    property_name = $(pca_id_property_name)[0]; // get element
-    country = $(pca_id_country)[0];
-    if (country == null) {
-        country = new Array();
-        country.value = pca_id_uk_value;
-    }
-
-    if ((pca_id_uk_value == "" || pca_id_country == "") || (country && (country.value == pca_id_uk_value || country.value == ""))) {
-        if(postcode=='') {
-            alert('Please supply a complete valid Postcode');
-            postcode.focus();
-            return false;
-        } else {
-            pcaByPostcodeFilteredBegins(house_number, postcode,  pca_account_code, pca_licence, '', property_name);
-            return true;
-        }
-    } else if (country && pca_id_uk_value != '') {
-        if(confirm('Country you select is not UK!! Click "OK" to change to UK')){
-            country.value = pca_id_uk_value;
-            if(postcode=='') {
-                alert('Please supply a complete valid Postcode');
-                postcode.focus();
-                return false;
-            } else {
-                pcaByPostcodeFilteredBegins(house_number.value, postcode.value,  pca_account_code, pca_licence, '', property_name);
-                return true;
-            }
-        } else {
-            postcode.focus();
-            return false;
-        }
-    }
-}
-
-function pcaFetchAddressBegin(id, language, style, account_code, license_code, machine_id, options) {
-      var scriptTag = document.getElementById("pcaScript");
-      var headTag = document.getElementsByTagName("head").item(0);
-      var strUrl = "";
-
-      //Build the url
-      strUrl = "http://services.postcodeanywhere.co.uk/inline.aspx?";
-      strUrl += "&action=fetch";
-      strUrl += "&id=" + escape(id);
-      strUrl += "&language=" + escape(language);
-      strUrl += "&style=" + escape(style);
-      strUrl += "&account_code=" + escape(account_code);
-      strUrl += "&license_code=" + escape(license_code);
-      strUrl += "&machine_id=" + escape(machine_id);
-      strUrl += "&options=" + escape(options);
-      strUrl += "&callback=pcaFetchAddressEnd";
-
-      //Make the request
-      if (scriptTag) {
-           try {
-                 headTag.removeChild(scriptTag);
-             }
-           catch (e) {
-                 //Ignore
-             }
-        }
-      scriptTag = document.createElement("script");
-      scriptTag.src = strUrl
-      scriptTag.type = "text/javascript";
-      scriptTag.id = "pcaScript";
-      headTag.appendChild(scriptTag);
-   }
-
-function FetchAddress(aid) {
-    pcaFetchAddressBegin(aid,'english','raw', pca_account_code, pca_licence, '', '');
-    return true;
-}
-
-
-var formFields=new Array()  ;
-
-function Fields(fieldsArray){
-    var arg=Fields.arguments;
-    var len=arg.length;
-    for (var i = 0; i < len; i++) {
-        formFields[i]=arg[i];
-    }
-}
-
-function pcaFetchAddressEnd() {
-    if (pcaIsError) {
-        //Handle no funds error message
-        msgArr = pcaErrorMessage.split(' ');
-
-        showAlert = 1;
-        for(i=0; i < msgArr.length; i++) {
-            if(msgArr[i] == 'funds')
-            showAlert=0;
-        }
-        if(showAlert==1) {
-            alert(pcaErrorMessage);
-        } else {
-            alert("Sorry, there was an unknown error. Please enter the address manually\nor try again later.");
-        }
-    } else {
-        if (pcaRecordCount==0) {
-            alert("Sorry, no matching items found.\nPlease check House Number/Property Name");
-        } else {
-            var pnumber=typeof pca_reformatted_building_number != "undefined" ? pca_reformatted_building_number[0] : '';
-            var pname = '';
-            if (typeof pca_building_name != "undefined") {
-                pname = pca_building_name[0];
-            } else if (typeof pca_reformatted_sub_building != "undefined") {
-                pname = pca_reformatted_sub_building[0]+', ' + pname;
-            } else if (typeof pca_organisation_name != "undefined") {
-                pname = pca_organisation_name[0]+', ' + pname;
-            }
-            var street = '';
-            if (typeof pca_thoroughfare_name != "undefined" || typeof pca_thoroughfare_descriptor != "undefined") {
-                street = pca_thoroughfare_name[0] +' '+ pca_thoroughfare_descriptor[0];
-            }
-            if (typeof pca_dependent_locality != "undefined") {
-                street += ','+pca_dependent_locality[0];
-            }
-
-            var el=$(pca_id_house_number)[0];
-            if(el) el.value=pnumber;
-
-            var el=$(pca_id_property_name)[0];
-            if(el && pname != "" && pname != "undefined") el.value=pname;
-
-            var el=$(pca_id_street)[0];
-            if(el) el.value=street;
-
-            var el=$(pca_id_city)[0];
-            if(el) el.value=pca_post_town[0];
-
-            var el=$(pca_id_county)[0];
-            if(el) el.value=pca_county[0];
-
-            var el=$(pca_id_input_postcode)[0];
-            if(el) el.value=pca_postcode[0];
-
-            document.getElementById("objAddressFinder").style.display = "none";
-        }
-    }
-}
-
+  };
+}(jQuery));

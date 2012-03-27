@@ -1,6 +1,6 @@
 name = "Postcode Anywhere"
 description = "Find a Postcode using PostcodeAnywhere service"
-package = CCK
-dependencies[] = content
-core = 6.x
+core = 7.x
+configure = admin/config/postcodeanywhere
 
+version = 7.x.1.0-dev

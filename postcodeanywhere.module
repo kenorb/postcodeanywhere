@@ -2,112 +2,182 @@
 
 /**
  * @file
- *   Form settings per user
- *
- * @version
- *
- * @developers:
- *    Rafal Wieczorek <kenorb@gmail.com>
+ * Handles the postcodeanywhere hooks.
  */
-
-/* Lookups of this postcode do not cost any credit */
-define('PCA_TEST_PC', 'WR2 6NJ');
 
 /**
  * Implementation of hook_menu().
- *
  */
 function postcodeanywhere_menu() {
-  $items['admin/settings/postcodeanywhere'] = array(
+  $items = array();
+
+  $items['admin/config/postcodeanywhere'] = array(
     'title' => 'Postcode Anywhere',
-    'description' => 'Manage Postcode Anywhere plugin.',
+    'description' => 'Manage Postcode Anywhere settings.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('postcodeanywhere_settings_form'),
     'access arguments' => array('administer postcodeanywhere'),
     'file' => 'postcodeanywhere.admin.inc',
   );
 
+  $items['postcodeanywhere/findbypostcode/%'] = array(
+    'title' => 'Postcode Lookup',
+    'description' => 'Lookup Address By PostCode.',
+    'page callback' => 'postcodeanywhere_findbypostcode',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+  );
+
+  $items['postcodeanywhere/retrievebyid/%'] = array(
+    'title' => 'Address retrieval',
+    'description' => 'Retrieve address by id.',
+    'page callback' => 'postcodeanywhere_retrievebyid',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+  );
+
   return $items;
 }
 
 /**
- * Implementation of hook_perm().
- *
+ * Implementation of hook_permission().
  */
-function postcodeanywhere_perm() {
-  $permissions = array(
-    'administer postcodeanywhere',
-    'use PHP for postcodeanywhere visibility',
+function postcodeanywhere_permission() {
+  return array(
+    'administer postcodeanywhere' => array(
+      'title' => t('Administer postcode anywhere settings'), 
+      'description' => t('Perform administration tasks for my module.'),
+  ),
+    'use PHP for postcodeanywhere visibility' => array(
+      'title' => t('Administer postcode anywhere settings'), 
+      'description' => t('Use PHP for postcodeanywhere visibility settings.'),
+  ),
   );
-  
-  return $permissions;
 }
 
 /**
  * Implementation of hook_form_alter().
  */
 function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
-  $forms = array_flip( is_string( $pca_forms = variable_get('pca_forms', array())) ? unserialize($pca_forms) : $pca_forms );
-  unset($forms[0]);
-  // drupal_set_message($form_id . ' - ' . print_r($forms, true)); // use it for testing purposes
-  $page_match = FALSE;
-  foreach ($forms as $pca_form_name) {
-    if (substr($form_id, 0, strlen($pca_form_name)) == $pca_form_name) {
-      $page_match = TRUE;
-      break;
+
+  // Check whether path matches one defined in postcodeanywhere settings.
+  $postcodeanywhere_rules = variable_get('postcodeanywhere_page_visibility_rules', '');
+  $postcodeanywhere_mode = variable_get('postcodeanywhere_page_visibility_mode', '');
+  if ($postcodeanywhere_rules) {
+    if ($postcodeanywhere_mode < 2) {
+      $path = drupal_get_path_alias($_GET['q']);
+      // Compare with the internal and path alias (if any).
+      $page_match = drupal_match_path($path, $postcodeanywhere_rules);
+      if ($path != $_GET['q']) {
+        $page_match = $page_match || drupal_match_path($_GET['q'], $postcodeanywhere_rules);
+      }
+      // When $postcodeanywhere_mode has a value of 0, the block is displayed on
+      // all pages except those listed in $block->pages. When set to 1, it
+      // is displayed only on those pages listed in $postcodeanywhere_rules.
+      $page_match = !($postcodeanywhere_mode xor $page_match);
+    }
+    else {
+      $page_match = drupal_eval($postcodeanywhere_rules);
     }
   }
-
-  if (!$page_match) {
-    // check for path matches
-    $pca_rules = variable_get('pca_page_visibility_rules', '');
-    $pca_mode = variable_get('pca_page_visibility_mode', '');
-      if ($pca_rules) {
-        if ($pca_mode < 2) {
-          $path = drupal_get_path_alias($_GET['q']);
-          // Compare with the internal and path alias (if any).
-          $page_match = drupal_match_path($path, $pca_rules);
-          if ($path != $_GET['q']) {
-            $page_match = $page_match || drupal_match_path($_GET['q'], $pca_rules);
-          }
-          // When $pca_mode has a value of 0, the block is displayed on
-          // all pages except those listed in $block->pages. When set to 1, it
-          // is displayed only on those pages listed in $pca_rules.
-          $page_match = !($pca_mode xor $page_match);
-        }
-        else {
-          $page_match = drupal_eval($pca_rules);
-        }
-      }
-      else {
-        $page_match = TRUE;
-      }
+  else {
+    $page_match = TRUE;
   }
 
   if ($page_match) {
-      postcodeanywhere_form_add_js(); // include postcodeanywhere JS file
+    // include postcodeanywhere JS file.
+    postcodeanywhere_form_add_js();
   }
 }
 
 /**
- * Include postcodeanywhere js files
+ * Helper function to include postcodeanywhere js files.
  */
 function postcodeanywhere_form_add_js() {
-  // load variables
-  drupal_add_js("
-      var pca_account_code = '". variable_get('pca_account_code', '') ."';
-      var pca_licence = \"". variable_get('pca_licence', '') . "\";
-      var pca_id_postcode_wrapper = \"". variable_get('pca_id_postcode_wrapper', '') . "\";
-      var pca_id_input_postcode = \"". variable_get('pca_id_input_postcode', '') . "\";
-      var pca_id_house_number = \"". variable_get('pca_id_house_number', '') . "\";
-      var pca_id_property_name = \"". variable_get('pca_id_property_name', '') . "\";
-      var pca_id_street = \"". variable_get('pca_id_street', '') . "\";
-      var pca_id_city = \"". variable_get('pca_id_city', '') . "\";
-      var pca_id_county = \"". variable_get('pca_id_county', '') . "\";
-      var pca_id_country = \"". variable_get('pca_id_country', '') . "\";
-      var pca_id_uk_value = '". variable_get('pca_id_uk_value', 226) . "';
-      var pca_showAlert = ". variable_get('pca_showalert', 1) . "; 
-      var pca_url = '". variable_get('pca_url', 'http://services.postcodeanywhere.co.uk/inline.aspx') ."';", 'inline');
-  drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js');
+
+  // Add postcodeanywhere settings to Drupal's global storage.
+  $settings = array(
+    'postcodeanywhere' => array(
+      'account_code' => variable_get('postcodeanywhere_account_code', ''),
+      'licence' => variable_get('postcodeanywhere_licence', ''),
+      'id_wrapper' => variable_get('postcodeanywhere_id_wrapper', ''),
+      'id_postcode' => variable_get('postcodeanywhere_id_postcode', ''),
+      'id_company' => variable_get('postcodeanywhere_id_company', ''),
+      'id_company_wrapper' => variable_get('postcodeanywhere_id_company_wrapper', ''),
+      'id_line1' => variable_get('postcodeanywhere_id_line1', ''),
+      'id_line1_wrapper' => variable_get('postcodeanywhere_id_line1_wrapper', ''),
+      'id_line2' => variable_get('postcodeanywhere_id_line2', ''),
+      'id_line2_wrapper' => variable_get('postcodeanywhere_id_line2_wrapper', ''),
+      'id_line3' => variable_get('postcodeanywhere_id_line3', ''),
+      'id_line3_wrapper' => variable_get('postcodeanywhere_id_line3_wrapper', ''),
+      'id_town' => variable_get('postcodeanywhere_id_town', ''),
+      'id_town_wrapper' => variable_get('postcodeanywhere_id_town_wrapper', ''),
+      'id_county' => variable_get('postcodeanywhere_id_county', ''),
+      'id_county_wrapper' => variable_get('postcodeanywhere_id_county_wrapper', ''),
+      'id_country' => variable_get('postcodeanywhere_id_country', ''),
+      'id_country_uk_value' => variable_get('postcodeanywhere_id_country_uk_value', 'GB'),
+      'submit_label_value' => variable_get('postcodeanywhere_submit_label_value', 'Find Address'),
+      'showAlert' => variable_get('postcodeanywhere_showalert', 1),
+      'url' => variable_get('postcodeanywhere_url', 'http://services.postcodeanywhere.co.uk/inline.aspx'),
+  ),
+  );
+  drupal_add_js($settings, 'setting');
+  drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js', 'file');
 }
 
+function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") {
+  require_once(drupal_get_path('module', 'postcodeanywhere') . "/postcodeanywhere.class.php");
+  $licence_key = variable_get('postcodeanywhere_licence', '');
+
+  try {
+    $pa = new PostcodeAnywhere_Interactive_FindByPostcode_v1_00($licence_key, $postcode, "");
+
+    $pa->MakeRequest();
+    if ($pa->HasData()) {
+      $data = $pa->HasData();
+    }
+  }
+  catch (Exception $e) {
+    $data['error'] = $e->getMessage();
+  }
+
+  drupal_json_output($data);
+}
+
+function postcodeanywhere_retrievebyid($id) {
+  require_once(drupal_get_path('module', 'postcodeanywhere') . "/postcodeanywhere.class.php");
+  $licence_key = variable_get('postcodeanywhere_licence', '');
+
+  // @todo Update this to a D7 db_select.
+  $query = db_query("SELECT json FROM {postcodeanywhere_cache} WHERE udprn = :udprn", array(
+      ':udprn' => $id,
+  )
+  );
+
+  $data = $query->fetchField();
+
+  if ($data) {
+    echo $data;
+    drupal_json_output();
+  }
+  else {
+    try {
+      $pa = new PostcodeAnywhere_Interactive_RetrieveById_v1_20($licence_key, $id, "English", "");
+      $pa->MakeRequest();
+      if ($pa->HasData()) {
+        $data = $pa->HasData();
+
+        $record = array();
+        $record['udprn'] = $id;
+        $record['json'] = json_encode($data);
+        $record['timestamp'] = time();
+        drupal_write_record('postcodeanywhere_cache', $record);
+
+      }
+    }
+    catch (Exception $e) {
+      $data['error'] = $e->getMessage();
+    }
+    drupal_json_output($data);
+  }
+}
