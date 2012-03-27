@@ -35,7 +35,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
   );
 
   $access = user_access('use PHP for postcodeanywhere visibility');
-  if ($edit['visibility'] == 2 && !$access) {
+  if (!$access) { // FIXME: Not tested under Drupal 7 (See block.admin.inc for some example)
     $form['page_vis_settings'] = array();
     $form['page_vis_settings']['postcodeanywhere_page_visibility_mode'] = array('#type' => 'value', '#value' => 2);
     $form['page_vis_settings']['postcodeanywhere_page_visibility_rules'] = array('#type' => 'value', '#value' => $edit['pages']);

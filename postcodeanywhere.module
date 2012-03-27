@@ -35,7 +35,6 @@ function postcodeanywhere_menu() {
     'page arguments' => array(2),
     'access arguments' => array('access content'),
   );
-
   return $items;
 }
 
