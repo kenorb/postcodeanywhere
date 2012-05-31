@@ -74,7 +74,15 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Postcode Wrapper (i.e. parent DIV tag)'),
     '#default_value' => variable_get('postcodeanywhere_id_wrapper', "div[id*='postcode-wrapper']"),
-    '#description' => t('jQuery selector for existing wrapper where button should appear.'),
+    '#description' => t('jQuery selector for the element where an addresslist textfield will be appended to the end of.'),
+    '#required' => TRUE,
+  );
+  
+  $form['form_settings']['postcodeanywhere_id_postcode'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Postcode Input'),
+    '#default_value' => variable_get('postcodeanywhere_id_postcode', "input[id*='edit-address-postcode']"),
+    '#description' => t('jQuery selector for the existing postcode input field. The lookup button will be inserted immediately after this.'),
     '#required' => TRUE,
   );
 
@@ -83,14 +91,6 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#title' => t('Country'),
     '#default_value' => variable_get('postcodeanywhere_id_country', "select[id*='edit-address-country']"),
     '#description' => t('jQuery selector for existing input field for Country Name.'),
-  );
-
-  $form['form_settings']['postcodeanywhere_id_postcode'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Postcode Input'),
-    '#default_value' => variable_get('postcodeanywhere_id_postcode', "input[id*='edit-address-postcode']"),
-    '#description' => t('jQuery selector for existing input field for Postcode.'),
-    '#required' => TRUE,
   );
 
   $form['form_settings']['postcodeanywhere_id_company'] = array(
