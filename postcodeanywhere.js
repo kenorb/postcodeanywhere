@@ -68,6 +68,7 @@
                     }
                     $('#postcodeanywhere-address-list').html(html);
                     $('#postcodeanywhere-address-list').slideDown();
+                    // $('#postcodeanywhere-address-list').show('slow');
                   }
                 }
                 else{
@@ -83,14 +84,14 @@
 
           $.getJSON(Drupal.settings.basePath+"postcodeanywhere/retrievebyid/"+$('#postcodeanywhere-address-list').val(), function(data){
                 // Set the Values
-            $(Drupal.settings.postcodeanywhere.id_company).val(data[0].Company).change();
-            $(Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1).change();
-            $(Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2).change();
-            $(Drupal.settings.postcodeanywhere.id_line3).val(data[0].Line3).change();
-            $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown).change();
-            $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County).change();
-            $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode).change();
-          });  
+            $(Drupal.settings.postcodeanywhere.id_company).val(data[0].Company[0]).change();
+            $(Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1[0]).change();
+            $(Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2[0]).change();
+            $(Drupal.settings.postcodeanywhere.id_line3).val(data[0].Line3[0]).change();
+            $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]).change();
+            $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]).change();
+            $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]).change();
+          });
           
         // Show the Wrappers.
           $(Drupal.settings.postcodeanywhere.id_company_wrapper).show();

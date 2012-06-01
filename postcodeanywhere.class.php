@@ -50,9 +50,9 @@ class PostcodeAnywhere_Interactive_FindByPostcode_v1_00 {
     if (!empty($file->Rows)) {
       foreach ($file->Rows->Row as $item) {
         $this->Data[] = array(
-            'Id' => $item->attributes()->Id,
-            'StreetAddress' => $item->attributes()->StreetAddress,
-            'Place' => $item->attributes()->Place);
+            'Id' => (string)$item->attributes()->Id,
+            'StreetAddress' => (string)$item->attributes()->StreetAddress,
+            'Place' => (string)$item->attributes()->Place);
       }
     }
   }
@@ -129,34 +129,34 @@ class PostcodeAnywhere_Interactive_RetrieveById_v1_20 {
     if (!empty($file->Rows)) {
       foreach ($file->Rows->Row as $item) {
         $this->Data[] = array(
-               'Udprn' => $item->attributes()->Udprn,
-               'Company' => $item->attributes()->Company,
-               'Department' => $item->attributes()->Department,
-               'Line1' => $item->attributes()->Line1,
-               'Line2' => $item->attributes()->Line2,
-               'Line3' => $item->attributes()->Line3,
-               'Line4' => $item->attributes()->Line4,
-               'Line5' => $item->attributes()->Line5,
-               'PostTown' => $item->attributes()->PostTown,
-               'County' => $item->attributes()->County,
-               'Postcode' => $item->attributes()->Postcode,
-               'Mailsort' => $item->attributes()->Mailsort,
-               'Barcode' => $item->attributes()->Barcode,
-               'Type' => $item->attributes()->Type,
-               'DeliveryPointSuffix' => $item->attributes()->DeliveryPointSuffix,
-               'SubBuilding' => $item->attributes()->SubBuilding,
-               'BuildingName' => $item->attributes()->BuildingName,
-               'BuildingNumber' => $item->attributes()->BuildingNumber,
-               'PrimaryStreet' => $item->attributes()->PrimaryStreet,
-               'SecondaryStreet' => $item->attributes()->SecondaryStreet,
-               'DoubleDependentLocality' => $item->attributes()->DoubleDependentLocality,
-               'DependentLocality' => $item->attributes()->DependentLocality,
-               'PoBox' => $item->attributes()->PoBox,
-               'PrimaryStreetName' => $item->attributes()->PrimaryStreetName,
-               'PrimaryStreetType' => $item->attributes()->PrimaryStreetType,
-               'SecondaryStreetName' => $item->attributes()->SecondaryStreetName,
-               'SecondaryStreetType' => $item->attributes()->SecondaryStreetType,
-               'CountryName' => $item->attributes()->CountryName
+               'Udprn' => (string)$item->attributes()->Udprn,
+               'Company' => (string)$item->attributes()->Company,
+               'Department' => (string)$item->attributes()->Department,
+               'Line1' => (string)$item->attributes()->Line1,
+               'Line2' => (string)$item->attributes()->Line2,
+               'Line3' => (string)$item->attributes()->Line3,
+               'Line4' => (string)$item->attributes()->Line4,
+               'Line5' => (string)$item->attributes()->Line5,
+               'PostTown' => (string)$item->attributes()->PostTown,
+               'County' => (string)$item->attributes()->County,
+               'Postcode' => (string)$item->attributes()->Postcode,
+               'Mailsort' => (string)$item->attributes()->Mailsort,
+               'Barcode' => (string)$item->attributes()->Barcode,
+               'Type' => (string)$item->attributes()->Type,
+               'DeliveryPointSuffix' => (string)$item->attributes()->DeliveryPointSuffix,
+               'SubBuilding' => (string)$item->attributes()->SubBuilding,
+               'BuildingName' => (string)$item->attributes()->BuildingName,
+               'BuildingNumber' => (string)$item->attributes()->BuildingNumber,
+               'PrimaryStreet' => (string)$item->attributes()->PrimaryStreet,
+               'SecondaryStreet' => (string)$item->attributes()->SecondaryStreet,
+               'DoubleDependentLocality' => (string)$item->attributes()->DoubleDependentLocality,
+               'DependentLocality' => (string)$item->attributes()->DependentLocality,
+               'PoBox' => (string)$item->attributes()->PoBox,
+               'PrimaryStreetName' => (string)$item->attributes()->PrimaryStreetName,
+               'PrimaryStreetType' => (string)$item->attributes()->PrimaryStreetType,
+               'SecondaryStreetName' => (string)$item->attributes()->SecondaryStreetName,
+               'SecondaryStreetType' => (string)$item->attributes()->SecondaryStreetType,
+               'CountryName' => (string)$item->attributes()->CountryName
         );
       }
     }
