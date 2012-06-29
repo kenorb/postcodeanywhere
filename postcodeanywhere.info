@@ -4,3 +4,9 @@ core = 7.x
 configure = admin/config/postcodeanywhere
 
 version = 7.x.1.0-dev
+; Information added by drupal.org packaging script on 2012-03-28
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "postcodeanywhere"
+datestamp = "1332894768"
+

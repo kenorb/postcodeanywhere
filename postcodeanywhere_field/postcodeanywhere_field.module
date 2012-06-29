@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Defines simple postcode types.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function postcodeanywhere_field_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#postcodeanywhere_field':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t("The PostcodeAnywhere Field module defines postcode field type for the Field module. A postcode may contain plain text only, or optionally, may use Drupal's <a href='@filter-help'>text filters</a> to securely manage HTML output. It defines a single line postcode field (textfield). See the <a href='@field-help'>Field module help page</a> for more information about fields.", array('@field-help' => url('admin/help/field'), '@filter-help' => url('admin/help/filter'))) . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function postcodeanywhere_field_theme($format) {
+  return array(
+    'postcodeanywhere' => array(
+      'render element' => 'element',
+      'file' => 'postcodeanywhere_field.theme.inc',
+    ),
+  );
+}
+
+/**
+ * Implements hook_element_info().
+ */
+function postcodeanywhere_field_element_info() {
+  $types['postcodeanywhere'] = array(
+    '#input' => TRUE,
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#autocomplete_path' => FALSE,
+    '#process' => array('ajax_process_form'),
+    '#theme' => 'postcodeanywhere',
+    '#theme_wrappers' => array('form_element'),
+  );
+  return $types;
+}
+

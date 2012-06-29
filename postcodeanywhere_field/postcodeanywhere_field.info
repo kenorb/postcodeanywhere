@@ -1,0 +1,6 @@
+name = "Postcode Anywhere Field"
+description = Defines PostcodeAnywhere field type.
+core = 7.x
+dependencies[] = field
+dependencies[] = postcodeanywhere
+files[] = postcodeanywhere_field.test
