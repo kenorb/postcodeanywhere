@@ -10,7 +10,7 @@
  */
 function postcodeanywhere_field_field_schema($field) {
   switch ($field['type']) {
-    case 'text':
+    case 'postcodeanywhere':
       $columns = array(
         'value' => array(
           'type' => 'varchar',
