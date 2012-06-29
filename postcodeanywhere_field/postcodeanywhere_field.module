@@ -328,3 +328,4 @@ function postcodeanywhere_field_filter_format_update($format) {
 function postcodeanywhere_field_filter_format_disable($format) {
   field_cache_clear();
 }
+
