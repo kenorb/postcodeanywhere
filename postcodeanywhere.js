@@ -40,7 +40,7 @@
             });
 
         // add onclick event to lookup button.
-        $('#postcodeanywhere-lookup-button').click(function() {
+        $(Drupal.settings.postcodeanywhere.id_lookup_button).click(function() {
           if (!$(Drupal.settings.postcodeanywhere.id_postcode).val()) {
              alert(Drupal.t('Please supply a complete valid Postcode'));
             $(Drupal.settings.postcodeanywhere.id_postcode).focus();

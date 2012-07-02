@@ -35,11 +35,12 @@ function postcodeanywhere_field_theme($format) {
  */
 function postcodeanywhere_field_element_info() {
   $types['postcodeanywhere'] = array(
+    '#name' => 'postcodeanywhere',
     '#input' => TRUE,
     '#size' => 60,
     '#maxlength' => 128,
     '#autocomplete_path' => FALSE,
-    '#process' => array('ajax_process_form'),
+    '#process' => array('ajax_process_form', 'postcodeanywhere_field_process_form'),
     '#theme' => 'postcodeanywhere',
     '#theme_wrappers' => array('form_element'),
   );
@@ -327,5 +328,29 @@ function postcodeanywhere_field_filter_format_update($format) {
  */
 function postcodeanywhere_field_filter_format_disable($format) {
   field_cache_clear();
+}
+
+/**
+ * Form element processing handler for postcodeanywhere field.
+ *
+ * @param $element
+ *   An associative array containing the properties of the element.
+ *
+ * @return
+ *   The processed element.
+ *
+ */
+function postcodeanywhere_field_process_form($element, &$form_state) {
+  if ($element['#type'] == 'postcodeanywhere') {
+    $id = $element['#id'];
+    $name = $element['#name'];
+    $settings = array(
+      'id_wrapper' => ".form-item-postcodeanywhere",
+      'id_postcode' => "#$id",
+      'id_lookup_button' => "#$id-lookup-button",
+    );
+    postcodeanywhere_form_add_js($settings);
+  }
+  return $element;
 }
 

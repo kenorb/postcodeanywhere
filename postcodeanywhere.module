@@ -92,7 +92,12 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
 /**
  * Helper function to include postcodeanywhere js files.
  */
-function postcodeanywhere_form_add_js() {
+function postcodeanywhere_form_add_js($extra_settings = NULL) {
+  static $pca_loaded = FALSE;
+
+  if ($pca_loaded) {
+    return;
+  }
 
   // Add postcodeanywhere settings to Drupal's global storage.
   $settings = array(
@@ -101,6 +106,7 @@ function postcodeanywhere_form_add_js() {
       'licence' => variable_get('postcodeanywhere_licence', ''),
       'id_wrapper' => variable_get('postcodeanywhere_id_wrapper', ''),
       'id_postcode' => variable_get('postcodeanywhere_id_postcode', ''),
+      'id_lookup_button' => '#postcodeanywhere-lookup-button',
       'id_company' => variable_get('postcodeanywhere_id_company', ''),
       'id_company_wrapper' => variable_get('postcodeanywhere_id_company_wrapper', ''),
       'id_line1' => variable_get('postcodeanywhere_id_line1', ''),
@@ -118,9 +124,20 @@ function postcodeanywhere_form_add_js() {
       'submit_label_value' => variable_get('postcodeanywhere_submit_label_value', 'Find Address'),
       'showAlert' => variable_get('postcodeanywhere_showalert', 1),
       'url' => variable_get('postcodeanywhere_url', 'http://services.postcodeanywhere.co.uk/inline.aspx'),
-  ),
+    ),
   );
-  drupal_add_js($settings, 'setting');
+
+  // Add extra settings to JS setting value
+  if ($extra_settings && is_array($extra_settings)) {
+    foreach ($extra_settings as $key => $value) {
+      $settings['postcodeanywhere'][$key] .= ',' . $value;
+
+      // Set as already loaded, so don't try to load it again (e.g. hook_form_alter)
+      $pca_loaded = TRUE;
+    }
+  }
+
+  drupal_add_js($settings, 'setting'); // Append settings into JS file
   drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js', 'file');
 }
 

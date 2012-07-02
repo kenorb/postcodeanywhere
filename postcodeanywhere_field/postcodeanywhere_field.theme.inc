@@ -37,19 +37,23 @@ function theme_postcodeanywhere($variables) {
   }
 
   // Append lookup button field
+  /*
   $lookup_button = array();
   $lookup_button['type'] = 'button';
   $lookup_button['id'] = $element['#attributes']['id'] . '-lookup-button';
   $lookup_button['value'] = variable_get('postcodeanywhere_submit_label_value', 'Find address');
   $extra .= '<input' . drupal_attributes($lookup_button) . ' />';
+  */
 
   // Append address list field
+  /*
   $address_list = array();
   $address_list['type'] = 'select';
   $address_list['id'] = $element['#attributes']['id'] . '-address-list';
   $address_list['size'] = '10';
   $address_list['style'][] = 'display:none';
   $extra .= '<br><select' . drupal_attributes($address_list) . ' />';
+  */
 
   $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
 
