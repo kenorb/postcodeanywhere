@@ -341,7 +341,7 @@ function postcodeanywhere_field_filter_format_disable($format) {
  *
  */
 function postcodeanywhere_field_process_form($element, &$form_state) {
-  if ($element['#type'] == 'postcodeanywhere') {
+  if (isset($element['#type']) && $element['#type'] == 'postcodeanywhere') {
     $id = $element['#id'];
     $name = $element['#name'];
     $settings = array(
