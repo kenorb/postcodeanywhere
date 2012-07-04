@@ -58,8 +58,6 @@
                     $(Drupal.settings.postcodeanywhere.id_town_wrapper).show();
                     $(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
                     alert(Drupal.t("Sorry there was an issue with the postcode lookup functionality, please enter address manually."));
-                // @todo This needs to allow the user to manually enter a postcode still.
-                    $(Drupal.settings.postcodeanywhere.id_wrapper).hide()
                   }
                   else {
                     var len = data.length;
