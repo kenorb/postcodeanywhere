@@ -35,7 +35,6 @@ function postcodeanywhere_field_theme($format) {
  */
 function postcodeanywhere_field_element_info() {
   $types['postcodeanywhere'] = array(
-    '#name' => 'postcodeanywhere',
     '#input' => TRUE,
     '#size' => 60,
     '#maxlength' => 128,
@@ -45,6 +44,27 @@ function postcodeanywhere_field_element_info() {
     '#theme_wrappers' => array('form_element'),
   );
   return $types;
+}
+
+/**
+ * Determines the value for a postcodeanywhere form element.
+ *
+ * @param $element
+ *   The form element whose value is being populated.
+ * @param $input
+ *   The incoming input to populate the form element. If this is FALSE,
+ *   the element's default value should be returned.
+ *
+ * @return
+ *   The data that will appear in the $element_state['values'] collection
+ *   for this element. Return nothing to use the default.
+ */
+function form_type_postcodeanywhere_value($element, $input = FALSE) {
+  if ($input !== FALSE && $input !== NULL) {
+    // Equate $input to the form value to ensure it's marked for
+    // validation.
+    return str_replace(array("\r", "\n"), '', $input);
+  }
 }
 
 /**
@@ -346,7 +366,7 @@ function postcodeanywhere_field_process_form($element, &$form_state) {
     $name = $element['#name'];
     $settings = array(
       'id_wrapper' => ".form-item-postcodeanywhere",
-      'id_postcode' => "#$id",
+      'id_postcode' => "input[id*='$id']",
       'id_lookup_button' => "#$id-lookup-button",
     );
     postcodeanywhere_form_add_js($settings);
