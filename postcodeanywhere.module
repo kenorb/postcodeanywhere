@@ -11,7 +11,7 @@
 function postcodeanywhere_menu() {
   $items = array();
 
-  $items['admin/config/postcodeanywhere'] = array(
+  $items['admin/config/content/postcodeanywhere'] = array(
     'title' => 'Postcode Anywhere',
     'description' => 'Manage Postcode Anywhere settings.',
     'page callback' => 'drupal_get_form',
@@ -84,9 +84,18 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
   }
 
   if ($page_match) {
-    // include postcodeanywhere JS file.
-    postcodeanywhere_form_add_js();
+    // include postcodeanywhere JS file after form is built
+    $form['#after_build'][] = 'postcodeanywhere_form_after_build';
   }
+}
+
+/**
+ * Implementation of #after_build function
+ * Helper function to include postcodeanywhere js files after form is built
+ */
+function postcodeanywhere_form_after_build($form_element, &$form_state) {
+  postcodeanywhere_form_add_js();
+  return $form_element;
 }
 
 /**
@@ -95,9 +104,12 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
 function postcodeanywhere_form_add_js($extra_settings = NULL) {
   static $pca_loaded = FALSE;
 
+  // Don't allow to load the JS file twice
   if ($pca_loaded) {
     return;
   }
+
+  $pca_loaded = TRUE;
 
   // Add postcodeanywhere settings to Drupal's global storage.
   $settings = array(

@@ -4,7 +4,7 @@
     attach: function () {
           
       // Only apply if postcodeanywhere wrapper is present.
-      if ($(Drupal.settings.postcodeanywhere.id_wrapper)){
+      if ($(Drupal.settings.postcodeanywhere.id_wrapper)) {
         
           // @todo Manage case where there is no country box selection (ie. UK only sites).
         if (($(Drupal.settings.postcodeanywhere.id_country).val() == Drupal.settings.postcodeanywhere.id_country_uk_value) && (!$(Drupal.settings.postcodeanywhere.id_postcode).val())) {
