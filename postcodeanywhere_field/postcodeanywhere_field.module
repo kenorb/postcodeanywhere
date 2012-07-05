@@ -365,9 +365,9 @@ function postcodeanywhere_field_process_form($element, &$form_state) {
     $id = $element['#id'];
     $name = $element['#name'];
     $settings = array(
-      'id_wrapper' => ".form-item-postcodeanywhere",
+      'id_wrapper' => ".form-item-" . $name,
       'id_postcode' => "input[id*='$id']",
-      'id_lookup_button' => "#$id-lookup-button",
+      'id_lookup_button' => "input[id='postcodeanywhere-lookup-button']",
     );
     postcodeanywhere_form_add_js($settings);
   }
