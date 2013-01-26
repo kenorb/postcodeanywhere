@@ -11,6 +11,7 @@ INTRODUCTION
 ------------
 
  Project URL: http://drupal.org/project/postcodeanywhere
+ GitHub URL:  https://github.com/kenorb/postcodeanywhere
 
  The postcode anywhere module allows you to provide automatic UK address lookup
  on your drupal site. 
@@ -79,3 +80,4 @@ INSTALLATION
  * Postcode anywhere will only attempt to lookup UK postcodes, so if a country
    selection box is available on the form, and given a target ID, you must enter
    the key for the United Kingdom option here.
+
