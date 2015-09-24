@@ -76,7 +76,7 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
       $page_match = !($postcodeanywhere_mode xor $page_match);
     }
     else {
-      $page_match = drupal_eval($postcodeanywhere_rules);
+      $page_match = php_eval($postcodeanywhere_rules);
     }
   }
   else {
