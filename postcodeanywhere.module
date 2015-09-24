@@ -85,14 +85,15 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
   }
 
   if ($page_match) {
-      postcodeanywhere_form_add_js(); // include postcodeanywhere JS file
+     $form['#after_build'][] = 'postcodeanywhere_form_add_js_after_build';
+      // include postcodeanywhere JS file
   }
 }
 
 /**
  * Include postcodeanywhere js files
  */
-function postcodeanywhere_form_add_js() {
+function postcodeanywhere_form_add_js_after_build($form, &$form_state) {
   // load variables
   drupal_add_js("
       var pca_account_code = '". variable_get('pca_account_code', '') ."';
@@ -109,5 +110,6 @@ function postcodeanywhere_form_add_js() {
       var pca_showAlert = ". variable_get('pca_showalert', 1) . "; 
       var pca_url = '". variable_get('pca_url', 'http://services.postcodeanywhere.co.uk/inline.aspx') ."';", 'inline');
   drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js');
+  return $form;
 }
 
