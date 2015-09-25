@@ -25,66 +25,76 @@
 
 */
 
+/**
+ * This class handles the initial request for the list of addresses at a single postcode. 
+ */
 class PostcodeAnywhere_Interactive_FindByPostcode
 {
 
-   //Credit: Thanks to Stuart Sillitoe (http://stu.so/me) for the original PHP that these samples are based on.
+  // Credit: Thanks to Stuart Sillitoe (http://stu.so/me) for the original PHP that these samples are based on.
 
-   private $Key; //The key to use to authenticate to the service.
-   private $Postcode; //The postcode to search with find.
-   private $UserName; //The username associated with the Royal Mail license (not required for click licenses).
-   private $Data; //Holds the results of the query
+  private $Key;        // The key to use to authenticate to the service.
+  private $Postcode;   // The postcode to search with find.
+  private $UserName;   // The username associated with the Royal Mail license (not required for click licenses).
+  private $Data;       // Holds the results of the query.
 
-   function PostcodeAnywhere_Interactive_FindByPostcode_v1_00($Key, $Postcode, $UserName)
-   {
-      $this->Key = $Key;
-      $this->Postcode = $Postcode;
-      $this->UserName = $UserName;
-   }
+  function PostcodeAnywhere_Interactive_FindByPostcode_v1_00($Key, $Postcode, $UserName) {
+    $this->Key = $Key;
+    $this->Postcode = $Postcode;
+    $this->UserName = $UserName;
+  }
 
-   function MakeRequest()
-   {
-      $url = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/FindByPostcode/v1.00/xmla.ws?";
-      $url .= "&Key=" . urlencode($this->Key);
-      $url .= "&Postcode=" . urlencode($this->Postcode);
-      $url .= "&UserName=" . urlencode($this->UserName);
+  /**
+   * Function calls the postcodeanywhere web service to load a list of addresses
+   * registered at the given postcode.
+   */
+  function MakeRequest() {
+    $url = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/FindByPostcode/v1.00/xmla.ws?";
+    $url .= "&Key=" . urlencode($this->Key);
+    $url .= "&Postcode=" . urlencode($this->Postcode);
+    $url .= "&UserName=" . urlencode($this->UserName);
 
-      //Make the request to Postcode Anywhere and parse the XML returned
-      $file = simplexml_load_file($url);
+    // Make the request to Postcode Anywhere and parse the XML returned.
+    $file = simplexml_load_file($url);
 
-      //Check for an error, if there is one then throw an exception
-      if ($file->Columns->Column->attributes()->Name == "Error") 
-      {
-         throw new Exception("[ID] " . $file->Rows->Row->attributes()->Error . " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description . " [CAUSE] " . $file->Rows->Row->attributes()->Cause . " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution);
+    // Check for an error, if there is one then throw an exception.
+    if ($file->Columns->Column->attributes()->Name == "Error") {
+      throw new Exception(
+        "[ID] " . $file->Rows->Row->attributes()->Error .
+        " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description .
+        " [CAUSE] " . $file->Rows->Row->attributes()->Cause .
+        " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution
+      );
+    }
+
+    // Copy the data
+    if (!empty($file->Rows)) {
+      foreach ($file->Rows->Row as $item) {
+        $this->Data[] = array(
+            'Id' => (string)$item->attributes()->Id,
+            'StreetAddress' => (string)$item->attributes()->StreetAddress,
+            'Place' => (string)$item->attributes()->Place);
       }
+    }
+  }
 
-      //Copy the data
-      if ( !empty($file->Rows) )
-      {
-         foreach ($file->Rows->Row as $item)
-         {
-             $this->Data[] = array('Id'=>$item->attributes()->Id,'StreetAddress'=>$item->attributes()->StreetAddress,'Place'=>$item->attributes()->Place);
-         }
-      }
-   }
-
-   function HasData()
-   {
-      if ( !empty($this->Data) )
-      {
-         return $this->Data;
-      }
-      return false;
-   }
-
+  /**
+   * Returns the data collected by this instance.
+   */
+  function HasData() {
+    if (!empty($this->Data)) {
+      return $this->Data;
+    }
+    return false;
+  }
 }
 
-//Example usage
-//-------------
-//$pa = new PostcodeAnywhere_Interactive_FindByPostcode_v1_00 ("AA11-AA11-AA11-AA11","WR2 6NJ","David");
-//$pa->MakeRequest();
-//if ($pa->HasData())
-//{
+// Example usage
+// -------------
+// $pa = new PostcodeAnywhere_Interactive_FindByPostcode_v1_00 ("AA11-AA11-AA11-AA11","WR2 6NJ","David");
+// $pa->MakeRequest();
+// if ($pa->HasData())
+// {
 //   $data = $pa->HasData();
 //   foreach ($data as $item)
 //   {
@@ -92,5 +102,5 @@ class PostcodeAnywhere_Interactive_FindByPostcode
 //      echo $item["StreetAddress"] . "<br/>";
 //      echo $item["Place"] . "<br/>";
 //   }
-//}
+// }
 

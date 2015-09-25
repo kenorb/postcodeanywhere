@@ -154,11 +154,11 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
 }
 
 function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") {
-  require_once(drupal_get_path('module', 'postcodeanywhere') . "/postcodeanywhere.class.php");
+  require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
   $licence_key = variable_get('postcodeanywhere_licence', '');
 
   try {
-    $pa = new PostcodeAnywhere_Interactive_FindByPostcode_v1_00($licence_key, $postcode, "");
+    $pa = new PostcodeAnywhere_Interactive_FindByPostcode($licence_key, $postcode, "");
 
     $pa->MakeRequest();
     if ($pa->HasData()) {
@@ -173,7 +173,7 @@ function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") {
 }
 
 function postcodeanywhere_retrievebyid($id) {
-  require_once(drupal_get_path('module', 'postcodeanywhere') . "/postcodeanywhere.class.php");
+  require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_RetrieveById.class.inc");
   $licence_key = variable_get('postcodeanywhere_licence', '');
 
   // @todo Update this to a D7 db_select.
@@ -190,7 +190,7 @@ function postcodeanywhere_retrievebyid($id) {
   }
   else {
     try {
-      $pa = new PostcodeAnywhere_Interactive_RetrieveById_v1_20($licence_key, $id, "English", "");
+      $pa = new PostcodeAnywhere_Interactive_RetrieveById($licence_key, $id, "English", "");
       $pa->MakeRequest();
       if ($pa->HasData()) {
         $data = $pa->HasData();
