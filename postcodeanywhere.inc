@@ -8,7 +8,7 @@
 /**
  * AJAX callback to lists address records for the given postcode.
  */
-function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") {
+function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") { // WR2 6NJ is a test code.
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
   $key = variable_get('postcodeanywhere_licence', '');
 
@@ -37,7 +37,7 @@ function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") {
 /**
  * AJAX callback to lists address records for the given postcode.
  */
-function postcodeanywhere_findbypartialpostcode($PartialPostcode = "W2") {
+function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2") {
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPartialPostcode.class.inc");
   $key = variable_get('postcodeanywhere_licence', '');
 

@@ -20,8 +20,9 @@ function postcodeanywhere_settings_form($form, &$form_state) {
 
   $form['pca_service']['postcodeanywhere_licence'] = array(
     '#type' => 'textfield',
-    '#title' => t('PCA Service key'),
-    '#default_value' => variable_get('postcodeanywhere_licence', ''),
+    '#title' => t('PCA API Service key'),
+    '#description' => t('Change this key into valid API Service Key.'),
+    '#default_value' => variable_get('postcodeanywhere_licence', 'DJ95-ZP12-FW89-EN99'),
   );
 
   $form['pca_service']['postcodeanywhere_url'] = array(
