@@ -176,13 +176,8 @@ function postcodeanywhere_retrievebyid($id) {
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_RetrieveById.class.inc");
   $licence_key = variable_get('postcodeanywhere_licence', '');
 
-  // @todo Update this to a D7 db_select.
-  $query = db_query("SELECT json FROM {postcodeanywhere_cache} WHERE udprn = :udprn", array(
-      ':udprn' => $id,
-  )
-  );
-
-  $data = $query->fetchField();
+  $cache = cache_get("pca_" . $id);
+  $data = $cache->data;
 
   if ($data) {
     echo $data;
@@ -199,7 +194,7 @@ function postcodeanywhere_retrievebyid($id) {
         $record['udprn'] = $id;
         $record['json'] = json_encode($data);
         $record['timestamp'] = time();
-        drupal_write_record('postcodeanywhere_cache', $record);
+        cache_set($id, $record);
 
       }
     }
