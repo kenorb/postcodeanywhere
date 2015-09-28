@@ -47,7 +47,7 @@
             return false;
            }
            else {
-             $.getJSON(Drupal.settings.basePath+"postcodeanywhere/findbypostcode/"+$(Drupal.settings.postcodeanywhere.id_postcode).val(), function(data){
+             $.getJSON(Drupal.settings.basePath+"pca/findbypostcode/"+$(Drupal.settings.postcodeanywhere.id_postcode).val(), function(data){
                 var html = '';
                 if (data != null) {
                   if (data['error'] != null) {
@@ -70,7 +70,7 @@
 
                     // add onchange event to address list.
                     $('input[name="postcodeanywhere-address"]').change(function() {
-                      $.getJSON(Drupal.settings.basePath+"postcodeanywhere/retrievebyid/"+$(this).val(), function(data){
+                      $.getJSON(Drupal.settings.basePath+"pca/retrievebyid/"+$(this).val(), function(data){
                         // Set the Values
                         // If the results are strings
                         if (typeof data[0].Company == 'string') {

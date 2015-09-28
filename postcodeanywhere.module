@@ -20,7 +20,7 @@ function postcodeanywhere_menu() {
     'file' => 'postcodeanywhere.admin.inc',
   );
 
-  $items['postcodeanywhere/findbypostcode/%'] = array(
+  $items['pca/findbypostcode/%'] = array(
     'title' => 'Postcode Lookup',
     'description' => 'Lookup Address By PostCode.',
     'page callback' => 'postcodeanywhere_findbypostcode',
@@ -28,7 +28,7 @@ function postcodeanywhere_menu() {
     'access arguments' => array('access content'),
   );
 
-  $items['postcodeanywhere/retrievebyid/%'] = array(
+  $items['pca/retrievebyid/%'] = array(
     'title' => 'Address retrieval',
     'description' => 'Retrieve address by id.',
     'page callback' => 'postcodeanywhere_retrievebyid',
