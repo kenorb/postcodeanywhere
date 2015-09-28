@@ -165,3 +165,17 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
   drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js', 'file');
 }
 
+/**
+ * Helper function to parse URL callback to PCA.
+ */
+function postcodeanywhere_parse_url($url, $format = 'json') {
+  $arr = parse_url($url);
+  $api_url = parse_url(variable_get('postcodeanywhere_url', 'https://services.postcodeanywhere.co.uk/'));
+  /*
+  $wsdl = end(explode('/', $arr['path']));
+  if ($wsdl != $format . '.ws') {
+    $arr['path'] = str_replace($wsdl, $format . '.ws', $arr['path']); // Change format if necessary.
+  }
+  */
+  return sprintf("%s://%s%s?%s", $api_url['scheme'], $api_url['host'], $arr['path'], $arr['query']);
+}

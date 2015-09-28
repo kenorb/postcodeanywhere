@@ -29,8 +29,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('PCA Callback URL.'),
     '#required' => TRUE,
-    '#disabled' => TRUE, // Read-only, as it needs to be implemented in the classes first.
-    '#default_value' => variable_get('postcodeanywhere_url', 'http://services.postcodeanywhere.co.uk/'),
+    '#default_value' => variable_get('postcodeanywhere_url', 'https://services.postcodeanywhere.co.uk/'),
   );
 
   $form['page_vis_settings'] = array(
