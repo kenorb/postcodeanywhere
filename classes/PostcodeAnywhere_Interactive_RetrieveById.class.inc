@@ -1,7 +1,10 @@
 <?php
+
 /*
 
-  PostcodeAnywhere Interactive RetrieveById (v1.30)
+  @file
+    PostcodeAnywhere Interactive RetrieveById (v1.30)
+
   Returns the full address details based on the Id.
   Includes country name based on postcode area and the thoroughfare name components
   SOAP WSDL
