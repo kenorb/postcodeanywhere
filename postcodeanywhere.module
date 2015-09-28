@@ -21,20 +21,23 @@ function postcodeanywhere_menu() {
   );
 
   $items['pca/findbypostcode/%'] = array(
-    'title' => 'Postcode Lookup',
-    'description' => 'Lookup Address By PostCode.',
+    'title' => 'PCA Predict FindByPostcode',
+    'description' => 'Lists address records for the given postcode.',
     'page callback' => 'postcodeanywhere_findbypostcode',
     'page arguments' => array(2),
     'access arguments' => array('access content'),
+    'file' => 'postcodeanywhere.inc',
   );
 
   $items['pca/retrievebyid/%'] = array(
-    'title' => 'Address retrieval',
-    'description' => 'Retrieve address by id.',
+    'title' => 'PCA Predict RetrieveById',
+    'description' => 'Returns the full address details based on the Id.',
     'page callback' => 'postcodeanywhere_retrievebyid',
     'page arguments' => array(2),
     'access arguments' => array('access content'),
+    'file' => 'postcodeanywhere.inc',
   );
+
   return $items;
 }
 
@@ -153,61 +156,3 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
   drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js', 'file');
 }
 
-/**
- * AJAX callback to lists address records for the given postcode.
- */
-function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") {
-  require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
-  $key = variable_get('postcodeanywhere_licence', '');
-
-  $cid = "pca_pc_" . $id;
-  $cache = cache_get($cid);
-  $data = $cache->data;
-
-  if ($data) {
-    echo $data;
-    drupal_json_output();
-  } else {
-    try {
-      $pa = new PostcodeAnywhere_Interactive_FindByPostcode($key, $postcode, "");
-      $pa->MakeRequest();
-      if ($data = $pa->HasData()) {
-        cache_set($cid, $data);
-      }
-    }
-    catch (Exception $e) {
-      $data['error'] = $e->getMessage();
-    }
-    drupal_json_output($data);
-  }
-}
-
-/**
- * AJAX callback to returns the full address details based on the Id.
- */
-function postcodeanywhere_retrievebyid($id) {
-  require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_RetrieveById.class.inc");
-  $key = variable_get('postcodeanywhere_licence', '');
-
-  $cid = "pca_id_" . $id;
-  $cache = cache_get($cid);
-  $data = $cache->data;
-
-  if ($data) {
-    echo $data;
-    drupal_json_output();
-  }
-  else {
-    try {
-      $pa = new PostcodeAnywhere_Interactive_RetrieveById($key, $id, "English", "");
-      $pa->MakeRequest();
-      if ($data = $pa->HasData()) {
-        cache_set($cid, $data);
-      }
-    }
-    catch (Exception $e) {
-      $data['error'] = $e->getMessage();
-    }
-    drupal_json_output($data);
-  }
-}
