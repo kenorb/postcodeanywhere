@@ -5,9 +5,12 @@
  * Handles the admin forms.
  */
 
+/**
+ * Menu callback for admin page.
+ */
 function postcodeanywhere_settings_form($form, &$form_state) {
 
-  $form['license'] = array(
+  $form['pca_service'] = array(
     '#type' => 'fieldset',
     '#title' => t('License settings'),
     '#description' => t('Account settings.'),
@@ -15,16 +18,18 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#collapsed' => FALSE,
   );
 
-  $form['license']['postcodeanywhere_licence'] = array(
+  $form['pca_service']['postcodeanywhere_licence'] = array(
     '#type' => 'textfield',
-    '#title' => t('Web service Key'),
+    '#title' => t('PCA Service key'),
     '#default_value' => variable_get('postcodeanywhere_licence', ''),
   );
 
-  $form['license']['postcodeanywhere_url'] = array(
+  $form['pca_service']['postcodeanywhere_url'] = array(
     '#type' => 'textfield',
-    '#title' => t('Postcodeanywhere URL'),
-    '#default_value' => variable_get('postcodeanywhere_url', 'http://services.postcodeanywhere.co.uk/inline.aspx'),
+    '#title' => t('PCA Callback URL.'),
+    '#required' => TRUE,
+    '#disabled' => TRUE, // Read-only, as it needs to be implemented in the classes first.
+    '#default_value' => variable_get('postcodeanywhere_url', 'http://services.postcodeanywhere.co.uk/'),
   );
 
   $form['page_vis_settings'] = array(
@@ -65,7 +70,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
   $form['form_settings'] = array(
     '#type' => 'fieldset',
     '#title' => t('Form Selectors'),
-    '#description' => t('Choose proper jQuery selectors'),
+    '#description' => t('Choose jQuery selectors to attach to'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );

@@ -29,6 +29,15 @@ function postcodeanywhere_menu() {
     'file' => 'postcodeanywhere.inc',
   );
 
+  $items['pca/findbypartialpostcode/%'] = array(
+    'title' => 'PCA Predict FindByPartialPostcode',
+    'description' => 'Lists address records for the given partial postcode.',
+    'page callback' => 'postcodeanywhere_findbypartialpostcode',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'file' => 'postcodeanywhere.inc',
+  );
+
   $items['pca/retrievebyid/%'] = array(
     'title' => 'PCA Predict RetrieveById',
     'description' => 'Returns the full address details based on the Id.',
@@ -138,7 +147,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
       'id_country_uk_value' => variable_get('postcodeanywhere_id_country_uk_value', 'GB'),
       'submit_label_value' => variable_get('postcodeanywhere_submit_label_value', 'Find Address'),
       'showAlert' => variable_get('postcodeanywhere_showalert', 1),
-      'url' => variable_get('postcodeanywhere_url', 'http://services.postcodeanywhere.co.uk/inline.aspx'),
+      'url' => variable_get('postcodeanywhere_url', 'http://services.postcodeanywhere.co.uk/'),
     ),
   );
 
