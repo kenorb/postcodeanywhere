@@ -6,6 +6,15 @@
  */
 
 /**
+ * Implements hook_field_widget_form_alter().
+ */
+function postcodeanywhere_field_field_widget_form_alter(&$element, &$form_state, $context) {
+  if ($context['field']['type'] == 'postcodeanywhere') {
+    // ...
+  }
+}
+
+/**
  * Implements hook_help().
  */
 function postcodeanywhere_field_help($path, $arg) {
@@ -361,6 +370,10 @@ function postcodeanywhere_field_filter_format_disable($format) {
  *
  */
 function postcodeanywhere_field_process_form($element, &$form_state) {
+  $key = variable_get('postcodeanywhere_licence', '');
+  if (empty($key) && user_access('administer postcodeanywhere')) {
+    drupal_set_message(t('You need to configure your Web service Key in the settings page.'), 'warning');
+  }
   if (isset($element['#type']) && $element['#type'] == 'postcodeanywhere') {
     $id = $element['#id'];
     $name = $element['#name'];
