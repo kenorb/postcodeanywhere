@@ -20,31 +20,45 @@ function postcodeanywhere_menu() {
     'file' => 'postcodeanywhere.admin.inc',
   );
 
+  // AJAX callbacks.
+  $items['pca/autocomplete_callback'] = array(
+    'title' => 'Autocomplete callback for PCA Predict.',
+    'description' => 'Returns lists address records for the given partial postcode.',
+    'page callback' => 'postcodeanywhere_autocomplete',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'file' => 'postcodeanywhere.inc',
+    'type' => MENU_CALLBACK
+  );
+
   $items['pca/findbypostcode/%'] = array(
-    'title' => 'PCA Predict FindByPostcode',
+    'title' => 'PCA Predict FindByPostcode callback',
     'description' => 'Lists address records for the given postcode.',
     'page callback' => 'postcodeanywhere_findbypostcode',
     'page arguments' => array(2),
     'access arguments' => array('access content'),
     'file' => 'postcodeanywhere.inc',
+    'type' => MENU_CALLBACK
   );
 
   $items['pca/findbypartialpostcode/%'] = array(
-    'title' => 'PCA Predict FindByPartialPostcode',
+    'title' => 'PCA Predict FindByPartialPostcode callback',
     'description' => 'Lists address records for the given partial postcode.',
     'page callback' => 'postcodeanywhere_findbypartialpostcode',
     'page arguments' => array(2),
     'access arguments' => array('access content'),
     'file' => 'postcodeanywhere.inc',
+    'type' => MENU_CALLBACK
   );
 
-  $items['pca/retrievebyid/%'] = array(
-    'title' => 'PCA Predict RetrieveById',
+  $items['pca/retrievebyid'] = array(
+    'title' => 'PCA Predict RetrieveById callback',
     'description' => 'Returns the full address details based on the Id.',
     'page callback' => 'postcodeanywhere_retrievebyid',
     'page arguments' => array(2),
     'access arguments' => array('access content'),
     'file' => 'postcodeanywhere.inc',
+    'type' => MENU_CALLBACK
   );
 
   return $items;
@@ -176,5 +190,6 @@ function postcodeanywhere_parse_url($url, $format = 'json') {
   if ($wsdl != $format) {
     $arr['path'] = str_replace($wsdl, $format, $arr['path']); // Change format if necessary.
   }
+  // TODO: Consider appending: &CallbackFunction=TestCallBack
   return sprintf("%s://%s%s?%s", $api_url['scheme'], $api_url['host'], $arr['path'], $arr['query']);
 }

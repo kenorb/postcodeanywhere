@@ -8,6 +8,22 @@
 /**
  * AJAX callback to lists address records for the given postcode.
  */
+function postcodeanywhere_autocomplete($string = "") {
+  $matches = array();
+
+  if (strlen($string) >= 5) { // If postcode is 5 chars in length or more, it's full post code ...
+    postcodeanywhere_findbypostcode($string);
+  }
+  else if (strlen($string) > 3) { // ... otherwise if it's 3-4 in length, it's partial.
+    postcodeanywhere_findbypartialpostcode($string);
+  } else {
+    drupal_json_output($matches);
+  }
+}
+
+/**
+ * AJAX callback to lists address records for the given postcode.
+ */
 function postcodeanywhere_findbypostcode($postcode = "LL11 5HJ") { // LL11 5HJ (or WR2 6NJ) is a test code.
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
   $key = variable_get('postcodeanywhere_licence', '');
@@ -22,6 +38,8 @@ function postcodeanywhere_findbypostcode($postcode = "LL11 5HJ") { // LL11 5HJ (
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
         cache_set($cid, $data);
+      } else {
+        $data = array();
       }
     }
     catch (Exception $e) {
@@ -48,6 +66,8 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2") {
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
         cache_set($cid, $data);
+      } else {
+        $data = array();
       }
     }
     catch (Exception $e) {
@@ -74,6 +94,8 @@ function postcodeanywhere_retrievebyid($id) {
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
         cache_set($cid, $data);
+      } else {
+        $data = array();
       }
     }
     catch (Exception $e) {
