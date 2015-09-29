@@ -8,18 +8,15 @@
 /**
  * AJAX callback to lists address records for the given postcode.
  */
-function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") { // WR2 6NJ is a test code.
+function postcodeanywhere_findbypostcode($postcode = "LL11 5HJ") { // LL11 5HJ (or WR2 6NJ) is a test code.
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
   $key = variable_get('postcodeanywhere_licence', '');
 
-  $cid = "pca_pc_" . $id;
+  $cid = "pca_pc_" . $postcode;
   $cache = cache_get($cid);
   $data = $cache->data;
 
-  if ($data) {
-    echo $data;
-    drupal_json_output();
-  } else {
+  if (empty($data)) {
     try {
       $pca = new PostcodeAnywhere_Interactive_FindByPostcode($key, $postcode, "");
       $pca->MakeRequest();
@@ -30,8 +27,8 @@ function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ") { // WR2 6NJ is 
     catch (Exception $e) {
       $data['error'] = $e->getMessage();
     }
-    drupal_json_output($data);
   }
+  drupal_json_output($data);
 }
 
 /**
@@ -45,10 +42,7 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2") {
   $cache = cache_get($cid);
   $data = $cache->data;
 
-  if ($data) {
-    echo $data;
-    drupal_json_output();
-  } else {
+  if (empty($data)) {
     try {
       $pca = new PostcodeAnywhere_Interactive_FindByPartialPostcode($key, $PartialPostcode, "");
       $pca->MakeRequest();
@@ -59,8 +53,8 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2") {
     catch (Exception $e) {
       $data['error'] = $e->getMessage();
     }
-    drupal_json_output($data);
   }
+  drupal_json_output($data);
 }
 
 /**
@@ -74,11 +68,7 @@ function postcodeanywhere_retrievebyid($id) {
   $cache = cache_get($cid);
   $data = $cache->data;
 
-  if ($data) {
-    echo $data;
-    drupal_json_output();
-  }
-  else {
+  if (empty($data)) {
     try {
       $pca = new PostcodeAnywhere_Interactive_RetrieveById($key, $id, "English", "");
       $pca->MakeRequest();
@@ -89,7 +79,7 @@ function postcodeanywhere_retrievebyid($id) {
     catch (Exception $e) {
       $data['error'] = $e->getMessage();
     }
-    drupal_json_output($data);
   }
+  drupal_json_output($data);
 }
 
