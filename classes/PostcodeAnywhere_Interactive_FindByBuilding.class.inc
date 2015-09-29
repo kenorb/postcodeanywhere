@@ -30,7 +30,7 @@ class PostcodeAnywhere_Interactive_FindByBuilding
    private $UserName; //The username associated with the Royal Mail license (not required for click licenses).
    private $Data; //Holds the results of the query
 
-   function PostcodeAnywhere_Interactive_FindByBuilding_v1_00($Key, $Building, $LocalityOrPartialPostcode, $UserName)
+   function PostcodeAnywhere_Interactive_FindByBuilding($Key, $Building, $LocalityOrPartialPostcode, $UserName)
    {
       $this->Key = $Key;
       $this->Building = $Building;

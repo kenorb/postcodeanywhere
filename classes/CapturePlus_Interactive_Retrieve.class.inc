@@ -26,7 +26,7 @@ class CapturePlus_Interactive_Retrieve
    private $Id; //The Id from a Find method to retrieve the details for.
    private $Data; //Holds the results of the query
 
-   function CapturePlus_Interactive_Retrieve_v2_10($Key, $Id)
+   function CapturePlus_Interactive_Retrieve($Key, $Id)
    {
       $this->Key = $Key;
       $this->Id = $Id;

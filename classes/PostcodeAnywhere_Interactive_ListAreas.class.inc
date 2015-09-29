@@ -28,7 +28,7 @@ class PostcodeAnywhere_Interactive_ListAreas
    private $UserName; //The username associated with the Royal Mail license (not required for click licenses).
    private $Data; //Holds the results of the query
 
-   function PostcodeAnywhere_Interactive_ListAreas_v1_00($Key, $UserName)
+   function PostcodeAnywhere_Interactive_ListAreas($Key, $UserName)
    {
       $this->Key = $Key;
       $this->UserName = $UserName;

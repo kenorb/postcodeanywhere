@@ -36,7 +36,7 @@ class PostcodeAnywhere_Interactive_FindByStreet
    private $UserName; //The username associated with the Royal Mail license (not required for click licenses).
    private $Data; //Holds the results of the query
 
-   function PostcodeAnywhere_Interactive_FindByStreet_v1_00($Key, $Street, $LocalityOrPartialPostcode, $UserName)
+   function PostcodeAnywhere_Interactive_FindByStreet($Key, $Street, $LocalityOrPartialPostcode, $UserName)
    {
       $this->Key = $Key;
       $this->Street = $Street;

@@ -34,7 +34,7 @@ class CapturePlus_Interactive_Find
    private $MaxResults; //The maximum number of retrievable address results to return.
    private $Data; //Holds the results of the query
 
-   function CapturePlus_Interactive_Find_v2_10($Key, $SearchTerm, $LastId, $SearchFor, $Country, $LanguagePreference, $MaxSuggestions, $MaxResults)
+   function CapturePlus_Interactive_Find($Key, $SearchTerm, $LastId, $SearchFor, $Country, $LanguagePreference, $MaxSuggestions, $MaxResults)
    {
       $this->Key = $Key;
       $this->SearchTerm = $SearchTerm;

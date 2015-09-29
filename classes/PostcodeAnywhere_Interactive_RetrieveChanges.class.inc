@@ -31,7 +31,7 @@ class PostcodeAnywhere_Interactive_RetrieveChanges
    private $UserName; //The username associated with the Royal Mail license (not required for click licenses).
    private $Data; //Holds the results of the query
 
-   function PostcodeAnywhere_Interactive_RetrieveChanges_v1_00($Key, $FromDate, $ToDate, $UserName)
+   function PostcodeAnywhere_Interactive_RetrieveChanges($Key, $FromDate, $ToDate, $UserName)
    {
       $this->Key = $Key;
       $this->FromDate = $FromDate;
