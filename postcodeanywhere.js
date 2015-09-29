@@ -16,15 +16,15 @@
             $(Drupal.settings.postcodeanywhere.id_county_wrapper).hide();
         }
 
-        // create lookup button.
+        // Create lookup button.
         var postcodeanywhereLookupButton = '<input type="button" name="postcodeanywhere-lookup-button" id="postcodeanywhere-lookup-button" value="'+
                           Drupal.t(Drupal.settings.postcodeanywhere.submit_label_value)+'">';
-        // create address list list on the fly.
+        // Create address list list on the fly.
         var postcodeanywhereAddressList = '<div style="display:none;" size="10" name="postcodeanywhere-address-list" id="postcodeanywhere-address-list">';
         // Create spinner container
         var postcodeanywhereloader = '<div id="postcodeloading" class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div><div class="message">Please wait...</div></div>';
 
-        // append lookup button and address list to postcodeanywhere wrapper.
+        // Append lookup button and address list to postcodeanywhere wrapper.
         $(postcodeanywhereLookupButton).insertAfter(Drupal.settings.postcodeanywhere.id_postcode);
         $(postcodeanywhereloader).insertAfter(Drupal.settings.postcodeanywhere.id_postcode);
         $(postcodeanywhereAddressList).appendTo(Drupal.settings.postcodeanywhere.id_wrapper);
@@ -39,10 +39,10 @@
                 $(this).hide();
             });
 
-        // add onclick event to lookup button.
+        // Add onclick event to lookup button.
         $(Drupal.settings.postcodeanywhere.id_lookup_button).click(function() {
           if (!$(Drupal.settings.postcodeanywhere.id_postcode).val()) {
-             alert(Drupal.t('Please supply a complete valid Postcode'));
+             alert(Drupal.t('Please supply a valid post code.'));
             $(Drupal.settings.postcodeanywhere.id_postcode).focus();
             return false;
            }
@@ -57,7 +57,7 @@
                     $(Drupal.settings.postcodeanywhere.id_line3_wrapper).show();
                     $(Drupal.settings.postcodeanywhere.id_town_wrapper).show();
                     $(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
-                    alert(Drupal.t("Sorry there was an issue with the postcode lookup functionality, please enter address manually."));
+                    alert(Drupal.t("Sorry there was an issue with the postcode lookup, please double check if your entry is valid.\n\nError: ") + data['error']);
                   }
                   else {
                     var len = data.length;
@@ -68,9 +68,9 @@
                     // $('#postcodeanywhere-address-list').slideDown();
                     $('#postcodeanywhere-address-list').show('slow');
 
-                    // add onchange event to address list.
+                    // Add onchange event to address list.
                     $('input[name="postcodeanywhere-address"]').change(function() {
-                      $.getJSON(Drupal.settings.basePath+"pca/retrievebyid/"+$(this).val(), function(data){
+                      $.getJSON(Drupal.settings.basePath + "pca/retrievebyid/" + $(this).val(), function(data){
                         // Set the Values
                         // If the results are strings
                         if (typeof data[0].Company == 'string') {

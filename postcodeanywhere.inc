@@ -22,6 +22,16 @@ function postcodeanywhere_autocomplete($string = "") {
 }
 
 /**
+ * Form element validate handler for PCA autocomplete element.
+ */
+function postcodeanywhere_autocomplete_validate($element, &$form_state) {
+  $values = $form_state['values'];
+
+  // @todo? strlen($string) <= 3
+  // form_error($form['node'], t('Sorry, the post code is too short.'));
+}
+
+/**
  * AJAX callback to lists address records for the given postcode.
  */
 function postcodeanywhere_findbypostcode($postcode = "LL11 5HJ") { // LL11 5HJ (or WR2 6NJ) is a test code.

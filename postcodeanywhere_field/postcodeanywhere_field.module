@@ -47,7 +47,6 @@ function postcodeanywhere_field_element_info() {
     '#input' => TRUE,
     '#size' => 60,
     '#maxlength' => 128,
-    '#autocomplete_path' => FALSE,
     '#process' => array('ajax_process_form', 'postcodeanywhere_field_process_form'),
     '#theme' => 'postcodeanywhere',
     '#theme_wrappers' => array('form_element'),
@@ -91,7 +90,7 @@ function postcodeanywhere_field_field_info() {
       'description' => t('This field stores varchar text in the database used for Postcode Anywhere service.'),
       'settings' => array('max_length' => 255),
       'instance_settings' => array('text_processing' => 0),
-      'default_widget' => 'text_postcodeanywhere',
+      'default_widget' => 'postcodeanywhere_text',
       'default_formatter' => 'text_default',
     ),
   );
@@ -147,8 +146,7 @@ function postcodeanywhere_field_field_instance_settings_form($field, $instance) 
  * Possible error codes:
  * - 'text_value_max_length': The value exceeds the maximum length.
  */
-function postcodeanywhere_field_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
-  foreach ($items as $delta => $item) {
+function postcodeanywhere_field_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) { foreach ($items as $delta => $item) {
     foreach (array('value') as $column) {
       if (!empty($item[$column])) {
         if (!empty($field['settings']['max_length']) && drupal_strlen($item[$column]) > $field['settings']['max_length']) {
@@ -256,10 +254,20 @@ function _postcodeanywhere_text_sanitize($instance, $langcode, $item, $column) {
  */
 function postcodeanywhere_field_field_widget_info() {
   return array(
-    'text_postcodeanywhere' => array(
-      'label' => t('Postcode Anywhere text field'),
+    'postcodeanywhere_text' => array(
+      'label' => t('PCA (text field)'),
       'field types' => array('postcodeanywhere'),
-      'settings' => array('size' => 60),
+      'settings' => array(
+        'size' => 60
+      ),
+    ),
+    'postcodeanywhere_autocomplete' => array(
+      'label' => t('PCA (autocomplete)'),
+      'field types' => array('postcodeanywhere'),
+      'settings' => array(
+        'autocomplete_path' => 'pca/autocomplete',
+        'size' => 60
+      ),
     ),
   );
 }
@@ -271,7 +279,7 @@ function postcodeanywhere_field_field_widget_settings_form($field, $instance) {
   $widget = $instance['widget'];
   $settings = $widget['settings'];
 
-  if ($widget['type'] == 'text_postcodeanywhere') {
+  if ($widget['type'] == 'postcodeanywhere_text' || $widget['type'] == 'postcodeanywhere_autocomplete') {
     $form['size'] = array(
       '#type' => 'textfield',
       '#title' => t('Size of textfield'),
@@ -301,16 +309,28 @@ function postcodeanywhere_field_field_widget_form(&$form, &$form_state, $field, 
   $main_widget = array();
 
   switch ($instance['widget']['type']) {
-    case 'text_postcodeanywhere':
+    case 'postcodeanywhere_text':
       $main_widget = $element + array(
         '#type' => 'textfield',
         '#default_value' => isset($items[$delta]['value']) ? $items[$delta]['value'] : NULL,
         '#size' => $instance['widget']['settings']['size'],
         '#maxlength' => $field['settings']['max_length'],
         '#attributes' => array('class' => array('text-full')),
+        '#autocomplete_path' => FALSE,
       );
       break;
-
+    case 'postcodeanywhere_autocomplete':
+      $main_widget = $element + array(
+        '#type' => 'textfield',
+        '#default_value' => isset($items[$delta]['value']) ? $items[$delta]['value'] : NULL,
+        '#size' => $instance['widget']['settings']['size'],
+        '#maxlength' => $field['settings']['max_length'],
+        '#attributes' => array('class' => array('text-autocomplete')),
+        '#process' => array('ajax_process_form'),
+        '#autocomplete_path' => $instance['widget']['settings']['autocomplete_path'],
+        '#element_validate' => array('postcodeanywhere_autocomplete_validate'),
+      );
+      break;
   }
 
   if ($main_widget) {

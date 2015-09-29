@@ -21,7 +21,7 @@ function postcodeanywhere_menu() {
   );
 
   // AJAX callbacks.
-  $items['pca/autocomplete_callback'] = array(
+  $items['pca/autocomplete'] = array(
     'title' => 'Autocomplete callback for PCA Predict.',
     'description' => 'Returns lists address records for the given partial postcode.',
     'page callback' => 'postcodeanywhere_autocomplete',
@@ -113,6 +113,14 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
     // include postcodeanywhere JS file after form is built
     $form['#after_build'][] = 'postcodeanywhere_form_after_build';
   }
+
+  switch ($form_id) {
+    case 'field_ui_field_edit_form':
+      // Load necessary functions on form field submit.
+      module_load_include('inc', 'postcodeanywhere');
+      break;
+  }
+
 }
 
 /**
@@ -184,12 +192,15 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
  */
 function postcodeanywhere_parse_url($url, $format = 'json') {
   $arr = parse_url($url);
-  $api_url = parse_url(variable_get('postcodeanywhere_url', 'https://services.postcodeanywhere.co.uk/'));
-  $wsdl = end(explode('/', $arr['path']));
-  $format = variable_get('postcodeanywhere_format', 'xmla.ws');
-  if ($wsdl != $format) {
-    $arr['path'] = str_replace($wsdl, $format, $arr['path']); // Change format if necessary.
+  if ($api_url = parse_url(variable_get('postcodeanywhere_url', 'https://services.postcodeanywhere.co.uk/'))) {
+    $wsdl = end(explode('/', $arr['path']));
+    $format = variable_get('postcodeanywhere_format', 'xmla.ws');
+    if ($wsdl != $format) {
+      $arr['path'] = str_replace($wsdl, $format, $arr['path']); // Change format if necessary.
+    }
+    // TODO: Consider appending: &CallbackFunction=TestCallBack
+    return sprintf("%s://%s%s?%s", $api_url['scheme'], $api_url['host'], $arr['path'], $arr['query']);
+  } else {
+    return $url; // Return previous if we can't parse it.
   }
-  // TODO: Consider appending: &CallbackFunction=TestCallBack
-  return sprintf("%s://%s%s?%s", $api_url['scheme'], $api_url['host'], $arr['path'], $arr['query']);
 }
