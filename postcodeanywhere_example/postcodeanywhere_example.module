@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Postcode Anywhere Example feature.
+ */
+
+include_once 'postcodeanywhere_example.features.inc';

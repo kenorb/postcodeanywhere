@@ -1,0 +1,15 @@
+name = Postcode Anywhere Example
+description = Provides Example of PCA field in entity forms.
+core = 7.x
+package = Testing
+dependencies[] = entity
+dependencies[] = entityform
+dependencies[] = features
+dependencies[] = postcodeanywhere_field
+dependencies[] = text
+features[entityform_type][] = postcode_anywhere_example
+features[features_api][] = api:2
+features[field_base][] = field_pca_field
+features[field_base][] = field_pca_field_autocomplete
+features[field_instance][] = entityform-postcode_anywhere_example-field_pca_field
+features[field_instance][] = entityform-postcode_anywhere_example-field_pca_field_autocomplete
