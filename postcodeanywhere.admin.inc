@@ -78,7 +78,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
   $form['form_settings']['postcodeanywhere_id_wrapper'] = array(
     '#type' => 'textarea',
     '#title' => t('Postcode Wrapper (i.e. parent DIV tag)'),
-    '#default_value' => variable_get('postcodeanywhere_id_wrapper', "div[id*='postcode-wrapper']"),
+    '#default_value' => variable_get('postcodeanywhere_id_wrapper', "div[id*='postcode-wrapper'],div[id*='-pca-']"),
     '#description' => t('jQuery selector for the element where an addresslist textfield will be appended to the end of.'),
     '#required' => TRUE,
   );
@@ -86,7 +86,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
   $form['form_settings']['postcodeanywhere_id_postcode'] = array(
     '#type' => 'textarea',
     '#title' => t('Postcode Input'),
-    '#default_value' => variable_get('postcodeanywhere_id_postcode', "input[id*='edit-address-postcode']"),
+    '#default_value' => variable_get('postcodeanywhere_id_postcode', "input[id*='edit-address-postcode'],input[id*='-pca-']"),
     '#description' => t('jQuery selector for the existing postcode input field. The lookup button will be inserted immediately after this.'),
     '#required' => TRUE,
   );
