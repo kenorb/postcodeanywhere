@@ -27,9 +27,18 @@ function postcodeanywhere_settings_form($form, &$form_state) {
 
   $form['pca_service']['postcodeanywhere_url'] = array(
     '#type' => 'textfield',
-    '#title' => t('PCA Callback URL.'),
+    '#title' => t('PCA callback URL.'),
     '#required' => TRUE,
     '#default_value' => variable_get('postcodeanywhere_url', 'https://services.postcodeanywhere.co.uk/'),
+  );
+
+  $form['pca_service']['postcodeanywhere_format'] = array(
+    '#type' => 'select',
+    '#title' => t('PCA callback format.'),
+    //'#options' => array('xmla.ws' => 'XML', 'json.ws' => 'JSON'), // TODO: JSON format needs some work by changes in classes and writing some function wrapper.
+    '#options' => array('xmla.ws' => 'XML'),
+    '#required' => TRUE,
+    '#default_value' => variable_get('postcodeanywhere_format', 'https://services.postcodeanywhere.co.uk/'),
   );
 
   $form['page_vis_settings'] = array(

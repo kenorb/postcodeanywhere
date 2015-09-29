@@ -171,11 +171,10 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
 function postcodeanywhere_parse_url($url, $format = 'json') {
   $arr = parse_url($url);
   $api_url = parse_url(variable_get('postcodeanywhere_url', 'https://services.postcodeanywhere.co.uk/'));
-  /*
   $wsdl = end(explode('/', $arr['path']));
-  if ($wsdl != $format . '.ws') {
-    $arr['path'] = str_replace($wsdl, $format . '.ws', $arr['path']); // Change format if necessary.
+  $format = variable_get('postcodeanywhere_format', 'xmla.ws');
+  if ($wsdl != $format) {
+    $arr['path'] = str_replace($wsdl, $format, $arr['path']); // Change format if necessary.
   }
-  */
   return sprintf("%s://%s%s?%s", $api_url['scheme'], $api_url['host'], $arr['path'], $arr['query']);
 }
