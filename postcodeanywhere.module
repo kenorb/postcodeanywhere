@@ -5,6 +5,9 @@
  * Handles the postcodeanywhere hooks.
  */
 
+define('PCA_DEMO_KEY', 'DJ95-ZP12-FW89-EN99');
+define('PCA_URL', 'http://services.postcodeanywhere.co.uk/');
+
 /**
  * Implementation of hook_menu().
  */
@@ -149,7 +152,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
   $settings = array(
     'postcodeanywhere' => array(
       'account_code' => variable_get('postcodeanywhere_account_code', ''),
-      'licence' => variable_get('postcodeanywhere_licence', ''),
+      'licence' => variable_get('postcodeanywhere_licence',PCA_DEMO_KEY),
       'id_wrapper' => variable_get('postcodeanywhere_id_wrapper', ''),
       'id_postcode' => variable_get('postcodeanywhere_id_postcode', ''),
       'id_lookup_button' => '#postcodeanywhere-lookup-button',
@@ -169,7 +172,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
       'id_country_uk_value' => variable_get('postcodeanywhere_id_country_uk_value', 'GB'),
       'submit_label_value' => variable_get('postcodeanywhere_submit_label_value', 'Find Address'),
       'showAlert' => variable_get('postcodeanywhere_showalert', 1),
-      'url' => variable_get('postcodeanywhere_url', 'http://services.postcodeanywhere.co.uk/'),
+      'url' => variable_get('postcodeanywhere_url', PCA_URL),
     ),
   );
 
@@ -192,7 +195,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
  */
 function postcodeanywhere_parse_url($url, $format = 'json') {
   $arr = parse_url($url);
-  if ($api_url = parse_url(variable_get('postcodeanywhere_url', 'https://services.postcodeanywhere.co.uk/'))) {
+  if ($api_url = parse_url(variable_get('postcodeanywhere_url', PCA_URL))) {
     $wsdl = end(explode('/', $arr['path']));
     $format = variable_get('postcodeanywhere_format', 'xmla.ws');
     if ($wsdl != $format) {

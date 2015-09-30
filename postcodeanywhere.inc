@@ -36,7 +36,7 @@ function postcodeanywhere_autocomplete_validate($element, &$form_state) {
  */
 function postcodeanywhere_findbypostcode($postcode = "LL11 5HJ") { // LL11 5HJ (or WR2 6NJ) is a test code.
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
-  $key = variable_get('postcodeanywhere_licence', '');
+  $key = variable_get('postcodeanywhere_licence',PCA_DEMO_KEY);
 
   $cid = "pca_pc_" . $postcode;
   $cache = cache_get($cid);
@@ -64,7 +64,7 @@ function postcodeanywhere_findbypostcode($postcode = "LL11 5HJ") { // LL11 5HJ (
  */
 function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2") {
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPartialPostcode.class.inc");
-  $key = variable_get('postcodeanywhere_licence', '');
+  $key = variable_get('postcodeanywhere_licence',PCA_DEMO_KEY);
 
   $cid = "pca_pc_" . $PartialPostcode;
   $cache = cache_get($cid);
@@ -92,7 +92,7 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2") {
  */
 function postcodeanywhere_retrievebyid($id) {
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_RetrieveById.class.inc");
-  $key = variable_get('postcodeanywhere_licence', '');
+  $key = variable_get('postcodeanywhere_licence',PCA_DEMO_KEY);
 
   $cid = "pca_id_" . $id;
   $cache = cache_get($cid);
