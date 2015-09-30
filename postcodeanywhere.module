@@ -7,6 +7,8 @@
 
 define('PCA_DEMO_KEY', 'DJ95-ZP12-FW89-EN99');
 define('PCA_URL', 'http://services.postcodeanywhere.co.uk/');
+define('PCA_FORMAT', 'xmla.ws'); // Supported formats: xmla.ws or json.ws (needs some work).
+define('PCA_CACHE', 'cache_postcodeanywhere');
 
 /**
  * Implementation of hook_menu().
@@ -197,7 +199,7 @@ function postcodeanywhere_parse_url($url, $format = 'json') {
   $arr = parse_url($url);
   if ($api_url = parse_url(variable_get('postcodeanywhere_url', PCA_URL))) {
     $wsdl = end(explode('/', $arr['path']));
-    $format = variable_get('postcodeanywhere_format', 'xmla.ws');
+    $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
     if ($wsdl != $format) {
       $arr['path'] = str_replace($wsdl, $format, $arr['path']); // Change format if necessary.
     }
@@ -207,3 +209,11 @@ function postcodeanywhere_parse_url($url, $format = 'json') {
     return $url; // Return previous if we can't parse it.
   }
 }
+
+/**
+ * Helper function to parse data from PCA.
+ */
+function postcodeanywhere_make_request() {
+  $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
+}
+

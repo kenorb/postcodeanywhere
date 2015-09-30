@@ -11,10 +11,11 @@
 function postcodeanywhere_autocomplete($string = "") {
   $matches = array();
 
+  $string = str_replace(' ', '', $string); // Remove all spaces.
   if (strlen($string) >= 5) { // If postcode is 5 chars in length or more, it's full post code ...
     postcodeanywhere_findbypostcode($string);
   }
-  else if (strlen($string) > 3) { // ... otherwise if it's 3-4 in length, it's partial.
+  else if (strlen($string) >= 2) { // ... otherwise if it's 3-4 in length, it's partial.
     postcodeanywhere_findbypartialpostcode($string);
   } else {
     drupal_json_output($matches);
@@ -36,18 +37,15 @@ function postcodeanywhere_autocomplete_validate($element, &$form_state) {
  */
 function postcodeanywhere_findbypostcode($postcode = "LL11 5HJ") { // LL11 5HJ (or WR2 6NJ) is a test code.
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
-  $key = variable_get('postcodeanywhere_licence',PCA_DEMO_KEY);
+  $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
+  $cid = str_replace(' ', '', "pca_pc_" . $postcode);
 
-  $cid = "pca_pc_" . $postcode;
-  $cache = cache_get($cid);
-  $data = $cache->data;
-
-  if (empty($data)) {
+  if (!($data = _pca_get_cache($cid))) {
     try {
       $pca = new PostcodeAnywhere_Interactive_FindByPostcode($key, $postcode, "");
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
-        cache_set($cid, $data);
+        _pca_set_cache($cid, $data);
       } else {
         $data = array();
       }
@@ -64,18 +62,15 @@ function postcodeanywhere_findbypostcode($postcode = "LL11 5HJ") { // LL11 5HJ (
  */
 function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2") {
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPartialPostcode.class.inc");
-  $key = variable_get('postcodeanywhere_licence',PCA_DEMO_KEY);
+  $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
+  $cid = str_replace(' ', '', "pca_pc_" . $PartialPostcode);
 
-  $cid = "pca_pc_" . $PartialPostcode;
-  $cache = cache_get($cid);
-  $data = $cache->data;
-
-  if (empty($data)) {
+  if (!($data = _pca_get_cache($cid))) {
     try {
       $pca = new PostcodeAnywhere_Interactive_FindByPartialPostcode($key, $PartialPostcode, "");
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
-        cache_set($cid, $data);
+        _pca_set_cache($cid, $data);
       } else {
         $data = array();
       }
@@ -92,18 +87,15 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2") {
  */
 function postcodeanywhere_retrievebyid($id) {
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_RetrieveById.class.inc");
-  $key = variable_get('postcodeanywhere_licence',PCA_DEMO_KEY);
+  $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
+  $cid = str_replace(' ', '', "pca_id_" . $id);
 
-  $cid = "pca_id_" . $id;
-  $cache = cache_get($cid);
-  $data = $cache->data;
-
-  if (empty($data)) {
+  if (!($data = _pca_get_cache($cid))) {
     try {
       $pca = new PostcodeAnywhere_Interactive_RetrieveById($key, $id, "English", "");
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
-        cache_set($cid, $data);
+        _pca_set_cache($cid, $data);
       } else {
         $data = array();
       }
@@ -115,3 +107,27 @@ function postcodeanywhere_retrievebyid($id) {
   drupal_json_output($data);
 }
 
+/**
+ * Helper function to get results from cache.
+ */
+function _pca_get_cache($cid) {
+  $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
+  $cache = cache_get($cid, PCA_CACHE);
+  // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
+  $data = $format == 'xmla.ws' ? json_decode($cache->data) : $cache->data;
+  if (!empty($data)) {
+    drupal_add_http_header('X-Cached-By', 'Drupal PCA');
+    return $data;
+  } else {
+    return FALSE;
+  }
+}
+
+/**
+ * Helper function to cache the results.
+ */
+function _pca_set_cache($cid, $data) {
+  $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
+  // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
+  return cache_set($cid,  $format == 'xmla.ws' ? json_encode($data) : $data , PCA_CACHE);
+}
