@@ -65,6 +65,11 @@ function postcodeanywhere_menu() {
     'file' => 'postcodeanywhere.inc',
     'type' => MENU_CALLBACK
   );
+  $items['admin/help/pca_predict'] = array(
+    'title' => 'PCA Predict (Postcode Anywhere) help',
+    'page callback' => 'postcodeanywhere_index_page',
+    'access arguments' => array('view advanced help index'),
+  );
 
   return $items;
 }
@@ -75,11 +80,11 @@ function postcodeanywhere_menu() {
 function postcodeanywhere_permission() {
   return array(
     'administer postcodeanywhere' => array(
-      'title' => t('Administer postcode anywhere settings'), 
+      'title' => t('Administer postcode anywhere settings'),
       'description' => t('Perform administration tasks for my module.'),
   ),
     'use PHP for postcodeanywhere visibility' => array(
-      'title' => t('Administer postcode anywhere settings'), 
+      'title' => t('Administer postcode anywhere settings'),
       'description' => t('Use PHP for postcodeanywhere visibility settings.'),
   ),
   );
@@ -175,6 +180,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
       'submit_label_value' => variable_get('postcodeanywhere_submit_label_value', 'Find Address'),
       'showAlert' => variable_get('postcodeanywhere_showalert', 1),
       'url' => variable_get('postcodeanywhere_url', PCA_URL),
+      'addressfield' =>  module_exists('postcodeanywhere_field') && module_exists('addressfield'),
     ),
   );
 
@@ -217,3 +223,16 @@ function postcodeanywhere_make_request() {
   $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
 }
 
+/**
+ * Topic index callback.
+ */
+function postcodeanywhere_index_page() {
+  /*
+  $output = theme('advanced_help_topic', array(
+    'module' => 'help_example',
+    'topic' => 'about-php',
+  ));
+  */
+  $output .= '&nbsp;' . t('Click the help icon to view help about the PCA Predict (formely Postcode Anywhere).');
+  return $output;
+}

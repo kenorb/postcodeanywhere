@@ -40,39 +40,51 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#default_value' => variable_get('postcodeanywhere_format', PCA_FORMAT),
   );
 
-  $form['page_vis_settings'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Page specific visibility settings'),
-    '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
-  );
+  // Field specific settings.
+  if (module_exists('postcodeanywhere_field')) {
 
-  $access = user_access('use PHP for settings');
-  if (!$access) {
-    $form['page_vis_settings'] = array();
-    $form['page_vis_settings']['postcodeanywhere_page_visibility_mode'] = array('#type' => 'value', '#value' => 2);
-    $form['page_vis_settings']['postcodeanywhere_page_visibility_rules'] = array('#type' => 'value', '#value' => $edit['pages']);
-  }
-  else {
-    $options = array(t('Show on every page except the listed pages.'), t('Show on only the listed pages.'));
-    $description = t("Enter one page per line as Drupal paths. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>'));
+    $form['page_vis_settings'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Page specific visibility settings'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+    );
 
-    if ($access) {
-      $options[] = t('Show if the following PHP code returns <code>TRUE</code> (PHP-mode, experts only).');
-      $description .= ' ' . t('If the PHP-mode is chosen, enter PHP code between %php. Note that executing incorrect PHP-code can break your Drupal site.', array('%php' => '<?php ?>'));
+    $access = user_access('use PHP for settings');
+    if (!$access) {
+      $form['page_vis_settings'] = array();
+      $form['page_vis_settings']['postcodeanywhere_page_visibility_mode'] = array('#type' => 'value', '#value' => 2);
+      $form['page_vis_settings']['postcodeanywhere_page_visibility_rules'] = array('#type' => 'value', '#value' => $edit['pages']);
     }
-    $form['page_vis_settings']['postcodeanywhere_page_visibility_mode'] = array(
-      '#type' => 'radios',
-      '#title' => t('Activate on specific pages'),
-      '#options' => $options,
-      '#default_value' => variable_get('postcodeanywhere_page_visibility_mode', ''),
+    else {
+      $options = array(t('Show on every page except the listed pages.'), t('Show on only the listed pages.'));
+      $description = t("Enter one page per line as Drupal paths. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>'));
+
+      if ($access) {
+        $options[] = t('Show if the following PHP code returns <code>TRUE</code> (PHP-mode, experts only).');
+        $description .= ' ' . t('If the PHP-mode is chosen, enter PHP code between %php. Note that executing incorrect PHP-code can break your Drupal site.', array('%php' => '<?php ?>'));
+      }
+      $form['page_vis_settings']['postcodeanywhere_page_visibility_mode'] = array(
+        '#type' => 'radios',
+        '#title' => t('Activate on specific pages'),
+        '#options' => $options,
+        '#default_value' => variable_get('postcodeanywhere_page_visibility_mode', ''),
+      );
+      $form['page_vis_settings']['postcodeanywhere_page_visibility_rules'] = array(
+        '#type' => 'textarea',
+        '#title' => t('Pages'),
+        '#default_value' => variable_get('postcodeanywhere_page_visibility_rules', ''),
+        '#description' => $description,
+      );
+    }
+
+    $form['field_settings'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Field settings'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
     );
-    $form['page_vis_settings']['postcodeanywhere_page_visibility_rules'] = array(
-      '#type' => 'textarea',
-      '#title' => t('Pages'),
-      '#default_value' => variable_get('postcodeanywhere_page_visibility_rules', ''),
-      '#description' => $description,
-    );
+
   }
 
   $form['form_settings'] = array(
