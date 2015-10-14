@@ -9,12 +9,20 @@
  * AJAX callback to lists address records for the given postcode.
  */
 function postcodeanywhere_autocomplete($string = "") {
-  $matches = array();
+  $data = array();
 
-  $string = str_replace('%20', '', strtolower($string)); // Make a string lowercase and remove all spaces.
+  $string = str_replace(array(' ', '%20'), '', strtolower($string)); // Make a string lowercase and remove all spaces.
   $addressfield = module_exists('postcodeanywhere_field') && module_exists('addressfield');
-  $data = $addressfield ? postcodeanywhere_autocomplete_addressfield($matches, $string) : postcodeanywhere_findbypostcode($string);
-  drupal_json_output($data);
+  try {
+    $data = postcodeanywhere_findbypostcode($string, TRUE);
+    if ($data && $addressfield) {
+      $data = postcodeanywhere_autocomplete_addressfield($data, $string, TRUE);
+    }
+  }
+  catch (Exception $e) {
+    // Check logs for further details.
+  }
+  drupal_json_output(json_encode($data));
 
   /*
   if (strlen($string) >= 5) { // If postcode is 5 chars in length or more, it's full post code ...
@@ -49,9 +57,10 @@ function postcodeanywhere_autocomplete_addressfield($data = array(), $postcode =
   $count_out = count($buildArray);
   if($count_out > 0) {
     $outArray = array_merge(
-      array('count-details' => t(":result found, keep typing to refine", array('result' => format_plural($count_out, t('1 result'), '@count ' . t('results.')))),
-      $buildArray,
-      array('no-match' => t("I can't see my address.")));
+        array('count-details' => t(":result found, keep typing to refine", array('result' => format_plural($count_out, t('1 result'), '@count ' . t('results.')))),
+        $buildArray,
+        array('no-match' => t("I can't see my address.")))
+      );
   }
 
   return $returnArray ? $outArray : drupal_json_output($outArray);
@@ -70,7 +79,7 @@ function postcodeanywhere_autocomplete_validate($element, &$form_state) {
 /**
  * AJAX callback to lists address records for the given postcode.
  */
-function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ", $returnArray = FALSE) { // WR2 6NJ is a test code (no credits are needed).
+function postcodeanywhere_findbypostcode($postcode = PCA_PC_TEST, $returnArray = FALSE) {
   require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
   $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
   $cid = str_replace(' ', '', "pca_pc_" . $postcode);
@@ -86,7 +95,8 @@ function postcodeanywhere_findbypostcode($postcode = "WR2 6NJ", $returnArray = F
       }
     }
     catch (Exception $e) {
-      $data['error'] = $e->getMessage();
+      watchdog_exception('postcodeanywhere', $e);
+      throw new Exception($e->getMessage());
     }
   }
   return $returnArray ? $data : drupal_json_output($data);
@@ -111,7 +121,8 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2", $retur
       }
     }
     catch (Exception $e) {
-      $data['error'] = $e->getMessage();
+      watchdog_exception('postcodeanywhere', $e);
+      throw new Exception($e->getMessage());
     }
   }
   return $returnArray ? $data : drupal_json_output($data);
@@ -136,7 +147,8 @@ function postcodeanywhere_retrievebyid($id) {
       }
     }
     catch (Exception $e) {
-      $data['error'] = $e->getMessage();
+      watchdog_exception('postcodeanywhere', $e);
+      throw new Exception($e->getMessage());
     }
   }
   drupal_json_output($data);
@@ -147,9 +159,10 @@ function postcodeanywhere_retrievebyid($id) {
  */
 function _pca_get_cache($cid) {
   $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
-  $cache = cache_get($cid, PCA_CACHE);
-  // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
-  $data = $format == 'xmla.ws' ? json_decode($cache->data) : $cache->data;
+  if ($cache = cache_get($cid, PCA_CACHE)) {
+    // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
+    $data = $format == 'xmla.ws' ? json_decode($cache->data) : $cache->data;
+  }
   if (!empty($data)) {
     drupal_add_http_header('X-Cached-By', 'Drupal PCA');
     return $data;

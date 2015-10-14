@@ -5,7 +5,8 @@
  * Handles the postcodeanywhere hooks.
  */
 
-define('PCA_DEMO_KEY', 'DJ95-ZP12-FW89-EN99');
+define('PCA_DEMO_KEY', 'RA24-BZ17-JR72-WN38');
+define('PCA_PC_TEST', 'WR2 6NJ'); // WR2 6NJ is a test code (no credits are needed).
 define('PCA_URL', 'http://services.postcodeanywhere.co.uk/');
 define('PCA_FORMAT', 'xmla.ws'); // Supported formats: xmla.ws or json.ws (needs some work).
 define('PCA_CACHE', 'cache_postcodeanywhere');
@@ -204,7 +205,8 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
 function postcodeanywhere_parse_url($url, $format = 'json') {
   $arr = parse_url($url);
   if ($api_url = parse_url(variable_get('postcodeanywhere_url', PCA_URL))) {
-    $wsdl = end(explode('/', $arr['path']));
+    $apath = explode('/', $arr['path']);
+    $wsdl = end($apath);
     $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
     if ($wsdl != $format) {
       $arr['path'] = str_replace($wsdl, $format, $arr['path']); // Change format if necessary.

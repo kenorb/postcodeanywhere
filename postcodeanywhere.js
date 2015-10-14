@@ -3,7 +3,7 @@
   Drupal.behaviors.postCodeAnywhere = {
     attach: function () {
 
-      // Only apply if postcodeanywhere wrapper is present.
+      // Only apply if PCA wrapper is present.
       if ($(Drupal.settings.postcodeanywhere.id_wrapper)) {
 
           // @todo Manage case where there is no country box selection (ie. UK only sites).
@@ -30,12 +30,12 @@
           var postcodeanywhereloader = '<div id="postcodeloading" class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div><div class="message">Please wait...</div></div>';
         }
 
-        // Append lookup button and address list to postcodeanywhere wrapper.
+        // Append lookup button and address list to PCA wrapper.
         $(postcodeanywhereLookupButton).insertAfter(Drupal.settings.postcodeanywhere.id_postcode);
         $(postcodeanywhereloader).insertAfter(Drupal.settings.postcodeanywhere.id_postcode);
         $(postcodeanywhereAddressList).appendTo(Drupal.settings.postcodeanywhere.id_wrapper);
 
-        // Add loading spinner div to end of postcode anywhere.
+        // Add loading spinner div to end of PCA.
         $('#postcodeloading')
             .hide()  // hide it initially
             .ajaxStart(function() {
@@ -52,69 +52,71 @@
           //$('.group-pca-autocomplete').find('#edit-field-address').val('');
           $('.group-pca-autocomplete').find('#edit-field-address').hide();
 
-          //Create the div which populates with the text version of the address
+          // Create the div which populates with the text version of the address.
           $('.group-pca-autocomplete').find('#edit-field-address').before('<div class="postcodeanywhere-autocomplete-output-text" id="postcodeanywhere-autocomplete-output-text"></div>');
           $('.group-pca-autocomplete').find('.postcodeanywhere-autocomplete-output-text').hide();
           $('.group-pca-autocomplete').find('.postcodeanywhere-autocomplete-output-text').html('<p class="thoroughfare pca-text"></p><p class="premise pca-text"></p><p class="postal-code pca-text"></p><p class="pca-change-address"><a href="#">Change Address</a></p>');
 
 
-          //This function modifies the autocomplete on select event to populate the address fields
-          Drupal.jsAC.prototype.select = function (node) {
+          if ( typeof Drupal.jsAC != 'undefined') {
+            // This function modifies the autocomplete on select event to populate the address fields.
+            Drupal.jsAC.prototype.select = function (node) {
 
-            this.input.value = this.input.value; //$(node).data('autocompleteValue'); // original code
+              this.input.value = this.input.value;
 
-            //Set some selectors
-            var pca_input = this.input;
-            var pca_id = $(node).data('autocompleteValue');
-            var pca_input_group = $(pca_input).closest('.group-pca-autocomplete');
-            var pca_output_div = $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text');
+              // Set some selectors.
+              var pca_input = this.input;
+              var pca_id = $(node).data('autocompleteValue');
+              var pca_input_group = $(pca_input).closest('.group-pca-autocomplete');
+              var pca_output_div = $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text');
 
-            //Clear the address fields
-            $(pca_input_group).find('input').val('');
-            $(pca_input_group).find('.pca-text').html('');
+              // Clear the address fields.
+              $(pca_input_group).find('input').val('');
+              $(pca_input_group).find('.pca-text').html('');
 
-            //If this is no-match then show the fields
-            if(pca_id == "no-match") {
-              $(pca_input_group).find('#edit-field-address').slideDown('Slow');
-              $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text').hide();
+              // If this is no-match then show the fields.
+              if(pca_id == "no-match") {
+                $(pca_input_group).find('#edit-field-address').slideDown('Slow');
+                $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text').hide();
 
-            } else {
+              } else {
 
-            //Make sure this is hidden
-            $(pca_input_group).find('#edit-field-address').hide();
-            $(pca_output_div).slideUp('Slow');
+                // Make sure this is hidden.
+                $(pca_input_group).find('#edit-field-address').hide();
+                $(pca_output_div).slideUp('Slow');
 
-            //Call the PCA service to get a full address by ID
-            $.getJSON(Drupal.settings.basePath+"pca/retrievebyid/"+pca_id, function(data){
+                // Call the PCA service to get a full address by ID.
+                $.getJSON(Drupal.settings.basePath+"pca/retrievebyid/"+pca_id, function(data){
 
-              //Find the address fields and populate them
-              if(data['error'] == null) {
-              $(pca_input_group).find('.thoroughfare').val(data[0].Line1[0]);
-                $(pca_output_div).find('.thoroughfare').html(data[0].Line1[0]); // block element
+                  // Find the address fields and populate them.
+                  if(data['error'] == null) {
 
-              $(pca_input_group).find('.premise').val(data[0].Line2[0]);
-                $(pca_output_div).find('.premise').html(data[0].Line2[0]);
+                    $(pca_input_group).find('.thoroughfare').val(data[0].Line1[0]);
+                      $(pca_output_div).find('.thoroughfare').html(data[0].Line1[0]); // Block element.
 
-              $(pca_input_group).find('.locality').val(data[0].County[0]);
+                    $(pca_input_group).find('.premise').val(data[0].Line2[0]);
+                      $(pca_output_div).find('.premise').html(data[0].Line2[0]);
 
-              $(pca_input_group).find('.state').val(data[0].PostTown[0]);
+                    $(pca_input_group).find('.locality').val(data[0].County[0]);
 
-              $(pca_input_group).find('.postal-code').val(data[0].Postcode[0]);
-                $(pca_output_div).find('.postal-code').html(data[0].Postcode[0]);
+                    $(pca_input_group).find('.state').val(data[0].PostTown[0]);
 
-              $(pca_input).val('');
+                    $(pca_input_group).find('.postal-code').val(data[0].Postcode[0]);
+                      $(pca_output_div).find('.postal-code').html(data[0].Postcode[0]);
 
-              $(pca_input).closest('.field-type-postcodeanywhere').slideUp('Slow',function(){
-                $(pca_output_div).slideDown('Slow');
-              });
+                    $(pca_input).val('');
 
-              }
+                    $(pca_input).closest('.field-type-postcodeanywhere').slideUp('Slow',function(){
+                      $(pca_output_div).slideDown('Slow');
+                    });
 
-            });
-            }
+                  } // end: if(data)
 
-          };
+                });
+              } // end: else
 
+            } // end: Drupal.jsAC
+          }
 
           // Add the onclick event to change the address
           $('.group-pca-autocomplete').find('.pca-change-address').on('click','a',function(event){
