@@ -123,13 +123,8 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
   if ($page_match) {
     // include postcodeanywhere JS file after form is built
     $form['#after_build'][] = 'postcodeanywhere_form_after_build';
-  }
-
-  switch ($form_id) {
-    case 'field_ui_field_edit_form':
-      // Load necessary functions on form field submit.
-      module_load_include('inc', 'postcodeanywhere');
-      break;
+    // Ensures an include file is loaded whenever the form is processed.
+    form_load_include($form_state, 'inc', 'postcodeanywhere');
   }
 
 }
