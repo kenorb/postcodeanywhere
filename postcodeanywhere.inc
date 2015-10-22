@@ -17,12 +17,15 @@ function postcodeanywhere_autocomplete($string = "") {
     $data = postcodeanywhere_findbypostcode($string, TRUE);
     if ($data && $addressfield) {
       $data = postcodeanywhere_autocomplete_addressfield($data, $string, TRUE);
+    } else if (empty($data)) {
+      $data = array('count-details' => t(":result found, keep typing to refine", array('result' => format_plural(count($data), t('1 result'), '@count ' . t('results.')))));
     }
   }
   catch (Exception $e) {
     // Check logs for further details.
+    $data = array('no-match' => t("I can't see my address."));
   }
-  drupal_json_output(json_encode($data));
+  drupal_json_output($data);
 
   /*
   if (strlen($string) >= 5) { // If postcode is 5 chars in length or more, it's full post code ...
