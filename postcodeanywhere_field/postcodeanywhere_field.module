@@ -357,6 +357,9 @@ function postcodeanywhere_field_field_widget_form(&$form, &$form_state, $field, 
  */
 function postcodeanywhere_field_field_widget_error($element, $error, $form, &$form_state) {
   switch ($error['error']) {
+    case 'value':
+      $error_element = $element['value'];
+      break;
     default:
       $error_element = $element[$element['#columns'][0]];
       break;
