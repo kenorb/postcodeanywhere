@@ -79,4 +79,3 @@ INSTALLATION
  * The module will only attempt to lookup UK postcodes, so if a country
    selection box is available on the form, and given a target ID, you must enter
    the key for the United Kingdom option here.
-
