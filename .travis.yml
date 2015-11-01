@@ -25,14 +25,14 @@ notifications:
 sudo: false
 env:
   global:
-    - TEST_MODULE="postcodeanywhere"
-    - REVIEWS="upgrade7x,comment,druplart,i18n,i18n_po,production,security,sniffer,sql,style"
     - URL="http://$HOSTNAME:8080/"
     - COMPOSER_BIN_DIR=~/bin
     - PATH=${PATH//:\.\/node_modules\/\.bin/} # Fixes Travis bug: https://github.com/travis-ci/travis-ci/issues/4862
 
   matrix:
-    - CORE=7
+    - CORE=6 TEST_MODULE="postcodeanywhere-6.x-1.0"
+    - CORE=6 TEST_MODULE="postcodeanywhere-6.x-1.x-dev"
+    - CORE=7 TEST_MODULE="postcodeanywhere-7.x-1.x-dev"
 
 mysql:
   database: drupal
