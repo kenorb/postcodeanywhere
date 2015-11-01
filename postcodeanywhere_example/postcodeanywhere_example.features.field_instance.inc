@@ -11,7 +11,7 @@ function postcodeanywhere_example_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'entityform-postcode_anywhere_example-field_pca_field'
+  // 'entityform-postcode_anywhere_example-field_pca_field'.
   $field_instances['entityform-postcode_anywhere_example-field_pca_field'] = array(
     'bundle' => 'postcode_anywhere_example',
     'default_value' => NULL,
@@ -46,7 +46,7 @@ function postcodeanywhere_example_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'entityform-postcode_anywhere_example-field_pca_field_autocomplete'
+  // 'entityform-postcode_anywhere_example-field_pca_field_autocomplete'.
   $field_instances['entityform-postcode_anywhere_example-field_pca_field_autocomplete'] = array(
     'bundle' => 'postcode_anywhere_example',
     'default_value' => NULL,

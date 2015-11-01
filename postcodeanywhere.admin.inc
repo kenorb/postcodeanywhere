@@ -22,7 +22,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('PCA API Service key'),
     '#description' => t('Change this key into valid API Service Key.'),
-    '#default_value' => variable_get('postcodeanywhere_licence',PCA_DEMO_KEY),
+    '#default_value' => variable_get('postcodeanywhere_licence', PCA_DEMO_KEY),
   );
 
   $form['pca_service']['postcodeanywhere_url'] = array(
@@ -35,7 +35,8 @@ function postcodeanywhere_settings_form($form, &$form_state) {
   $form['pca_service']['postcodeanywhere_format'] = array(
     '#type' => 'select',
     '#title' => t('PCA callback format.'),
-    '#options' => array('xmla.ws' => 'XML', 'json.ws' => 'JSON'), // TODO: JSON format needs some work by changes in classes and writing some function wrapper.
+    '#options' => array('xmla.ws' => 'XML', 'json.ws' => 'JSON'),
+  // TODO: JSON format needs some work by changes in classes and writing some function wrapper.
     '#required' => TRUE,
     '#default_value' => variable_get('postcodeanywhere_format', PCA_FORMAT),
   );

@@ -34,7 +34,7 @@ function postcodeanywhere_menu() {
     'page arguments' => array(2),
     'access arguments' => array('access content'),
     'file' => 'postcodeanywhere.inc',
-    'type' => MENU_CALLBACK
+    'type' => MENU_CALLBACK,
   );
 
   $items['pca/findbypostcode/%'] = array(
@@ -44,7 +44,7 @@ function postcodeanywhere_menu() {
     'page arguments' => array(2),
     'access arguments' => array('access content'),
     'file' => 'postcodeanywhere.inc',
-    'type' => MENU_CALLBACK
+    'type' => MENU_CALLBACK,
   );
 
   $items['pca/findbypartialpostcode/%'] = array(
@@ -54,7 +54,7 @@ function postcodeanywhere_menu() {
     'page arguments' => array(2),
     'access arguments' => array('access content'),
     'file' => 'postcodeanywhere.inc',
-    'type' => MENU_CALLBACK
+    'type' => MENU_CALLBACK,
   );
 
   $items['pca/retrievebyid'] = array(
@@ -64,7 +64,7 @@ function postcodeanywhere_menu() {
     'page arguments' => array(2),
     'access arguments' => array('access content'),
     'file' => 'postcodeanywhere.inc',
-    'type' => MENU_CALLBACK
+    'type' => MENU_CALLBACK,
   );
   $items['admin/help/pca_predict'] = array(
     'title' => 'PCA Predict (Postcode Anywhere) help',
@@ -83,11 +83,11 @@ function postcodeanywhere_permission() {
     'administer postcodeanywhere' => array(
       'title' => t('Administer postcode anywhere settings'),
       'description' => t('Perform administration tasks for my module.'),
-  ),
+    ),
     'use PHP for postcodeanywhere visibility' => array(
       'title' => t('Administer postcode anywhere settings'),
       'description' => t('Use PHP for postcodeanywhere visibility settings.'),
-  ),
+    ),
   );
 }
 
@@ -121,7 +121,7 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
   }
 
   if ($page_match) {
-    // include postcodeanywhere JS file after form is built
+    // Include postcodeanywhere JS file after form is built.
     $form['#after_build'][] = 'postcodeanywhere_form_after_build';
     // Ensures an include file is loaded whenever the form is processed.
     form_load_include($form_state, 'inc', 'postcodeanywhere');
@@ -131,7 +131,7 @@ function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
 
 /**
  * Implementation of #after_build function
- * Helper function to include postcodeanywhere js files after form is built
+ * Helper function to include postcodeanywhere js files after form is built.
  */
 function postcodeanywhere_form_after_build($form_element, &$form_state) {
   postcodeanywhere_form_add_js();
@@ -144,7 +144,7 @@ function postcodeanywhere_form_after_build($form_element, &$form_state) {
 function postcodeanywhere_form_add_js($extra_settings = NULL) {
   static $pca_loaded = FALSE;
 
-  // Don't allow to load the JS file twice
+  // Don't allow to load the JS file twice.
   if ($pca_loaded) {
     return;
   }
@@ -155,7 +155,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
   $settings = array(
     'postcodeanywhere' => array(
       'account_code' => variable_get('postcodeanywhere_account_code', ''),
-      'licence' => variable_get('postcodeanywhere_licence',PCA_DEMO_KEY),
+      'licence' => variable_get('postcodeanywhere_licence', PCA_DEMO_KEY),
       'id_wrapper' => variable_get('postcodeanywhere_id_wrapper', ''),
       'id_postcode' => variable_get('postcodeanywhere_id_postcode', ''),
       'id_lookup_button' => '#postcodeanywhere-lookup-button',
@@ -176,21 +176,21 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
       'submit_label_value' => variable_get('postcodeanywhere_submit_label_value', 'Find Address'),
       'showAlert' => variable_get('postcodeanywhere_showalert', 1),
       'url' => variable_get('postcodeanywhere_url', PCA_URL),
-      'addressfield' =>  module_exists('postcodeanywhere_field') && module_exists('addressfield'),
+      'addressfield' => module_exists('postcodeanywhere_field') && module_exists('addressfield'),
     ),
   );
 
-  // Add extra settings to JS setting value
+  // Add extra settings to JS setting value.
   if ($extra_settings && is_array($extra_settings)) {
     foreach ($extra_settings as $key => $value) {
       $settings['postcodeanywhere'][$key] .= ',' . $value;
 
-      // Set as already loaded, so don't try to load it again (e.g. hook_form_alter)
+      // Set as already loaded, so don't try to load it again (e.g. hook_form_alter).
       $pca_loaded = TRUE;
     }
   }
 
-  drupal_add_js($settings, 'setting'); // Append settings into JS file
+  drupal_add_js($settings, 'setting'); // Append settings into JS file.
   drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js', 'file');
 }
 
@@ -204,12 +204,15 @@ function postcodeanywhere_parse_url($url, $format = 'json') {
     $wsdl = end($apath);
     $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
     if ($wsdl != $format) {
-      $arr['path'] = str_replace($wsdl, $format, $arr['path']); // Change format if necessary.
+      $arr['path'] = str_replace($wsdl, $format, $arr['path']);
+      // Change format if necessary.
     }
-    // TODO: Consider appending: &CallbackFunction=TestCallBack
+    // TODO: Consider appending: &CallbackFunction=TestCallBack.
     return sprintf("%s://%s%s?%s", $api_url['scheme'], $api_url['host'], $arr['path'], $arr['query']);
-  } else {
-    return $url; // Return previous if we can't parse it.
+  }
+  else {
+    return $url;
+    // Return previous if we can't parse it.
   }
 }
 

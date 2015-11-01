@@ -40,4 +40,3 @@ function postcodeanywhere_field_field_schema($field) {
     ),
   );
 }
-

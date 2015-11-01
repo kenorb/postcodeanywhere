@@ -5,19 +5,28 @@
  * Tests for text.module.
  */
 
+/**
+ *
+ */
 class PostcodeAnywhereTestCase extends DrupalWebTestCase {
   protected $instance;
   protected $admin_user;
   protected $web_user;
 
+  /**
+   *
+   */
   public static function getInfo() {
     return array(
       'name'  => 'PostcodeAnywhere field',
       'description'  => "Test the creation of PostcodeAnywhere field.",
-      'group' => 'Field types'
+      'group' => 'Field types',
     );
   }
 
+  /**
+   *
+   */
   function setUp() {
     parent::setUp('postcodeanywhere_field');
 
@@ -27,7 +36,6 @@ class PostcodeAnywhereTestCase extends DrupalWebTestCase {
   }
 
   // Test fields.
-
   /**
    * Test text field validation.
    */
@@ -39,7 +47,7 @@ class PostcodeAnywhereTestCase extends DrupalWebTestCase {
       'type' => 'postcodeanywhere',
       'settings' => array(
         'max_length' => $max_length,
-      )
+      ),
     );
     field_create_field($this->field);
     $this->instance = array(
@@ -82,7 +90,7 @@ class PostcodeAnywhereTestCase extends DrupalWebTestCase {
    * Helper function for testPostcodeAnywhereWidgets().
    */
   function _testPostcodeAnywhereWidgets($field_type, $widget_type) {
-    // Setup a field and instance
+    // Setup a field and instance.
     $entity_type = 'test_entity';
     $this->field_name = drupal_strtolower($this->randomName());
     $this->field = array('field_name' => $this->field_name, 'type' => $field_type);
@@ -140,7 +148,7 @@ class PostcodeAnywhereTestCase extends DrupalWebTestCase {
    * Helper function for testPostcodeAnywhereWidgetsFormatted().
    */
   function _testPostcodeAnywhereWidgetsFormatted($field_type, $widget_type) {
-    // Setup a field and instance
+    // Setup a field and instance.
     $entity_type = 'test_entity';
     $this->field_name = drupal_strtolower($this->randomName());
     $this->field = array('field_name' => $this->field_name, 'type' => $field_type);
@@ -233,5 +241,5 @@ class PostcodeAnywhereTestCase extends DrupalWebTestCase {
     $this->content = drupal_render($entity->content);
     $this->assertRaw($value, t('Value is displayed unfiltered'));
   }
-}
 
+}

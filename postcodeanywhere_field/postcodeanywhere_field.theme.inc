@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Defines postcodeanywhere_field module themes
+ * Defines postcodeanywhere_field module themes.
  */
 
 /**
@@ -59,4 +59,3 @@ function theme_postcodeanywhere($variables) {
 
   return $output . $extra;
 }
-

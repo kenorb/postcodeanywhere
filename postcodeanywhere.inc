@@ -2,7 +2,7 @@
 
 /**
  * @file
- *   Include file to handle the PCA callbacks.
+ * Include file to handle the PCA callbacks.
  */
 
 /**
@@ -11,13 +11,15 @@
 function postcodeanywhere_autocomplete($string = "") {
   $data = array();
 
-  $string = str_replace(array(' ', '%20'), '', strtolower($string)); // Make a string lowercase and remove all spaces.
+  $string = str_replace(array(' ', '%20'), '', strtolower($string));
+  // Make a string lowercase and remove all spaces.
   $addressfield = module_exists('postcodeanywhere_field') && module_exists('addressfield');
   try {
     $data = postcodeanywhere_findbypostcode($string, TRUE);
     if ($data && $addressfield) {
       $data = postcodeanywhere_autocomplete_addressfield($data, $string, TRUE);
-    } else if (empty($data)) {
+    }
+    elseif (empty($data)) {
       $data = array('count-details' => t(":result found, keep typing to refine", array('result' => format_plural(count($data), t('1 result'), '@count ' . t('results.')))));
     }
   }
@@ -29,14 +31,14 @@ function postcodeanywhere_autocomplete($string = "") {
 
   /*
   if (strlen($string) >= 5) { // If postcode is 5 chars in length or more, it's full post code ...
-    postcodeanywhere_findbypostcode($string);
+  postcodeanywhere_findbypostcode($string);
   }
   else if (strlen($string) >= 2) { // ... otherwise if it's 3-4 in length, it's partial.
-    postcodeanywhere_findbypartialpostcode($string);
+  postcodeanywhere_findbypartialpostcode($string);
   } else {
-    drupal_json_output($matches);
+  drupal_json_output($matches);
   }
-  */
+   */
 }
 
 /**
@@ -46,23 +48,26 @@ function postcodeanywhere_autocomplete_addressfield($data = array(), $postcode =
 
   $outArray = array();
   foreach ($data as $key => $value) {
-    // If we don't have a StreetAddress, this isn't a location
+    // If we don't have a StreetAddress, this isn't a location.
     if (isset($value->StreetAddress)) {
       $buildArray[$value->Id] = $value->StreetAddress . ", " . $value->Place . ", " . strtoupper($postcode);
-    } elseif (isset($value->Place)) {
+    }
+    elseif (isset($value->Place)) {
       // @todo? Partial postcodede
       // $buildArray[$value->Id[0]] = $value->Place[0];
-    } else {
-      // Nothing
+    }
+    else {
+      // Nothing.
     }
   }
 
   $count_out = count($buildArray);
-  if($count_out > 0) {
+  if ($count_out > 0) {
     $outArray = array_merge(
         array('count-details' => t(":result found, keep typing to refine", array('result' => format_plural($count_out, t('1 result'), '@count ' . t('results.')))),
-        $buildArray,
-        array('no-match' => t("I can't see my address.")))
+          $buildArray,
+          array('no-match' => t("I can't see my address.")),
+        )
       );
   }
 
@@ -83,7 +88,7 @@ function postcodeanywhere_autocomplete_validate($element, &$form_state) {
  * AJAX callback to lists address records for the given postcode.
  */
 function postcodeanywhere_findbypostcode($postcode = PCA_PC_TEST, $returnArray = FALSE) {
-  require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc");
+  require_once drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc";
   $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
   $cid = str_replace(' ', '', "pca_pc_" . $postcode);
 
@@ -93,7 +98,8 @@ function postcodeanywhere_findbypostcode($postcode = PCA_PC_TEST, $returnArray =
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
         _pca_set_cache($cid, $data);
-      } else {
+      }
+      else {
         $data = array();
       }
     }
@@ -109,7 +115,7 @@ function postcodeanywhere_findbypostcode($postcode = PCA_PC_TEST, $returnArray =
  * AJAX callback to lists address records for the given postcode.
  */
 function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2", $returnArray = FALSE) {
-  require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPartialPostcode.class.inc");
+  require_once drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPartialPostcode.class.inc";
   $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
   $cid = str_replace(' ', '', "pca_pc_" . $PartialPostcode);
 
@@ -119,7 +125,8 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2", $retur
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
         _pca_set_cache($cid, $data);
-      } else {
+      }
+      else {
         $data = array();
       }
     }
@@ -135,7 +142,7 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2", $retur
  * AJAX callback to returns the full address details based on the Id.
  */
 function postcodeanywhere_retrievebyid($id) {
-  require_once(drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_RetrieveById.class.inc");
+  require_once drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_RetrieveById.class.inc";
   $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
   $cid = str_replace(' ', '', "pca_id_" . $id);
 
@@ -145,7 +152,8 @@ function postcodeanywhere_retrievebyid($id) {
       $pca->MakeRequest();
       if ($data = $pca->HasData()) {
         _pca_set_cache($cid, $data);
-      } else {
+      }
+      else {
         $data = array();
       }
     }
@@ -169,7 +177,8 @@ function _pca_get_cache($cid) {
   if (!empty($data)) {
     drupal_add_http_header('X-Cached-By', 'Drupal PCA');
     return $data;
-  } else {
+  }
+  else {
     return FALSE;
   }
 }
@@ -180,5 +189,5 @@ function _pca_get_cache($cid) {
 function _pca_set_cache($cid, $data) {
   $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
   // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
-  return cache_set($cid,  $format == 'xmla.ws' ? json_encode($data) : $data , PCA_CACHE);
+  return cache_set($cid, $format == 'xmla.ws' ? json_encode($data) : $data, PCA_CACHE);
 }

@@ -10,7 +10,7 @@
 function postcodeanywhere_example_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_pca_field'
+  // Exported field_base: 'field_pca_field'.
   $field_bases['field_pca_field'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function postcodeanywhere_example_field_default_field_bases() {
     'type' => 'postcodeanywhere',
   );
 
-  // Exported field_base: 'field_pca_field_autocomplete'
+  // Exported field_base: 'field_pca_field_autocomplete'.
   $field_bases['field_pca_field_autocomplete'] = array(
     'active' => 1,
     'cardinality' => 1,

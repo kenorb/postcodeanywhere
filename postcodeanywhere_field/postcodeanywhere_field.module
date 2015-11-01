@@ -146,7 +146,8 @@ function postcodeanywhere_field_field_instance_settings_form($field, $instance) 
  * Possible error codes:
  * - 'text_value_max_length': The value exceeds the maximum length.
  */
-function postcodeanywhere_field_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) { foreach ($items as $delta => $item) {
+function postcodeanywhere_field_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
+  foreach ($items as $delta => $item) {
     foreach (array('value') as $column) {
       if (!empty($item[$column])) {
         if (!empty($field['settings']['max_length']) && drupal_strlen($item[$column]) > $field['settings']['max_length']) {
@@ -231,7 +232,7 @@ function postcodeanywhere_field_field_formatter_view($entity_type, $entity, $fie
  * @param $instance
  *   The instance definition.
  * @param $langcode
- *  The language associated to $item.
+ *   The language associated to $item.
  * @param $item
  *   The field value to sanitize.
  * @param $column
@@ -258,7 +259,7 @@ function postcodeanywhere_field_field_widget_info() {
       'label' => t('PCA (text field)'),
       'field types' => array('postcodeanywhere'),
       'settings' => array(
-        'size' => 60
+        'size' => 60,
       ),
     ),
     'postcodeanywhere_autocomplete' => array(
@@ -266,7 +267,7 @@ function postcodeanywhere_field_field_widget_info() {
       'field types' => array('postcodeanywhere'),
       'settings' => array(
         'autocomplete_path' => 'pca/autocomplete',
-        'size' => 60
+        'size' => 60,
       ),
     ),
   );
@@ -319,6 +320,7 @@ function postcodeanywhere_field_field_widget_form(&$form, &$form_state, $field, 
         '#autocomplete_path' => FALSE,
       );
       break;
+
     case 'postcodeanywhere_autocomplete':
       $main_widget = $element + array(
         '#type' => 'textfield',
@@ -360,6 +362,7 @@ function postcodeanywhere_field_field_widget_error($element, $error, $form, &$fo
     case 'value':
       $error_element = $element['value'];
       break;
+
     default:
       $error_element = $element[$element['#columns'][0]];
       break;
@@ -390,7 +393,6 @@ function postcodeanywhere_field_filter_format_disable($format) {
  *
  * @return
  *   The processed element.
- *
  */
 function postcodeanywhere_field_process_form($element, &$form_state) {
   $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
@@ -409,4 +411,3 @@ function postcodeanywhere_field_process_form($element, &$form_state) {
   }
   return $element;
 }
-
