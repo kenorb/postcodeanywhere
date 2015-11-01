@@ -54,7 +54,7 @@ before_script:
   - html2text <(wget -O- --retry-connrefused $URL)
 
 script:
-  - phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme $(drush dd $TEST_MODULE)
+  - phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,js,css,info,txt,md $(drush dd $TEST_MODULE)
   - drush core-requirements --severity=2 | grep -i error
 
 after_success:
