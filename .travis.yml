@@ -25,7 +25,7 @@ notifications:
 sudo: false
 env:
   global:
-    - MODULES="postcodeanywhere"
+    - TEST_MODULE="postcodeanywhere"
     - REVIEWS="upgrade7x,comment,druplart,i18n,i18n_po,production,security,sniffer,sql,style"
     - URL="http://$HOSTNAME:8080/"
     - COMPOSER_BIN_DIR=~/bin
@@ -40,36 +40,31 @@ mysql:
   encoding: utf8
 
 before_install:
-  - env
-  - set -e # Fail build on first error.
+# - env
+# - set -e # Fail build on first error.
 
 install:
-  - gem install mailcatcher
-  - mailcatcher -v && echo 'sendmail_path="/usr/bin/env catchmail"' | tee -a "$(php --ini | grep "Loaded Configuration" | awk '{print $4}')"
-  - composer global require drush/drush:dev-master && drush --version
-  - drush qd --yes --server=$URL --no-server --watchdog --core=drupal-$CORE testsite $MODULES && cd testsite/drupal-*
+  - gem install mailcatcher && mailcatcher -v && echo 'sendmail_path="/usr/bin/env catchmail"' | tee -a "$(php --ini | grep "Loaded Configuration" | awk '{print $4}')"
+  - composer global require drush/drush:dev-master drupal/coder && drush --version
+  - drush qd --yes --server=$URL --no-server --watchdog --core=drupal-$CORE testsite $TEST_MODULE && cd testsite/drupal-*
 
 before_script:
   - drush -v rs $URL &
-  - drush dl coder --destination=~/.drush && drush cc drush
+  - phpcs --config-set installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer
   - html2text <(wget -O- --retry-connrefused $URL)
 
 script:
-  - drush -vd status --full
-  - drush -vd coder --reviews=$REVIEWS --severity=major --no-empty $MODULES
+  - phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme $(drush dd $TEST_MODULE)
   - drush core-requirements --severity=2 | grep -i error
 
 after_success:
  - html2text <(curl http://localhost:1080)
- - html2text <(wget -qO- $URL)
 
 after_failure:
- - sudo wget -qO- $URL | html2text
- - drush --version
- - drush core-requirements --severity=2
  - drush status --full
- - drush ws --full
+ - drush core-requirements --severity=2
  - tree -d -L 6 # Print directory structure in the form of a tree.
 
 after_script:
- - echo $TRAVIS_TEST_RESULT
+ - drush ws --full
+ - html2text <(wget -qO- $URL)
