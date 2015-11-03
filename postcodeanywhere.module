@@ -94,7 +94,7 @@ function postcodeanywhere_permission() {
 /**
  * Implementation of hook_form_alter().
  */
-function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
+function postcodeanywhere_form_alter(&$form, &$form_state, $form_id) {
 
   // Check whether path matches one defined in postcodeanywhere settings.
   $postcodeanywhere_rules = variable_get('postcodeanywhere_page_visibility_rules', '');
