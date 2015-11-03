@@ -83,7 +83,7 @@
                 $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text').hide();
 
               }
-              else {
+              else if(!isNaN(pca_id)){
 
                 // Make sure this is hidden.
                 $(pca_input_group).find('#edit-field-address').hide();
