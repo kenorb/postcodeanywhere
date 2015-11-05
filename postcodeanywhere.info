@@ -3,3 +3,4 @@ description = "Find a Postcode using PostcodeAnywhere service"
 core = 7.x
 configure = admin/config/content/postcodeanywhere
 recommends[] = advanced_help
+test_dependencies[] = postcodeanywhere_example
