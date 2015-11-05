@@ -99,16 +99,12 @@ function postcodeanywhere_findbypostcode($postcode = PCA_PC_TEST, $returnArray =
       if ($data = $pca->HasData()) {
         _pca_set_cache($cid, $data);
       }
-      else {
-        $data = array();
-      }
     }
     catch (Exception $e) {
       watchdog_exception('postcodeanywhere', $e);
-      throw new Exception($e->getMessage());
     }
   }
-  return $returnArray ? $data : drupal_json_output($data);
+  return $returnArray ? $data : drupal_json_output($data ?: array());
 }
 
 /**
@@ -126,16 +122,12 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2", $retur
       if ($data = $pca->HasData()) {
         _pca_set_cache($cid, $data);
       }
-      else {
-        $data = array();
-      }
     }
     catch (Exception $e) {
       watchdog_exception('postcodeanywhere', $e);
-      throw new Exception($e->getMessage());
     }
   }
-  return $returnArray ? $data : drupal_json_output($data);
+  return $returnArray ? $data : drupal_json_output($data ?: array());
 }
 
 /**
@@ -153,16 +145,12 @@ function postcodeanywhere_retrievebyid($id) {
       if ($data = $pca->HasData()) {
         _pca_set_cache($cid, $data);
       }
-      else {
-        $data = array();
-      }
     }
     catch (Exception $e) {
       watchdog_exception('postcodeanywhere', $e);
-      throw new Exception($e->getMessage());
     }
   }
-  drupal_json_output($data);
+  drupal_json_output($data ?: array());
 }
 
 /**

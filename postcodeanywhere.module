@@ -94,7 +94,7 @@ function postcodeanywhere_permission() {
 /**
  * Implementation of hook_form_alter().
  */
-function postcodeanywhere_form_alter(&$form, $form_state, $form_id) {
+function postcodeanywhere_form_alter(&$form, &$form_state, $form_id) {
 
   // Check whether path matches one defined in postcodeanywhere settings.
   $postcodeanywhere_rules = variable_get('postcodeanywhere_page_visibility_rules', '');
@@ -208,7 +208,7 @@ function postcodeanywhere_parse_url($url, $format = 'json') {
       // Change format if necessary.
     }
     // TODO: Consider appending: &CallbackFunction=TestCallBack.
-    return sprintf("%s://%s%s?%s", $api_url['scheme'], $api_url['host'], $arr['path'], $arr['query']);
+    return sprintf("%s://%s%s%s?%s", $api_url['scheme'], $api_url['host'], $api_url['port'] ? ":{$api_url['port']}" : "", $arr['path'], $arr['query']);
   }
   else {
     return $url;
