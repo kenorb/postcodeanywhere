@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Handles the postcodeanywhere hooks.
+ *   PCA Predict module file.
  */
 
 define('PCA_DEMO_KEY', 'RA24-BZ17-JR72-WN38');
@@ -19,7 +19,7 @@ function postcodeanywhere_menu() {
 
   $items['admin/config/content/postcodeanywhere'] = array(
     'title' => 'Postcode Anywhere',
-    'description' => 'Manage Postcode Anywhere settings.',
+    'description' => 'Manage PCA settings.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('postcodeanywhere_settings_form'),
     'access arguments' => array('administer postcodeanywhere'),

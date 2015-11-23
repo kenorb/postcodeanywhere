@@ -87,7 +87,7 @@ function postcodeanywhere_field_field_info() {
   return array(
     'postcodeanywhere' => array(
       'label' => t('Postcode Anywhere'),
-      'description' => t('This field stores varchar text in the database used for Postcode Anywhere service.'),
+      'description' => t('This field stores varchar text in the database used for PCA Predict service.'),
       'settings' => array('max_length' => 255),
       'instance_settings' => array('text_processing' => 0),
       'default_widget' => 'postcodeanywhere_text',

@@ -1,5 +1,5 @@
-name = "Postcode Anywhere"
-description = "Find a Postcode using PostcodeAnywhere service"
+name = "Postcode Anywhere (PCA)"
+description = "Find a Postcode using PCA Predict (formerly Postcode Anywhere) service"
 core = 7.x
 configure = admin/config/content/postcodeanywhere
 recommends[] = advanced_help
