@@ -5,3 +5,45 @@
  */
 
 include_once 'postcodeanywhere_example.features.inc';
+
+/**
+ * Implementation of hook_menu().
+ */
+function postcodeanywhere_example_menu() {
+  $common = [
+    'file' => 'postcodeanywhere_example.inc',
+    'page callback' => 'postcodeanywhere_example_response',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  ];
+  $items = [
+    'CapturePlus/Interactive/Find/v2.10/xmla.ws' => $common,
+    'CapturePlus/Interactive/Retrieve/v2.10/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/Find/v1.10/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByAreaId/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByBuilding/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByLocalityId/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByOrganisation/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByPartialPostcode/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByParts/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByPoBox/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByPostcode/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByStreet/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindByStreetId/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/FindStreets/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/ListAliases/v1.10/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/ListAreas/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/ListCounties/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/RetrieveByAddress/v1.20/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/RetrieveById/v1.20/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/RetrieveByIdWithEmail/v1.20/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/RetrieveByIds/v1.20/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/RetrieveByParts/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/RetrieveByPostcodeAndBuilding/v1.30/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/RetrieveChanges/v1.00/xmla.ws' => $common,
+    'PostcodeAnywhere/Interactive/RetrieveHistoryById/v1.00/xmla.ws' => $common,
+  ];
+
+  return $items;
+}
+

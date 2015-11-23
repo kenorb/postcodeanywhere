@@ -1,6 +1,7 @@
 name = Postcode Anywhere Example
 description = Provides Example of PCA field in entity forms.
 core = 7.x
+php = 5.4
 package = Testing
 dependencies[] = entity
 dependencies[] = entityform
