@@ -51,42 +51,41 @@ class PostcodeAnywhere_Interactive_RetrieveByIdWithEmail
       $url .= "&Timeout=" . urlencode($this->Timeout);
       $url .= "&UserName=" . urlencode($this->UserName);
 
-      //Make the request to Postcode Anywhere and parse the XML returned
-      $file = simplexml_load_file($url);
+    // Make the request to Postcode Anywhere and parse the XML returned.
+    $file = simplexml_load_file($url);
 
-      //Check for an error, if there is one then throw an exception
-      if ($file->Columns->Column->attributes()->Name == "Error") 
-      {
-         throw new Exception("[ID] " . $file->Rows->Row->attributes()->Error . " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description . " [CAUSE] " . $file->Rows->Row->attributes()->Cause . " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution);
-      }
+    // Check for an error, if there is one then throw an exception.
+    if ($file->Columns->Column->attributes()->Name == "Error") {
+      throw new Exception("[ID] " . $file->Rows->Row->attributes()->Error . " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description . " [CAUSE] " . $file->Rows->Row->attributes()->Cause . " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution);
+    }
 
-      //Copy the data
-      if ( !empty($file->Rows) )
-      {
-         foreach ($file->Rows->Row as $item)
-         {
-             $this->Data[] = array('Udprn'=>$item->attributes()->Udprn,'Company'=>$item->attributes()->Company,'Department'=>$item->attributes()->Department,'Line1'=>$item->attributes()->Line1,'Line2'=>$item->attributes()->Line2,'Line3'=>$item->attributes()->Line3,'Line4'=>$item->attributes()->Line4,'Line5'=>$item->attributes()->Line5,'PostTown'=>$item->attributes()->PostTown,'County'=>$item->attributes()->County,'Postcode'=>$item->attributes()->Postcode,'Mailsort'=>$item->attributes()->Mailsort,'Barcode'=>$item->attributes()->Barcode,'Type'=>$item->attributes()->Type,'DeliveryPointSuffix'=>$item->attributes()->DeliveryPointSuffix,'SubBuilding'=>$item->attributes()->SubBuilding,'BuildingName'=>$item->attributes()->BuildingName,'BuildingNumber'=>$item->attributes()->BuildingNumber,'PrimaryStreet'=>$item->attributes()->PrimaryStreet,'SecondaryStreet'=>$item->attributes()->SecondaryStreet,'DoubleDependentLocality'=>$item->attributes()->DoubleDependentLocality,'DependentLocality'=>$item->attributes()->DependentLocality,'PoBox'=>$item->attributes()->PoBox,'PrimaryStreetName'=>$item->attributes()->PrimaryStreetName,'PrimaryStreetType'=>$item->attributes()->PrimaryStreetType,'SecondaryStreetName'=>$item->attributes()->SecondaryStreetName,'SecondaryStreetType'=>$item->attributes()->SecondaryStreetType,'CountryName'=>$item->attributes()->CountryName,'Email'=>$item->attributes()->Email,'MailServer'=>$item->attributes()->MailServer,'ValidFormat'=>$item->attributes()->ValidFormat,'FoundDnsRecord'=>$item->attributes()->FoundDnsRecord,'FoundServer'=>$item->attributes()->FoundServer,'FoundAccount'=>$item->attributes()->FoundAccount);
-         }
+    // Copy the data.
+    if (!empty($file->Rows)) {
+      foreach ($file->Rows->Row as $item) {
+        $this->Data[] = array('Udprn' => $item->attributes()->Udprn, 'Company' => $item->attributes()->Company, 'Department' => $item->attributes()->Department, 'Line1' => $item->attributes()->Line1, 'Line2' => $item->attributes()->Line2, 'Line3' => $item->attributes()->Line3, 'Line4' => $item->attributes()->Line4, 'Line5' => $item->attributes()->Line5, 'PostTown' => $item->attributes()->PostTown, 'County' => $item->attributes()->County, 'Postcode' => $item->attributes()->Postcode, 'Mailsort' => $item->attributes()->Mailsort, 'Barcode' => $item->attributes()->Barcode, 'Type' => $item->attributes()->Type, 'DeliveryPointSuffix' => $item->attributes()->DeliveryPointSuffix, 'SubBuilding' => $item->attributes()->SubBuilding, 'BuildingName' => $item->attributes()->BuildingName, 'BuildingNumber' => $item->attributes()->BuildingNumber, 'PrimaryStreet' => $item->attributes()->PrimaryStreet, 'SecondaryStreet' => $item->attributes()->SecondaryStreet, 'DoubleDependentLocality' => $item->attributes()->DoubleDependentLocality, 'DependentLocality' => $item->attributes()->DependentLocality, 'PoBox' => $item->attributes()->PoBox, 'PrimaryStreetName' => $item->attributes()->PrimaryStreetName, 'PrimaryStreetType' => $item->attributes()->PrimaryStreetType, 'SecondaryStreetName' => $item->attributes()->SecondaryStreetName, 'SecondaryStreetType' => $item->attributes()->SecondaryStreetType, 'CountryName' => $item->attributes()->CountryName, 'Email' => $item->attributes()->Email, 'MailServer' => $item->attributes()->MailServer, 'ValidFormat' => $item->attributes()->ValidFormat, 'FoundDnsRecord' => $item->attributes()->FoundDnsRecord, 'FoundServer' => $item->attributes()->FoundServer, 'FoundAccount' => $item->attributes()->FoundAccount);
       }
-   }
+    }
+  }
 
-   function HasData()
-   {
-      if ( !empty($this->Data) )
-      {
-         return $this->Data;
-      }
-      return false;
-   }
+  /**
+   *
+   */
+  function HasData() {
+
+    if (!empty($this->Data)) {
+      return $this->Data;
+    }
+    return FALSE;
+  }
 
 }
 
-//Example usage
-//-------------
-//$pa = new PostcodeAnywhere_Interactive_RetrieveByIdWithEmail_v1_20 ("AA11-AA11-AA11-AA11","23747212.00","info@google.com","3","David");
-//$pa->MakeRequest();
-//if ($pa->HasData())
-//{
+// Example usage
+// -------------
+// $pa = new PostcodeAnywhere_Interactive_RetrieveByIdWithEmail_v1_20 ("AA11-AA11-AA11-AA11","23747212.00","info@google.com","3","David");
+// $pa->MakeRequest();
+// if ($pa->HasData())
+// {
 //   $data = $pa->HasData();
 //   foreach ($data as $item)
 //   {
@@ -125,5 +124,4 @@ class PostcodeAnywhere_Interactive_RetrieveByIdWithEmail
 //      echo $item["FoundServer"] . "<br/>";
 //      echo $item["FoundAccount"] . "<br/>";
 //   }
-//}
-
+// }.

@@ -41,7 +41,8 @@
 
         // Add loading spinner div to end of PCA.
         $('#postcodeloading')
-            .hide()  // hide it initially
+        // Hide it initially.
+            .hide()
             .ajaxStart(function() {
                 $(this).show();
             })
@@ -83,7 +84,7 @@
                 $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text').hide();
 
               }
-              else if(!isNaN(pca_id)){
+              else if (!isNaN(pca_id)) {
 
                 // Make sure this is hidden.
                 $(pca_input_group).find('#edit-field-address').hide();
@@ -116,7 +117,7 @@
 
                   } // end: if(data)
 
-                              });
+                });
               } // end: else
 
             } // end: Drupal.jsAC
@@ -140,7 +141,7 @@
              alert(Drupal.t('Please supply a valid post code.'));
             $(Drupal.settings.postcodeanywhere.id_postcode).focus();
             return false;
-           }
+          }
            else {
              $.getJSON(Drupal.settings.basePath + "pca/findbypostcode/" + $(Drupal.settings.postcodeanywhere.id_postcode).val(), function(data){
                 var html = '';

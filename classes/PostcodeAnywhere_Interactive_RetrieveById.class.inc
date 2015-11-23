@@ -44,6 +44,9 @@ class PostcodeAnywhere_Interactive_RetrieveById
     $this->UserName = $UserName;
   }
 
+  /**
+   *
+   */
   function MakeRequest() {
     $url = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/RetrieveById/v1.20/xmla.ws?";
     $url .= "&Key=" . urlencode($this->Key);
@@ -57,26 +60,29 @@ class PostcodeAnywhere_Interactive_RetrieveById
     // Check for an error, if there is one then throw an exception.
     if ($file->Columns->Column->attributes()->Name == "Error") {
       throw new Exception(
-           "[ID] " . $file->Rows->Row->attributes()->Error . 
-           " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description . 
-           " [CAUSE] " . $file->Rows->Row->attributes()->Cause . 
+           "[ID] " . $file->Rows->Row->attributes()->Error .
+           " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description .
+           " [CAUSE] " . $file->Rows->Row->attributes()->Cause .
            " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution
       );
     }
 
     // Copy the data.
     if (!empty($file->Rows)) {
-         foreach ($file->Rows->Row as $item) {
-             $this->Data[] = array('Udprn'=>$item->attributes()->Udprn,'Company'=>$item->attributes()->Company,'Department'=>$item->attributes()->Department,'Line1'=>$item->attributes()->Line1,'Line2'=>$item->attributes()->Line2,'Line3'=>$item->attributes()->Line3,'Line4'=>$item->attributes()->Line4,'Line5'=>$item->attributes()->Line5,'PostTown'=>$item->attributes()->PostTown,'County'=>$item->attributes()->County,'Postcode'=>$item->attributes()->Postcode,'Mailsort'=>$item->attributes()->Mailsort,'Barcode'=>$item->attributes()->Barcode,'Type'=>$item->attributes()->Type,'DeliveryPointSuffix'=>$item->attributes()->DeliveryPointSuffix,'SubBuilding'=>$item->attributes()->SubBuilding,'BuildingName'=>$item->attributes()->BuildingName,'BuildingNumber'=>$item->attributes()->BuildingNumber,'PrimaryStreet'=>$item->attributes()->PrimaryStreet,'SecondaryStreet'=>$item->attributes()->SecondaryStreet,'DoubleDependentLocality'=>$item->attributes()->DoubleDependentLocality,'DependentLocality'=>$item->attributes()->DependentLocality,'PoBox'=>$item->attributes()->PoBox,'PrimaryStreetName'=>$item->attributes()->PrimaryStreetName,'PrimaryStreetType'=>$item->attributes()->PrimaryStreetType,'SecondaryStreetName'=>$item->attributes()->SecondaryStreetName,'SecondaryStreetType'=>$item->attributes()->SecondaryStreetType,'CountryName'=>$item->attributes()->CountryName,'CountryISO2'=>$item->attributes()->CountryISO2,'CountryISO3'=>$item->attributes()->CountryISO3);
-         }
+      foreach ($file->Rows->Row as $item) {
+        $this->Data[] = array('Udprn' => $item->attributes()->Udprn, 'Company' => $item->attributes()->Company, 'Department' => $item->attributes()->Department, 'Line1' => $item->attributes()->Line1, 'Line2' => $item->attributes()->Line2, 'Line3' => $item->attributes()->Line3, 'Line4' => $item->attributes()->Line4, 'Line5' => $item->attributes()->Line5, 'PostTown' => $item->attributes()->PostTown, 'County' => $item->attributes()->County, 'Postcode' => $item->attributes()->Postcode, 'Mailsort' => $item->attributes()->Mailsort, 'Barcode' => $item->attributes()->Barcode, 'Type' => $item->attributes()->Type, 'DeliveryPointSuffix' => $item->attributes()->DeliveryPointSuffix, 'SubBuilding' => $item->attributes()->SubBuilding, 'BuildingName' => $item->attributes()->BuildingName, 'BuildingNumber' => $item->attributes()->BuildingNumber, 'PrimaryStreet' => $item->attributes()->PrimaryStreet, 'SecondaryStreet' => $item->attributes()->SecondaryStreet, 'DoubleDependentLocality' => $item->attributes()->DoubleDependentLocality, 'DependentLocality' => $item->attributes()->DependentLocality, 'PoBox' => $item->attributes()->PoBox, 'PrimaryStreetName' => $item->attributes()->PrimaryStreetName, 'PrimaryStreetType' => $item->attributes()->PrimaryStreetType, 'SecondaryStreetName' => $item->attributes()->SecondaryStreetName, 'SecondaryStreetType' => $item->attributes()->SecondaryStreetType, 'CountryName' => $item->attributes()->CountryName, 'CountryISO2' => $item->attributes()->CountryISO2, 'CountryISO3' => $item->attributes()->CountryISO3);
       }
-   }
+    }
+  }
 
+  /**
+   *
+   */
   function HasData() {
     if (!empty($this->Data)) {
       return $this->Data;
     }
-    return false;
+    return FALSE;
   }
 
 }
@@ -121,4 +127,4 @@ class PostcodeAnywhere_Interactive_RetrieveById
 //      echo $item["CountryISO2"] . "<br/>";
 //      echo $item["CountryISO3"] . "<br/>";
 //   }
-// }
+// }.

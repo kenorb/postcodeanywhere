@@ -37,54 +37,55 @@ class PostcodeAnywhere_Interactive_ListAliases
       $this->UserName = $UserName;
    }
 
-   function MakeRequest()
-   {
-      $url = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/ListAliases/v1.10/xmla.ws?";
-      $url .= "&Key=" . urlencode($this->Key);
-      $url .= "&IdOrPostcode=" . urlencode($this->IdOrPostcode);
-      $url .= "&UserName=" . urlencode($this->UserName);
+  /**
+   *
+   */
+  function MakeRequest() {
 
-      //Make the request to Postcode Anywhere and parse the XML returned
-      $file = simplexml_load_file($url);
+    $url = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/ListAliases/v1.10/xmla.ws?";
+    $url .= "&Key=" . urlencode($this->Key);
+    $url .= "&IdOrPostcode=" . urlencode($this->IdOrPostcode);
+    $url .= "&UserName=" . urlencode($this->UserName);
 
-      //Check for an error, if there is one then throw an exception
-      if ($file->Columns->Column->attributes()->Name == "Error") 
-      {
-         throw new Exception("[ID] " . $file->Rows->Row->attributes()->Error . " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description . " [CAUSE] " . $file->Rows->Row->attributes()->Cause . " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution);
+    // Make the request to Postcode Anywhere and parse the XML returned.
+    $file = simplexml_load_file($url);
+
+    // Check for an error, if there is one then throw an exception.
+    if ($file->Columns->Column->attributes()->Name == "Error") {
+      throw new Exception("[ID] " . $file->Rows->Row->attributes()->Error . " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description . " [CAUSE] " . $file->Rows->Row->attributes()->Cause . " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution);
+    }
+
+    // Copy the data.
+    if (!empty($file->Rows)) {
+      foreach ($file->Rows->Row as $item) {
+        $this->Data[] = array('Type' => $item->attributes()->Type, 'Name' => $item->attributes()->Name);
       }
+    }
+  }
 
-      //Copy the data
-      if ( !empty($file->Rows) )
-      {
-         foreach ($file->Rows->Row as $item)
-         {
-             $this->Data[] = array('Type'=>$item->attributes()->Type,'Name'=>$item->attributes()->Name);
-         }
-      }
-   }
+  /**
+   *
+   */
+  function HasData() {
 
-   function HasData()
-   {
-      if ( !empty($this->Data) )
-      {
-         return $this->Data;
-      }
-      return false;
-   }
+    if (!empty($this->Data)) {
+      return $this->Data;
+    }
+    return FALSE;
+  }
 
 }
 
-//Example usage
-//-------------
-//$pa = new PostcodeAnywhere_Interactive_ListAliases_v1_10 ("AA11-AA11-AA11-AA11","9395987.00","David");
-//$pa->MakeRequest();
-//if ($pa->HasData())
-//{
+// Example usage
+// -------------
+// $pa = new PostcodeAnywhere_Interactive_ListAliases_v1_10 ("AA11-AA11-AA11-AA11","9395987.00","David");
+// $pa->MakeRequest();
+// if ($pa->HasData())
+// {
 //   $data = $pa->HasData();
 //   foreach ($data as $item)
 //   {
 //      echo $item["Type"] . "<br/>";
 //      echo $item["Name"] . "<br/>";
 //   }
-//}
-
+// }.

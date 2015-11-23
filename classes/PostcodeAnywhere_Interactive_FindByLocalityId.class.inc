@@ -41,42 +41,41 @@ class PostcodeAnywhere_Interactive_FindByLocalityId
       $url .= "&LocalityId=" . urlencode($this->LocalityId);
       $url .= "&UserName=" . urlencode($this->UserName);
 
-      //Make the request to Postcode Anywhere and parse the XML returned
-      $file = simplexml_load_file($url);
+    // Make the request to Postcode Anywhere and parse the XML returned.
+    $file = simplexml_load_file($url);
 
-      //Check for an error, if there is one then throw an exception
-      if ($file->Columns->Column->attributes()->Name == "Error") 
-      {
-         throw new Exception("[ID] " . $file->Rows->Row->attributes()->Error . " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description . " [CAUSE] " . $file->Rows->Row->attributes()->Cause . " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution);
-      }
+    // Check for an error, if there is one then throw an exception.
+    if ($file->Columns->Column->attributes()->Name == "Error") {
+      throw new Exception("[ID] " . $file->Rows->Row->attributes()->Error . " [DESCRIPTION] " . $file->Rows->Row->attributes()->Description . " [CAUSE] " . $file->Rows->Row->attributes()->Cause . " [RESOLUTION] " . $file->Rows->Row->attributes()->Resolution);
+    }
 
-      //Copy the data
-      if ( !empty($file->Rows) )
-      {
-         foreach ($file->Rows->Row as $item)
-         {
-             $this->Data[] = array('StreetId'=>$item->attributes()->StreetId,'Street'=>$item->attributes()->Street,'Place'=>$item->attributes()->Place);
-         }
+    // Copy the data.
+    if (!empty($file->Rows)) {
+      foreach ($file->Rows->Row as $item) {
+        $this->Data[] = array('StreetId' => $item->attributes()->StreetId, 'Street' => $item->attributes()->Street, 'Place' => $item->attributes()->Place);
       }
-   }
+    }
+  }
 
-   function HasData()
-   {
-      if ( !empty($this->Data) )
-      {
-         return $this->Data;
-      }
-      return false;
-   }
+  /**
+   *
+   */
+  function HasData() {
+
+    if (!empty($this->Data)) {
+      return $this->Data;
+    }
+    return FALSE;
+  }
 
 }
 
-//Example usage
-//-------------
-//$pa = new PostcodeAnywhere_Interactive_FindByLocalityId_v1_00 ("AA11-AA11-AA11-AA11","27312||B49","David");
-//$pa->MakeRequest();
-//if ($pa->HasData())
-//{
+// Example usage
+// -------------
+// $pa = new PostcodeAnywhere_Interactive_FindByLocalityId_v1_00 ("AA11-AA11-AA11-AA11","27312||B49","David");
+// $pa->MakeRequest();
+// if ($pa->HasData())
+// {
 //   $data = $pa->HasData();
 //   foreach ($data as $item)
 //   {
@@ -84,4 +83,4 @@ class PostcodeAnywhere_Interactive_FindByLocalityId
 //      echo $item["Street"] . "<br/>";
 //      echo $item["Place"] . "<br/>";
 //   }
-//}
+// }.

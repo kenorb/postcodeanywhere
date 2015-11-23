@@ -68,13 +68,14 @@ class PostcodeAnywhere_Interactive_FindByPostcode
       );
     }
 
-    // Copy the data
+    // Copy the data.
     if (!empty($file->Rows)) {
       foreach ($file->Rows->Row as $item) {
         $this->Data[] = array(
-            'Id' => (string)$item->attributes()->Id,
-            'StreetAddress' => (string)$item->attributes()->StreetAddress,
-            'Place' => (string)$item->attributes()->Place);
+          'Id' => (string) $item->attributes()->Id,
+          'StreetAddress' => (string) $item->attributes()->StreetAddress,
+          'Place' => (string) $item->attributes()->Place,
+        );
       }
     }
   }
@@ -86,8 +87,9 @@ class PostcodeAnywhere_Interactive_FindByPostcode
     if (!empty($this->Data)) {
       return $this->Data;
     }
-    return false;
+    return FALSE;
   }
+
 }
 
 // Example usage
@@ -103,5 +105,4 @@ class PostcodeAnywhere_Interactive_FindByPostcode
 //      echo $item["StreetAddress"] . "<br/>";
 //      echo $item["Place"] . "<br/>";
 //   }
-// }
-
+// }.
