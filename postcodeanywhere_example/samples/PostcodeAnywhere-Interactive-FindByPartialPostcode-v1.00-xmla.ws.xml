@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="2">
+    <Column Name="Id" Type="String" />
+    <Column Name="Place" Type="String" />
+  </Columns>
+  <Rows Items="9">
+    <Row Id="30334||WR2" Place="WR2 Worcester Worcestershire" />
+    <Row Id="30363||WR2" Place="WR2 Callow End Worcester Worcestershire" />
+    <Row Id="30387||WR2" Place="WR2 Grimley Worcester Worcestershire" />
+    <Row Id="30389||WR2" Place="WR2 Hallow Worcester Worcestershire" />
+    <Row Id="30421||WR2" Place="WR2 Lower Broadheath Worcester Worcestershire" />
+    <Row Id="30431||WR2" Place="WR2 Powick Worcester Worcestershire" />
+    <Row Id="30435||WR2" Place="WR2 Rushwick Worcester Worcestershire" />
+    <Row Id="32519||WR2" Place="WR2 Crown East Worcester Worcestershire" />
+    <Row Id="37181||WR2" Place="WR2 St. Johns Worcester Worcestershire" />
+  </Rows>
+</Table>

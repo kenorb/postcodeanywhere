@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="4">
+    <Column Name="Error" Type="String" />
+    <Column Name="Description" Type="String" />
+    <Column Name="Cause" Type="String" />
+    <Column Name="Resolution" Type="String" />
+  </Columns>
+  <Rows Items="1">
+    <Row Error="1001" Description="Id Invalid" Cause="The Id parameter supplied was invalid." Resolution="Try again, using only IDs from the Find services." />
+  </Rows>
+</Table>

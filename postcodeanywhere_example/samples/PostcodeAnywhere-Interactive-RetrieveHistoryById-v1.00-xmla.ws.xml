@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="25">
+    <Column Name="Udprn" Type="Integer" />
+    <Column Name="Company" Type="String" />
+    <Column Name="Department" Type="String" />
+    <Column Name="Line1" Type="String" />
+    <Column Name="Line2" Type="String" />
+    <Column Name="Line3" Type="String" />
+    <Column Name="Line4" Type="String" />
+    <Column Name="Line5" Type="String" />
+    <Column Name="PostTown" Type="String" />
+    <Column Name="County" Type="String" />
+    <Column Name="Postcode" Type="String" />
+    <Column Name="Mailsort" Type="Integer" />
+    <Column Name="Barcode" Type="String" />
+    <Column Name="Type" Type="String" />
+    <Column Name="DeliveryPointSuffix" Type="String" />
+    <Column Name="SubBuilding" Type="String" />
+    <Column Name="BuildingName" Type="String" />
+    <Column Name="BuildingNumber" Type="String" />
+    <Column Name="PrimaryStreet" Type="String" />
+    <Column Name="SecondaryStreet" Type="String" />
+    <Column Name="DoubleDependentLocality" Type="String" />
+    <Column Name="DependentLocality" Type="String" />
+    <Column Name="PoBox" Type="String" />
+    <Column Name="ChangedOn" Type="Date" />
+    <Column Name="ChangeType" Type="String" />
+  </Columns>
+  <Rows Items="2">
+    <Row Udprn="26778735" Company="" Department="" Line1="Humble Bee Hall" Line2="Stonehouse Lane" Line3="Bringsty" Line4="" Line5="" PostTown="Worcester" County="Herefordshire" Postcode="WR6 5TG" Mailsort="70113" Barcode="(WR65TG1JG)" Type="Residential" DeliveryPointSuffix="1J" SubBuilding="" BuildingName="Humble Bee Hall" BuildingNumber="" PrimaryStreet="Stonehouse Lane" SecondaryStreet="" DoubleDependentLocality="" DependentLocality="Bringsty" PoBox="" ChangedOn="2009-11-26" ChangeType="Update" />
+    <Row Udprn="26778735" Company="" Department="" Line1="Humble Bee Hall" Line2="Stonehouse Lane" Line3="Bringsty" Line4="" Line5="" PostTown="Worcester" County="Herefordshire" Postcode="WR6 5TF" Mailsort="94133" Barcode="(WR65TF2EB)" Type="Residential" DeliveryPointSuffix="2E" SubBuilding="" BuildingName="Humble Bee Hall" BuildingNumber="" PrimaryStreet="Stonehouse Lane" SecondaryStreet="" DoubleDependentLocality="" DependentLocality="Bringsty" PoBox="" ChangedOn="2015-11-24 10:52:27" ChangeType="Current" />
+  </Rows>
+</Table>

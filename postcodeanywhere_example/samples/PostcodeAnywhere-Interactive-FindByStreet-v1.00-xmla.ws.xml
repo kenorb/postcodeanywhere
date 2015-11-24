@@ -5,13 +5,14 @@
     <Column Name="StreetAddress" Type="String" />
     <Column Name="Place" Type="String" />
   </Columns>
-  <Rows Items="49">
+  <Rows Items="96">
     <Row Id="26742650.00" StreetAddress="Bridgehouse Property Consultants" Place="Unit 3 Elgar Business Centre Moseley Road Hallow Worcester" />
     <Row Id="26742633.00" StreetAddress="Britannia Site Solutions Ltd" Place="Britannia House Unit 11-13 Elgar Business Centre Moseley Road Hallow Worcester" />
     <Row Id="1000964071.00" StreetAddress="Care 4 Health" Place="Unit 8 Elgar Business Centre Moseley Road Hallow Worcester" />
     <Row Id="52489478.00" StreetAddress="Child Care Bureau" Place="Unit 4 Elgar Business Centre Moseley Road Hallow Worcester" />
     <Row Id="53701343.00" StreetAddress="Child Care Bureau" Place="Britannia House Unit 11-13 Elgar Business Centre Moseley Road Hallow Worcester" />
     <Row Id="50421922.00" StreetAddress="Clearview" Place="Unit 14-15 Elgar Business Centre Moseley Road Hallow Worcester" />
+    <Row Id="26742670.00" StreetAddress="J & F Genever (Builders) Ltd" Place="Moseley Farm Moseley Road Hallow Worcester" />
     <Row Id="26742646.00" StreetAddress="Microtrol Ltd" Place="Unit 16 Elgar Business Centre Moseley Road Hallow Worcester" />
     <Row Id="26742653.00" StreetAddress="Opus Claims Solutions Ltd" Place="Premier House Elgar Business Centre Moseley Road Hallow Worcester" />
     <Row Id="26742655.00" StreetAddress="Robin Pearce Plants" Place="Worlds End Nurseries Moseley Road Hallow Worcester" />
@@ -19,21 +20,50 @@
     <Row Id="26742667.00" StreetAddress="Worcestershire Federation of Wi's" Place="Unit 7 Elgar Business Centre Moseley Road Hallow Worcester" />
     <Row Id="26742662.00" StreetAddress="Worlds End Nurseries" Place="Moseley Road Hallow Worcester" />
     <Row Id="26742663.00" StreetAddress="Wychbury Engineering Services Ltd" Place="Unit 2 Elgar Business Centre Moseley Road Hallow Worcester" />
+    <Row Id="26742623.00" StreetAddress="1 Heath Cottage Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959658.00" StreetAddress="Apartment 1 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742664.00" StreetAddress="1 The Cottages Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742665.00" StreetAddress="1 Wylcotts Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742624.00" StreetAddress="2 Heath Cottage Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959659.00" StreetAddress="Apartment 2 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742666.00" StreetAddress="2 The Cottages Moseley Road" Place="Hallow Worcester" />
     <Row Id="52269655.00" StreetAddress="2 Wylcotts Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959660.00" StreetAddress="Apartment 3 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959661.00" StreetAddress="Apartment 4 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959662.00" StreetAddress="Apartment 5 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959663.00" StreetAddress="Apartment 6 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959664.00" StreetAddress="Apartment 7 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959665.00" StreetAddress="Apartment 8 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
     <Row Id="51501819.00" StreetAddress="Unit 9 Elgar Business Centre Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959666.00" StreetAddress="Apartment 9 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959667.00" StreetAddress="Apartment 10 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959668.00" StreetAddress="Apartment 11 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959669.00" StreetAddress="Apartment 12 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959670.00" StreetAddress="Apartment 13 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959671.00" StreetAddress="Apartment 14 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959672.00" StreetAddress="Apartment 15 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959673.00" StreetAddress="Apartment 16 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
+    <Row Id="50959674.00" StreetAddress="Apartment 17 Oakleigh Court Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742647.00" StreetAddress="(Denton) Moseley Cottage Moseley Road" Place="Hallow Worcester" />
     <Row Id="53015862.00" StreetAddress="(Roberts) Moseley Cottage Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742627.00" StreetAddress="Beaumont Moseley Road" Place="Hallow Worcester" />
+    <Row Id="28239183.00" StreetAddress="Briarwood Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742628.00" StreetAddress="Brook Cottage Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742605.00" StreetAddress="Chapel House Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742606.00" StreetAddress="Conway Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742668.00" StreetAddress="Cranham Cottage Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742608.00" StreetAddress="Dove Cottage Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742609.00" StreetAddress="East Barn Heath Farm Barns Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742630.00" StreetAddress="Essfield Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742631.00" StreetAddress="Fairfields Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742634.00" StreetAddress="Flatten Bank Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742635.00" StreetAddress="Four Acres Moseley Road" Place="Hallow Worcester" />
+    <Row Id="51803169.00" StreetAddress="Foxfields Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742612.00" StreetAddress="Glen Helen Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742615.00" StreetAddress="Heath Farm Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742639.00" StreetAddress="Holly Cottage Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742638.00" StreetAddress="Hollymount Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742669.00" StreetAddress="Holywards Farm Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742640.00" StreetAddress="Inglemere House Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742641.00" StreetAddress="Ivy Cottage Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742642.00" StreetAddress="Kothi Moseley Road" Place="Hallow Worcester" />
@@ -42,18 +72,35 @@
     <Row Id="26742645.00" StreetAddress="Maryville Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742686.00" StreetAddress="Mill House Elgar Business Centre Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742629.00" StreetAddress="Monkwood House Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742671.00" StreetAddress="Moseley Bank Moseley Road" Place="Hallow Worcester" />
+    <Row Id="53013201.00" StreetAddress="Moseley Barn Moseley Road" Place="Hallow Worcester" />
+    <Row Id="53023801.00" StreetAddress="Moseley Farm Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742672.00" StreetAddress="Moseley House Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742648.00" StreetAddress="Moseley Saw Mills Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742618.00" StreetAddress="North Barn Heath Farm Barns Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742604.00" StreetAddress="Oaklands Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742652.00" StreetAddress="Orchard View Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742619.00" StreetAddress="Pear Tree Cottage Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742626.00" StreetAddress="Pool House Elgar Business Centre Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742636.00" StreetAddress="Primrose Cottage Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742654.00" StreetAddress="Pump Cottage Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742656.00" StreetAddress="Rose Cottage Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742657.00" StreetAddress="Rose Dale Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742673.00" StreetAddress="Salways Barn Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742674.00" StreetAddress="Salways Farm Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742658.00" StreetAddress="Sandfield Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742620.00" StreetAddress="South Cottage Heath Farm Barns Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742659.00" StreetAddress="Stilecroft Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742616.00" StreetAddress="Swithuns Moseley Road" Place="Hallow Worcester" />
+    <Row Id="53358541.00" StreetAddress="The Farmhouse Holywards Farm Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742637.00" StreetAddress="The Haven Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742614.00" StreetAddress="The Heathers Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742649.00" StreetAddress="The Old Bakery Moseley Road" Place="Hallow Worcester" />
+    <Row Id="53358540.00" StreetAddress="The Old Stables Holywards Farm Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742651.00" StreetAddress="The Orchard Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742661.00" StreetAddress="The Willows Moseley Road" Place="Hallow Worcester" />
     <Row Id="26742660.00" StreetAddress="Whitegates Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742621.00" StreetAddress="Woodmanton Cottage Moseley Road" Place="Hallow Worcester" />
+    <Row Id="26742622.00" StreetAddress="York House Moseley Road" Place="Hallow Worcester" />
   </Rows>
 </Table>

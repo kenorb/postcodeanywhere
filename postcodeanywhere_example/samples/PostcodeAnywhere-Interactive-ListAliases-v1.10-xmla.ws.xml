@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="2">
+    <Column Name="Type" Type="String" />
+    <Column Name="Name" Type="String" />
+  </Columns>
+  <Rows Items="4">
+    <Row Type="Place" Name="Greenfield" />
+    <Row Type="Place" Name="Budhill" />
+    <Row Type="TraditionalCounty" Name="Lanarkshire" />
+    <Row Type="AdministrativeCounty" Name="City of Glasgow" />
+  </Rows>
+</Table>

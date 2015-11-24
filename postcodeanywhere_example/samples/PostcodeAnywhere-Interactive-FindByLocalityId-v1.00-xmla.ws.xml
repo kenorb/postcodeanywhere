@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="3">
+    <Column Name="StreetId" Type="String" />
+    <Column Name="Street" Type="String" />
+    <Column Name="Place" Type="String" />
+  </Columns>
+  <Rows Items="7">
+    <Row StreetId="0|27312|0|0" Street="(no street name)" Place="Coughton Alcester" />
+    <Row StreetId="0|27312|15548|1" Street="Birmingham Road" Place="Coughton Alcester" />
+    <Row StreetId="0|27312|75512|3" Street="Coughton Fields Lane" Place="Coughton Alcester" />
+    <Row StreetId="0|27312|15771|14" Street="Coughton Hill" Place="Coughton Alcester" />
+    <Row StreetId="0|27312|15771|3" Street="Coughton Lane" Place="Coughton Alcester" />
+    <Row StreetId="0|27312|1937|9" Street="Haydon Way" Place="Coughton Alcester" />
+    <Row StreetId="0|27312|4595|3" Street="Sambourne Lane" Place="Coughton Alcester" />
+  </Rows>
+</Table>

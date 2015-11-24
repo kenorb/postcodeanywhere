@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="3">
+    <Column Name="Id" Type="String" />
+    <Column Name="PostcodeArea" Type="String" />
+    <Column Name="Name" Type="String" />
+  </Columns>
+  <Rows Items="124">
+    <Row Id="AB" PostcodeArea="AB" Name="Aberdeen" />
+    <Row Id="AL" PostcodeArea="AL" Name="St Albans" />
+    <Row Id="B" PostcodeArea="B" Name="Birmingham" />
+    <Row Id="BA" PostcodeArea="BA" Name="Bath" />
+    <Row Id="BB" PostcodeArea="BB" Name="Blackburn" />
+    <Row Id="BD" PostcodeArea="BD" Name="Bradford" />
+    <Row Id="BH" PostcodeArea="BH" Name="Bournemouth" />
+    <Row Id="BL" PostcodeArea="BL" Name="Bolton" />
+    <Row Id="BN" PostcodeArea="BN" Name="Brighton" />
+    <Row Id="BR" PostcodeArea="BR" Name="Bromley" />
+    <Row Id="BS" PostcodeArea="BS" Name="Bristol" />
+    <Row Id="BT" PostcodeArea="BT" Name="Belfast" />
+    <Row Id="CA" PostcodeArea="CA" Name="Carlisle" />
+    <Row Id="CB" PostcodeArea="CB" Name="Cambridge" />
+    <Row Id="CF" PostcodeArea="CF" Name="Cardiff" />
+    <Row Id="CH" PostcodeArea="CH" Name="Chester" />
+    <Row Id="CM" PostcodeArea="CM" Name="Chelmsford" />
+    <Row Id="CO" PostcodeArea="CO" Name="Colchester" />
+    <Row Id="CR" PostcodeArea="CR" Name="Croydon" />
+    <Row Id="CT" PostcodeArea="CT" Name="Canterbury" />
+    <Row Id="CV" PostcodeArea="CV" Name="Coventry" />
+    <Row Id="CW" PostcodeArea="CW" Name="Crewe" />
+    <Row Id="DA" PostcodeArea="DA" Name="Dartford" />
+    <Row Id="DD" PostcodeArea="DD" Name="Dundee" />
+    <Row Id="DE" PostcodeArea="DE" Name="Derby" />
+    <Row Id="DG" PostcodeArea="DG" Name="Dumfries and Galloway" />
+    <Row Id="DH" PostcodeArea="DH" Name="Durham" />
+    <Row Id="DL" PostcodeArea="DL" Name="Darlington" />
+    <Row Id="DN" PostcodeArea="DN" Name="Doncaster" />
+    <Row Id="DT" PostcodeArea="DT" Name="Dorchester" />
+    <Row Id="DY" PostcodeArea="DY" Name="Dudley" />
+    <Row Id="E" PostcodeArea="E" Name="London - East" />
+    <Row Id="EC" PostcodeArea="EC" Name="London - East Central" />
+    <Row Id="EH" PostcodeArea="EH" Name="Edinburgh" />
+    <Row Id="EN" PostcodeArea="EN" Name="Enfield" />
+    <Row Id="EX" PostcodeArea="EX" Name="Exeter" />
+    <Row Id="FK" PostcodeArea="FK" Name="Falkirk" />
+    <Row Id="FY" PostcodeArea="FY" Name="Blackpool" />
+    <Row Id="G" PostcodeArea="G" Name="Glasgow" />
+    <Row Id="GL" PostcodeArea="GL" Name="Gloucester" />
+    <Row Id="GU" PostcodeArea="GU" Name="Guildford" />
+    <Row Id="GY" PostcodeArea="GY" Name="Guernsey" />
+    <Row Id="HA" PostcodeArea="HA" Name="Harrow" />
+    <Row Id="HD" PostcodeArea="HD" Name="Huddersfield" />
+    <Row Id="HG" PostcodeArea="HG" Name="Harrogate" />
+    <Row Id="HP" PostcodeArea="HP" Name="Hemel Hempstead" />
+    <Row Id="HR" PostcodeArea="HR" Name="Hereford" />
+    <Row Id="HS" PostcodeArea="HS" Name="Stornoway" />
+    <Row Id="HU" PostcodeArea="HU" Name="Hull" />
+    <Row Id="HX" PostcodeArea="HX" Name="Halifax" />
+    <Row Id="IG" PostcodeArea="IG" Name="Ilford" />
+    <Row Id="IM" PostcodeArea="IM" Name="Isle Of Man" />
+    <Row Id="IP" PostcodeArea="IP" Name="Ipswich" />
+    <Row Id="IV" PostcodeArea="IV" Name="Inverness" />
+    <Row Id="JE" PostcodeArea="JE" Name="Jersey" />
+    <Row Id="KA" PostcodeArea="KA" Name="Kilmarnock" />
+    <Row Id="KT" PostcodeArea="KT" Name="Kingston upon Thames" />
+    <Row Id="KW" PostcodeArea="KW" Name="Wick" />
+    <Row Id="KY" PostcodeArea="KY" Name="Kirkcaldy" />
+    <Row Id="L" PostcodeArea="L" Name="Liverpool" />
+    <Row Id="LA" PostcodeArea="LA" Name="Lancaster" />
+    <Row Id="LD" PostcodeArea="LD" Name="Llandrindod Wells" />
+    <Row Id="LE" PostcodeArea="LE" Name="Leicester" />
+    <Row Id="LL" PostcodeArea="LL" Name="Llandudno" />
+    <Row Id="LN" PostcodeArea="LN" Name="Lincoln" />
+    <Row Id="LS" PostcodeArea="LS" Name="Leeds" />
+    <Row Id="LU" PostcodeArea="LU" Name="Luton" />
+    <Row Id="M" PostcodeArea="M" Name="Manchester" />
+    <Row Id="ME" PostcodeArea="ME" Name="RochesterMaidstone" />
+    <Row Id="MK" PostcodeArea="MK" Name="Milton Keynes" />
+    <Row Id="ML" PostcodeArea="ML" Name="Motherwell" />
+    <Row Id="N" PostcodeArea="N" Name="London - North" />
+    <Row Id="NE" PostcodeArea="NE" Name="Newcastle upon Tyne" />
+    <Row Id="NG" PostcodeArea="NG" Name="Nottingham" />
+    <Row Id="NN" PostcodeArea="NN" Name="Northampton" />
+    <Row Id="NP" PostcodeArea="NP" Name="Newport" />
+    <Row Id="NR" PostcodeArea="NR" Name="Norwich" />
+    <Row Id="NW" PostcodeArea="NW" Name="London - North West" />
+    <Row Id="OL" PostcodeArea="OL" Name="Oldham" />
+    <Row Id="OX" PostcodeArea="OX" Name="Oxford" />
+    <Row Id="PA" PostcodeArea="PA" Name="Paisley" />
+    <Row Id="PE" PostcodeArea="PE" Name="Peterborough" />
+    <Row Id="PH" PostcodeArea="PH" Name="Perth" />
+    <Row Id="PL" PostcodeArea="PL" Name="Plymouth" />
+    <Row Id="PO" PostcodeArea="PO" Name="Portsmouth" />
+    <Row Id="PR" PostcodeArea="PR" Name="Preston" />
+    <Row Id="RG" PostcodeArea="RG" Name="Reading" />
+    <Row Id="RH" PostcodeArea="RH" Name="Redhill" />
+    <Row Id="RM" PostcodeArea="RM" Name="Romford" />
+    <Row Id="S" PostcodeArea="S" Name="Sheffield" />
+    <Row Id="SA" PostcodeArea="SA" Name="Swansea" />
+    <Row Id="SE" PostcodeArea="SE" Name="London - South East" />
+    <Row Id="SG" PostcodeArea="SG" Name="Stevenage" />
+    <Row Id="SK" PostcodeArea="SK" Name="Stockport" />
+    <Row Id="SL" PostcodeArea="SL" Name="Slough" />
+    <Row Id="SM" PostcodeArea="SM" Name="Sutton" />
+    <Row Id="SN" PostcodeArea="SN" Name="Swindon" />
+    <Row Id="SO" PostcodeArea="SO" Name="Southampton" />
+    <Row Id="SP" PostcodeArea="SP" Name="Salisbury" />
+    <Row Id="SR" PostcodeArea="SR" Name="Sunderland" />
+    <Row Id="SS" PostcodeArea="SS" Name="Southend-on-sea" />
+    <Row Id="ST" PostcodeArea="ST" Name="Stoke-on-Trent" />
+    <Row Id="SW" PostcodeArea="SW" Name="London - South West" />
+    <Row Id="SY" PostcodeArea="SY" Name="Shrewsbury" />
+    <Row Id="TA" PostcodeArea="TA" Name="Taunton" />
+    <Row Id="TD" PostcodeArea="TD" Name="Galashiels" />
+    <Row Id="TF" PostcodeArea="TF" Name="Telford" />
+    <Row Id="TN" PostcodeArea="TN" Name="Tunbridge Wells" />
+    <Row Id="TQ" PostcodeArea="TQ" Name="Torquay" />
+    <Row Id="TR" PostcodeArea="TR" Name="Truro" />
+    <Row Id="TS" PostcodeArea="TS" Name="Middlesborough (Stockton-on-Tees)" />
+    <Row Id="TW" PostcodeArea="TW" Name="Twickenham" />
+    <Row Id="UB" PostcodeArea="UB" Name="Uxbridge" />
+    <Row Id="W" PostcodeArea="W" Name="London - West" />
+    <Row Id="WA" PostcodeArea="WA" Name="Warrington" />
+    <Row Id="WC" PostcodeArea="WC" Name="London - West Central" />
+    <Row Id="WD" PostcodeArea="WD" Name="Watford" />
+    <Row Id="WF" PostcodeArea="WF" Name="Wakefield" />
+    <Row Id="WN" PostcodeArea="WN" Name="Wigan" />
+    <Row Id="WR" PostcodeArea="WR" Name="Worcester" />
+    <Row Id="WS" PostcodeArea="WS" Name="Walsall" />
+    <Row Id="WV" PostcodeArea="WV" Name="Wolverhampton" />
+    <Row Id="YO" PostcodeArea="YO" Name="York" />
+    <Row Id="ZE" PostcodeArea="ZE" Name="Shetland" />
+  </Rows>
+</Table>

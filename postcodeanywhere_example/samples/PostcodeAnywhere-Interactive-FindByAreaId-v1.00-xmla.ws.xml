@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="2">
+    <Column Name="Id" Type="String" />
+    <Column Name="Place" Type="String" />
+  </Columns>
+  <Rows Items="283">
+    <Row Id="29984" Place="Broadway Worcestershire" />
+    <Row Id="29984" Place="Broadway Worcestershire" />
+    <Row Id="29985" Place="Aston Somerville Broadway Worcestershire" />
+    <Row Id="29986" Place="Buckland Broadway Gloucestershire" />
+    <Row Id="29987" Place="Childswickham Broadway Worcestershire" />
+    <Row Id="29988" Place="Farncombe Broadway Worcestershire" />
+    <Row Id="29989" Place="Laverton Broadway Gloucestershire" />
+    <Row Id="29990" Place="Little Buckland Broadway Gloucestershire" />
+    <Row Id="29991" Place="Middle Hill Broadway Worcestershire" />
+    <Row Id="29992" Place="Murcot Broadway Worcestershire" />
+    <Row Id="29993" Place="Saintbury Broadway Gloucestershire" />
+    <Row Id="29994" Place="Snowshill Broadway Gloucestershire" />
+    <Row Id="29995" Place="Stanton Broadway Gloucestershire" />
+    <Row Id="29996" Place="Willersey Broadway Gloucestershire" />
+    <Row Id="29997" Place="Wormington Broadway Gloucestershire" />
+    <Row Id="30025" Place="Droitwich Worcestershire" />
+    <Row Id="30027" Place="Broad Common Droitwich Worcestershire" />
+    <Row Id="30028" Place="Broughton Green Droitwich Worcestershire" />
+    <Row Id="30030" Place="Chatley Droitwich Worcestershire" />
+    <Row Id="30031" Place="Copcut Droitwich Worcestershire" />
+    <Row Id="30032" Place="Cutnall Green Droitwich Worcestershire" />
+    <Row Id="30034" Place="Doverdale Droitwich Worcestershire" />
+    <Row Id="30035" Place="Dunhampstead Droitwich Worcestershire" />
+    <Row Id="30036" Place="Earls Common Droitwich Worcestershire" />
+    <Row Id="30037" Place="Elmbridge Droitwich Worcestershire" />
+    <Row Id="30038" Place="Elmley Lovett Droitwich Worcestershire" />
+    <Row Id="30040" Place="Hadley Droitwich Worcestershire" />
+    <Row Id="30041" Place="Hadley Heath Droitwich Worcestershire" />
+    <Row Id="30042" Place="Hadzor Droitwich Worcestershire" />
+    <Row Id="30043" Place="Hampton Lovett Droitwich Worcestershire" />
+    <Row Id="30044" Place="Hanbury Droitwich Worcestershire" />
+    <Row Id="30046" Place="Himbleton Droitwich Worcestershire" />
+    <Row Id="30048" Place="Huddington Droitwich Worcestershire" />
+    <Row Id="30049" Place="Impney Droitwich Worcestershire" />
+    <Row Id="30050" Place="Ladywood Droitwich Worcestershire" />
+    <Row Id="30052" Place="Newland Droitwich Worcestershire" />
+    <Row Id="30053" Place="Oddingley Droitwich Worcestershire" />
+    <Row Id="30054" Place="Ombersley Droitwich Worcestershire" />
+    <Row Id="30055" Place="Long Headland Ombersley Droitwich Worcestershire" />
+    <Row Id="30057" Place="Uphampton Ombersley Droitwich Worcestershire" />
+    <Row Id="30058" Place="Phepson Droitwich Worcestershire" />
+    <Row Id="30059" Place="Primsland Droitwich Worcestershire" />
+    <Row Id="30060" Place="Purshall Green Droitwich Worcestershire" />
+    <Row Id="30061" Place="Rashwood Droitwich Worcestershire" />
+    <Row Id="30062" Place="Rushock Droitwich Worcestershire" />
+    <Row Id="30063" Place="Sale Green Droitwich Worcestershire" />
+    <Row Id="30064" Place="Saleway Droitwich Worcestershire" />
+    <Row Id="30065" Place="Salwarpe Droitwich Worcestershire" />
+    <Row Id="30067" Place="Shell Droitwich Worcestershire" />
+    <Row Id="30068" Place="Shernal Green Droitwich Worcestershire" />
+    <Row Id="30069" Place="Sneads Green Droitwich Worcestershire" />
+    <Row Id="30070" Place="Tibberton Droitwich Worcestershire" />
+    <Row Id="30072" Place="Wychbold Droitwich Worcestershire" />
+    <Row Id="30074" Place="Evesham Worcestershire" />
+    <Row Id="30075" Place="Abbots Lench Evesham Worcestershire" />
+    <Row Id="30076" Place="Abbots Salford Evesham Warwickshire" />
+    <Row Id="30077" Place="Aldington Evesham Worcestershire" />
+    <Row Id="30078" Place="Ashton-under-Hill Evesham Worcestershire" />
+    <Row Id="30079" Place="Atch Lench Evesham Worcestershire" />
+    <Row Id="30080" Place="Badsey Evesham Worcestershire" />
+    <Row Id="30082" Place="Blackminster Evesham Worcestershire" />
+    <Row Id="30083" Place="Bretforton Evesham Worcestershire" />
+    <Row Id="30084" Place="Chadbury Evesham Worcestershire" />
+    <Row Id="30085" Place="Church Lench Evesham Worcestershire" />
+    <Row Id="30086" Place="Cleeve Prior Evesham Worcestershire" />
+    <Row Id="30087" Place="Dumbleton Evesham Gloucestershire" />
+    <Row Id="30088" Place="Hampton Evesham Worcestershire" />
+    <Row Id="30089" Place="Harvington Evesham Worcestershire" />
+    <Row Id="30090" Place="Hinton Cross Evesham Worcestershire" />
+    <Row Id="30091" Place="Hinton-on-the-Green Evesham Worcestershire" />
+    <Row Id="30092" Place="Honeybourne Evesham Worcestershire" />
+    <Row Id="30093" Place="Lenchwick Evesham Worcestershire" />
+    <Row Id="30095" Place="Middle Littleton Evesham Worcestershire" />
+    <Row Id="30096" Place="North Littleton Evesham Worcestershire" />
+    <Row Id="30097" Place="Norton Evesham Worcestershire" />
+    <Row Id="30098" Place="Offenham Evesham Worcestershire" />
+    <Row Id="30099" Place="Pitchill Evesham Warwickshire" />
+    <Row Id="30100" Place="Rous Lench Evesham Worcestershire" />
+    <Row Id="30101" Place="Rushford Evesham Warwickshire" />
+    <Row Id="30102" Place="Salford Priors Evesham Warwickshire" />
+    <Row Id="30103" Place="Sedgeberrow Evesham Worcestershire" />
+    <Row Id="30104" Place="Sheriffs Lench Evesham Worcestershire" />
+    <Row Id="30105" Place="South Littleton Evesham Worcestershire" />
+    <Row Id="30106" Place="Twyford Evesham Worcestershire" />
+    <Row Id="30107" Place="Ullington Evesham Worcestershire" />
+    <Row Id="30108" Place="Wickhamford Evesham Worcestershire" />
+    <Row Id="30109" Place="Wood Norton Evesham Worcestershire" />
+    <Row Id="30176" Place="Malvern Worcestershire" />
+    <Row Id="30176" Place="Malvern Worcestershire" />
+    <Row Id="30177" Place="Berrow Malvern Worcestershire" />
+    <Row Id="30178" Place="Birtsmorton Malvern Worcestershire" />
+    <Row Id="30180" Place="Castlemorton Malvern Worcestershire" />
+    <Row Id="30182" Place="Clevelode Malvern Worcestershire" />
+    <Row Id="30183" Place="Colwall Malvern Herefordshire" />
+    <Row Id="30184" Place="Colwall Green Malvern Herefordshire" />
+    <Row Id="30185" Place="Coombe Green Malvern Worcestershire" />
+    <Row Id="30187" Place="Cradley Malvern Herefordshire" />
+    <Row Id="30189" Place="Guarlford Malvern Worcestershire" />
+    <Row Id="30192" Place="Leigh Sinton Malvern Worcestershire" />
+    <Row Id="30196" Place="Madresfield Malvern Worcestershire" />
+    <Row Id="30200" Place="Mathon Malvern Herefordshire" />
+    <Row Id="30201" Place="Newland Malvern Worcestershire" />
+    <Row Id="30203" Place="Old Colwall Malvern Herefordshire" />
+    <Row Id="30207" Place="Sherrards Green Malvern Worcestershire" />
+    <Row Id="30208" Place="Storridge Malvern Herefordshire" />
+    <Row Id="30212" Place="Upper Colwall Malvern Herefordshire" />
+    <Row Id="30214" Place="Upper Pendock Malvern Worcestershire" />
+    <Row Id="30215" Place="Upper Welland Malvern Worcestershire" />
+    <Row Id="30217" Place="Welland Malvern Worcestershire" />
+    <Row Id="30220" Place="Pershore Worcestershire" />
+    <Row Id="30221" Place="Abberton Pershore Worcestershire" />
+    <Row Id="30222" Place="Besford Bridge Pershore Worcestershire" />
+    <Row Id="30223" Place="Birlingham Pershore Worcestershire" />
+    <Row Id="30224" Place="Bishampton Pershore Worcestershire" />
+    <Row Id="30225" Place="Bricklehampton Pershore Worcestershire" />
+    <Row Id="30226" Place="Charlton Pershore Worcestershire" />
+    <Row Id="30227" Place="Cropthorne Pershore Worcestershire" />
+    <Row Id="30228" Place="Drakes Broughton Pershore Worcestershire" />
+    <Row Id="30229" Place="Eckington Pershore Worcestershire" />
+    <Row Id="30231" Place="Elmley Castle Pershore Worcestershire" />
+    <Row Id="30232" Place="Endon Pershore Worcestershire" />
+    <Row Id="30233" Place="Fladbury Pershore Worcestershire" />
+    <Row Id="30234" Place="Great Comberton Pershore Worcestershire" />
+    <Row Id="30235" Place="Hill Pershore Worcestershire" />
+    <Row Id="30236" Place="Hill Furze Pershore Worcestershire" />
+    <Row Id="30237" Place="Kersoe Pershore Worcestershire" />
+    <Row Id="30238" Place="Little Comberton Pershore Worcestershire" />
+    <Row Id="30239" Place="Lower Moor Pershore Worcestershire" />
+    <Row Id="30240" Place="Lower Wolverton Pershore Worcestershire" />
+    <Row Id="30241" Place="Naunton Beauchamp Pershore Worcestershire" />
+    <Row Id="30242" Place="Netherton Pershore Worcestershire" />
+    <Row Id="30243" Place="Pensham Pershore Worcestershire" />
+    <Row Id="30244" Place="Peopleton Pershore Worcestershire" />
+    <Row Id="30247" Place="Pinvin Pershore Worcestershire" />
+    <Row Id="30248" Place="Throckmorton Pershore Worcestershire" />
+    <Row Id="30249" Place="Tilesford Pershore Worcestershire" />
+    <Row Id="30250" Place="Upper Moor Pershore Worcestershire" />
+    <Row Id="30252" Place="Wick Pershore Worcestershire" />
+    <Row Id="30253" Place="Wyre Piddle Pershore Worcestershire" />
+    <Row Id="30307" Place="Tenbury Wells Worcestershire" />
+    <Row Id="30308" Place="Berrington Tenbury Wells Worcestershire" />
+    <Row Id="30309" Place="Berrington Green Tenbury Wells Worcestershire" />
+    <Row Id="30310" Place="Bickley Tenbury Wells Worcestershire" />
+    <Row Id="30311" Place="Bockleton Tenbury Wells Worcestershire" />
+    <Row Id="30312" Place="Boraston Tenbury Wells Shropshire" />
+    <Row Id="30313" Place="Broadheath Tenbury Wells Worcestershire" />
+    <Row Id="30314" Place="Burford Tenbury Wells Shropshire" />
+    <Row Id="30315" Place="Eardiston Tenbury Wells Worcestershire" />
+    <Row Id="30316" Place="Eastham Tenbury Wells Worcestershire" />
+    <Row Id="30317" Place="Hampton Charles Tenbury Wells Herefordshire" />
+    <Row Id="30318" Place="Hanley Childe Tenbury Wells Worcestershire" />
+    <Row Id="30319" Place="Hanley William Tenbury Wells Worcestershire" />
+    <Row Id="30320" Place="Knighton-on-Teme Tenbury Wells Worcestershire" />
+    <Row Id="30321" Place="Kyre Tenbury Wells Worcestershire" />
+    <Row Id="30322" Place="Kyrewood Tenbury Wells Worcestershire" />
+    <Row Id="30323" Place="Lindridge Tenbury Wells Worcestershire" />
+    <Row Id="30324" Place="Lower Rochford Tenbury Wells Worcestershire" />
+    <Row Id="30325" Place="Nash Tenbury Wells Shropshire" />
+    <Row Id="30326" Place="Newnham Bridge Tenbury Wells Worcestershire" />
+    <Row Id="30327" Place="Oldwood Tenbury Wells Worcestershire" />
+    <Row Id="30328" Place="Oldwood Common Tenbury Wells Worcestershire" />
+    <Row Id="30329" Place="Rochford Tenbury Wells Worcestershire" />
+    <Row Id="30330" Place="St. Michaels Tenbury Wells Herefordshire" />
+    <Row Id="30331" Place="Stoke Bliss Tenbury Wells Worcestershire" />
+    <Row Id="30332" Place="Sutton Tenbury Wells Worcestershire" />
+    <Row Id="30333" Place="Woodston Tenbury Wells Worcestershire" />
+    <Row Id="30334" Place="Worcester Worcestershire" />
+    <Row Id="30334" Place="Worcester Worcestershire" />
+    <Row Id="30334" Place="Worcester Worcestershire" />
+    <Row Id="30334" Place="Worcester Worcestershire" />
+    <Row Id="30334" Place="Worcester Worcestershire" />
+    <Row Id="30334" Place="Worcester Worcestershire" />
+    <Row Id="30334" Place="Worcester Worcestershire" />
+    <Row Id="30335" Place="Abberley Worcester Worcestershire" />
+    <Row Id="30337" Place="Abbots Morton Worcester Worcestershire" />
+    <Row Id="30338" Place="Acton Beauchamp Worcester Herefordshire" />
+    <Row Id="30339" Place="Alfrick Worcester Worcestershire" />
+    <Row Id="30340" Place="Alfrick Pound Alfrick Worcester Worcestershire" />
+    <Row Id="30341" Place="Old Storridge Alfrick Worcester Worcestershire" />
+    <Row Id="30346" Place="Besford Worcester Worcestershire" />
+    <Row Id="30347" Place="Bevere Worcester Worcestershire" />
+    <Row Id="30348" Place="Bishops Frome Worcester Herefordshire" />
+    <Row Id="30350" Place="Evesbatch Bishops Frome Worcester Herefordshire" />
+    <Row Id="30351" Place="Five Bridges Bishops Frome Worcester Herefordshire" />
+    <Row Id="30354" Place="Bransford Worcester Worcestershire" />
+    <Row Id="30355" Place="Bredicot Worcester Worcestershire" />
+    <Row Id="30356" Place="Bringsty Worcester Herefordshire" />
+    <Row Id="30357" Place="Brockhampton Bringsty Worcester Herefordshire" />
+    <Row Id="30359" Place="Broadwas Worcester Worcestershire" />
+    <Row Id="30361" Place="Broomhall Worcester Worcestershire" />
+    <Row Id="30362" Place="Broughton Hackett Worcester Worcestershire" />
+    <Row Id="30363" Place="Callow End Worcester Worcestershire" />
+    <Row Id="30364" Place="Churchill Worcester Worcestershire" />
+    <Row Id="30365" Place="Claines Worcester Worcestershire" />
+    <Row Id="30367" Place="Clifton-on-Teme Worcester Worcestershire" />
+    <Row Id="30369" Place="Cotheridge Worcester Worcestershire" />
+    <Row Id="30372" Place="Crowle Worcester Worcestershire" />
+    <Row Id="30374" Place="Defford Worcester Worcestershire" />
+    <Row Id="30376" Place="Dormston Worcester Worcestershire" />
+    <Row Id="30377" Place="Earls Croome Worcester Worcestershire" />
+    <Row Id="30378" Place="Egdon Worcester Worcestershire" />
+    <Row Id="30380" Place="Fernhill Heath Worcester Worcestershire" />
+    <Row Id="30381" Place="Flyford Flavell Worcester Worcestershire" />
+    <Row Id="30383" Place="Grafton Flyford Worcester Worcestershire" />
+    <Row Id="30385" Place="Great Witley Worcester Worcestershire" />
+    <Row Id="30387" Place="Grimley Worcester Worcestershire" />
+    <Row Id="30389" Place="Hallow Worcester Worcestershire" />
+    <Row Id="30391" Place="Hanley Castle Worcester Worcestershire" />
+    <Row Id="30393" Place="Hanley Swan Worcester Worcestershire" />
+    <Row Id="30395" Place="Hawford Worcester Worcestershire" />
+    <Row Id="30397" Place="Hindlip Worcester Worcestershire" />
+    <Row Id="30399" Place="Holt Heath Worcester Worcestershire" />
+    <Row Id="30401" Place="Inkberrow Worcester Worcestershire" />
+    <Row Id="30406" Place="Kempsey Worcester Worcestershire" />
+    <Row Id="30409" Place="Kerswell Green Worcester Worcestershire" />
+    <Row Id="30410" Place="Kington Worcester Worcestershire" />
+    <Row Id="30411" Place="Knightwick Worcester Worcestershire" />
+    <Row Id="30414" Place="Leigh Worcester Worcestershire" />
+    <Row Id="30417" Place="Little Inkberrow Worcester Worcestershire" />
+    <Row Id="30418" Place="Little Witley Worcester Worcestershire" />
+    <Row Id="30419" Place="Littleworth Worcester Worcestershire" />
+    <Row Id="30421" Place="Lower Broadheath Worcester Worcestershire" />
+    <Row Id="30423" Place="Martin Hussingtree Worcester Worcestershire" />
+    <Row Id="30424" Place="Martley Worcester Worcestershire" />
+    <Row Id="30426" Place="Menith Wood Worcester Worcestershire" />
+    <Row Id="30429" Place="Norton Worcester Worcestershire" />
+    <Row Id="30430" Place="Pirton Worcester Worcestershire" />
+    <Row Id="30431" Place="Powick Worcester Worcestershire" />
+    <Row Id="30433" Place="Radford Worcester Worcestershire" />
+    <Row Id="30435" Place="Rushwick Worcester Worcestershire" />
+    <Row Id="30436" Place="Severn Stoke Worcester Worcestershire" />
+    <Row Id="30438" Place="Shelsley Beauchamp Worcester Worcestershire" />
+    <Row Id="30439" Place="Shelsley Walsh Worcester Worcestershire" />
+    <Row Id="30440" Place="Shrawley Worcester Worcestershire" />
+    <Row Id="30441" Place="Spetchley Worcester Worcestershire" />
+    <Row Id="30444" Place="Stanford Bishop Worcester Herefordshire" />
+    <Row Id="30445" Place="Stanford Bridge Worcester Worcestershire" />
+    <Row Id="30446" Place="Stockton Worcester Worcestershire" />
+    <Row Id="30448" Place="Stoulton Worcester Worcestershire" />
+    <Row Id="30449" Place="Strensham Worcester Worcestershire" />
+    <Row Id="30450" Place="Lower Strensham Strensham Worcester Worcestershire" />
+    <Row Id="30452" Place="Suckley Worcester Worcestershire" />
+    <Row Id="30457" Place="Upper Battenhall Worcester Worcestershire" />
+    <Row Id="30458" Place="Upper Sapey Worcester Herefordshire" />
+    <Row Id="30459" Place="Upton Snodsbury Worcester Worcestershire" />
+    <Row Id="30460" Place="Upton-upon-Severn Worcester Worcestershire" />
+    <Row Id="30464" Place="Naunton Upton-upon-Severn Worcester Worcestershire" />
+    <Row Id="30465" Place="Wadborough Worcester Worcestershire" />
+    <Row Id="30467" Place="Warndon Worcester Worcestershire" />
+    <Row Id="30468" Place="Whitbourne Worcester Herefordshire" />
+    <Row Id="30471" Place="White-Ladies-Aston Worcester Worcestershire" />
+    <Row Id="30472" Place="Whittington Worcester Worcestershire" />
+    <Row Id="30473" Place="Wichenford Worcester Worcestershire" />
+    <Row Id="30685" Place="Wall Meadow Worcester Worcestershire" />
+    <Row Id="30686" Place="Great Meadow Worcester Worcestershire" />
+    <Row Id="31306" Place="Berkeley Beverborne Worcester Worcestershire" />
+    <Row Id="31416" Place="North Piddle Grafton Flyford Worcester Worcestershire" />
+    <Row Id="31418" Place="Berkeley Alford Worcester Worcestershire" />
+    <Row Id="31419" Place="Halmonds Frome Bishops Frome Worcester Herefordshire" />
+    <Row Id="31420" Place="Bridges Stone Alfrick Worcester Worcestershire" />
+    <Row Id="31421" Place="Little Tedney Whitbourne Worcester Herefordshire" />
+    <Row Id="31695" Place="Lyppard Hanford Worcester Worcestershire" />
+    <Row Id="32042" Place="Lyppard Woodgreen Worcester Worcestershire" />
+    <Row Id="32043" Place="Long Meadow Worcester Worcestershire" />
+    <Row Id="32044" Place="Lyppard Bourne Worcester Worcestershire" />
+    <Row Id="32519" Place="Crown East Worcester Worcestershire" />
+    <Row Id="32541" Place="Home Meadow Worcester Worcestershire" />
+    <Row Id="35576" Place="Tenbury Wells Business Park Tenbury Wells Worcestershire" />
+    <Row Id="35577" Place="Four Pools Industrial Estate Evesham Worcestershire" />
+    <Row Id="36630" Place="Brockhill Village Norton Worcester Worcestershire" />
+    <Row Id="37167" Place="Berry Hill Industrial Estate Droitwich Worcestershire" />
+    <Row Id="37181" Place="St. Johns Worcester Worcestershire" />
+    <Row Id="39204" Place="Keytec 7 Business Park Pershore Worcestershire" />
+    <Row Id="40860" Place="Baughton Earls Croome Worcester Worcestershire" />
+    <Row Id="40874" Place="Chapel Oak Salford Priors Evesham Warwickshire" />
+    <Row Id="40875" Place="Bevington Salford Priors Evesham Warwickshire" />
+    <Row Id="40883" Place="Vale Park Evesham Worcestershire" />
+    <Row Id="40941" Place="Holly Green Upton-upon-Severn Worcester Worcestershire" />
+    <Row Id="40942" Place="The Grove Ryall Upton-upon-Severn Worcester Worcestershire" />
+    <Row Id="90333" Place="Little Clevelode Malvern Worcestershire" />
+    <Row Id="90359" Place="Sneachill Worcester Worcestershire" />
+    <Row Id="90670" Place="Iron Cross Salford Priors Evesham Warwickshire" />
+    <Row Id="91392" Place="Ryall Upton-upon-Severn Worcester Worcestershire" />
+  </Rows>
+</Table>

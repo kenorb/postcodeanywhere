@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="6">
+    <Column Name="Id" Type="String" />
+    <Column Name="Text" Type="String" />
+    <Column Name="Highlight" Type="String" />
+    <Column Name="Cursor" Type="Integer" />
+    <Column Name="Description" Type="String" />
+    <Column Name="Next" Type="String" />
+  </Columns>
+  <Rows Items="51">
+    <Row Id="GBR|26742627" Text="WR2 6NJ, Beaumont, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742628" Text="WR2 6NJ, Brook Cottage, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742633" Text="WR2 6NJ, Britannia Site Solutions Ltd, Britannia House Unit 11-13, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|53701343" Text="WR2 6NJ, Child Care Bureau, Britannia House Unit 11-13, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|53701343_1357973" Text="WR2 6NJ, Child Care Bureau Ltd, Child Care Bureau, Britannia House Unit 11-13, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742686" Text="WR2 6NJ, Mill House, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742626" Text="WR2 6NJ, Pool House, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742653" Text="WR2 6NJ, Opus Claims Solutions Ltd, Premier House, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742663" Text="WR2 6NJ, Wychbury Engineering Services Ltd, Unit 2, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742650" Text="WR2 6NJ, Bridgehouse Property Consultants, Unit 3, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|52489478" Text="WR2 6NJ, Child Care Bureau, Unit 4, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742625" Text="WR2 6NJ, Time Code Systems, Unit 6, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742667" Text="WR2 6NJ, Worcestershire Federation of Wi's, Unit 7, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|1000964071" Text="WR2 6NJ, Care 4 Health, Unit 8, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|51501819" Text="WR2 6NJ, Unit 9, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|50421922" Text="WR2 6NJ, Clearview, Unit 14-15, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742646" Text="WR2 6NJ, Microtrol Ltd, Unit 16, Elgar Business Centre, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742630" Text="WR2 6NJ, Essfield, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742631" Text="WR2 6NJ, Fairfields, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742634" Text="WR2 6NJ, Flatten Bank, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742635" Text="WR2 6NJ, Four Acres, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742639" Text="WR2 6NJ, Holly Cottage, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742638" Text="WR2 6NJ, Hollymount, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742640" Text="WR2 6NJ, Inglemere House, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742641" Text="WR2 6NJ, Ivy Cottage, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742643" Text="WR2 6NJ, Leacroft, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742644" Text="WR2 6NJ, Lyncroft, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742645" Text="WR2 6NJ, Maryville, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742629" Text="WR2 6NJ, Monkwood House, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742647" Text="WR2 6NJ, (Denton), Moseley Cottage, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|53015862" Text="WR2 6NJ, (Roberts), Moseley Cottage, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742648" Text="WR2 6NJ, Moseley Saw Mills, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742652" Text="WR2 6NJ, Orchard View, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742642" Text="WR2 6NJ, Kothi, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742636" Text="WR2 6NJ, Primrose Cottage, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742654" Text="WR2 6NJ, Pump Cottage, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742656" Text="WR2 6NJ, Rose Cottage, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742657" Text="WR2 6NJ, Rose Dale, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742658" Text="WR2 6NJ, Sandfield, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742659" Text="WR2 6NJ, Stilecroft, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742664" Text="WR2 6NJ, 1, The Cottages, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742666" Text="WR2 6NJ, 2, The Cottages, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742637" Text="WR2 6NJ, The Haven, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742649" Text="WR2 6NJ, The Old Bakery, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742661" Text="WR2 6NJ, The Willows, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742663_1069024" Text="WR2 6NJ, Wychbury Engineering Services Ltd, Unit 2, W E S, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742660" Text="WR2 6NJ, Whitegates, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742662" Text="WR2 6NJ, Worlds End Nurseries, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742655" Text="WR2 6NJ, Robin Pearce Plants, Worlds End Nurseries, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|26742665" Text="WR2 6NJ, 1, Wylcotts, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+    <Row Id="GBR|52269655" Text="WR2 6NJ, 2, Wylcotts, Moseley Road, Hallow, Worcester " Highlight="" Cursor="0" Description="" Next="Retrieve" />
+  </Rows>
+</Table>

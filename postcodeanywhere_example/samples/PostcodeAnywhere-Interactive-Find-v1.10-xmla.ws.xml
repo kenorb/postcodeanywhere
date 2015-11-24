@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="3">
+    <Column Name="Id" Type="String" />
+    <Column Name="StreetAddress" Type="String" />
+    <Column Name="Place" Type="String" />
+  </Columns>
+  <Rows Items="42">
+    <Row Id="28692917.00" StreetAddress="1 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692918.00" StreetAddress="2 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692919.00" StreetAddress="3 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692920.00" StreetAddress="4 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692921.00" StreetAddress="5 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692922.00" StreetAddress="6 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692923.00" StreetAddress="7 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692924.00" StreetAddress="8 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692925.00" StreetAddress="9 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692926.00" StreetAddress="10 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692927.00" StreetAddress="11 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692928.00" StreetAddress="12 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692929.00" StreetAddress="14 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692930.00" StreetAddress="15 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692931.00" StreetAddress="16 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692932.00" StreetAddress="17 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692933.00" StreetAddress="18 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692934.00" StreetAddress="19 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692935.00" StreetAddress="20 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692936.00" StreetAddress="21 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692937.00" StreetAddress="22 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692942.00" StreetAddress="23 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692943.00" StreetAddress="24 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692944.00" StreetAddress="25 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692945.00" StreetAddress="26 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692946.00" StreetAddress="27 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692947.00" StreetAddress="28 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692948.00" StreetAddress="29 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692949.00" StreetAddress="30 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692950.00" StreetAddress="31 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692951.00" StreetAddress="32 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692952.00" StreetAddress="33 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692953.00" StreetAddress="34 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692954.00" StreetAddress="35 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692955.00" StreetAddress="36 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692956.00" StreetAddress="37 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692957.00" StreetAddress="38 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692958.00" StreetAddress="39 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692959.00" StreetAddress="40 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692960.00" StreetAddress="41 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692961.00" StreetAddress="42 John Wilkinson Court" Place="Brymbo Wrexham" />
+    <Row Id="28692962.00" StreetAddress="43 John Wilkinson Court" Place="Brymbo Wrexham" />
+  </Rows>
+</Table>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="3">
+    <Column Name="Id" Type="String" />
+    <Column Name="StreetAddress" Type="String" />
+    <Column Name="Place" Type="String" />
+  </Columns>
+  <Rows Items="0" />
+</Table>

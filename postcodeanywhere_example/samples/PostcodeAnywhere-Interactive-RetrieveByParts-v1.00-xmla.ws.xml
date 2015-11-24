@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="28">
+    <Column Name="Udprn" Type="Integer" />
+    <Column Name="Company" Type="String" />
+    <Column Name="Department" Type="String" />
+    <Column Name="Line1" Type="String" />
+    <Column Name="Line2" Type="String" />
+    <Column Name="Line3" Type="String" />
+    <Column Name="Line4" Type="String" />
+    <Column Name="Line5" Type="String" />
+    <Column Name="PostTown" Type="String" />
+    <Column Name="County" Type="String" />
+    <Column Name="Postcode" Type="String" />
+    <Column Name="Mailsort" Type="Integer" />
+    <Column Name="Barcode" Type="String" />
+    <Column Name="Type" Type="String" />
+    <Column Name="DeliveryPointSuffix" Type="String" />
+    <Column Name="SubBuilding" Type="String" />
+    <Column Name="BuildingName" Type="String" />
+    <Column Name="BuildingNumber" Type="String" />
+    <Column Name="PrimaryStreet" Type="String" />
+    <Column Name="SecondaryStreet" Type="String" />
+    <Column Name="DoubleDependentLocality" Type="String" />
+    <Column Name="DependentLocality" Type="String" />
+    <Column Name="PoBox" Type="String" />
+    <Column Name="PrimaryStreetName" Type="String" />
+    <Column Name="PrimaryStreetType" Type="String" />
+    <Column Name="SecondaryStreetName" Type="String" />
+    <Column Name="SecondaryStreetType" Type="String" />
+    <Column Name="CountryName" Type="String" />
+  </Columns>
+  <Rows Items="0" />
+</Table>

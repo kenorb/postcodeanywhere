@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="3">
+    <Column Name="Id" Type="String" />
+    <Column Name="StreetAddress" Type="String" />
+    <Column Name="Place" Type="String" />
+  </Columns>
+  <Rows Items="1">
+    <Row Id="28468889.00" StreetAddress="BBC Children in Need" Place="PO Box 1000 London W12" />
+  </Rows>
+</Table>

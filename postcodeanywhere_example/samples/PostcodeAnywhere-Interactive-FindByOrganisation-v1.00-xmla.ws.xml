@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+  <Columns Items="3">
+    <Column Name="Id" Type="String" />
+    <Column Name="StreetAddress" Type="String" />
+    <Column Name="Place" Type="String" />
+  </Columns>
+  <Rows Items="5">
+    <Row Id="26742562.00" StreetAddress="Post Office" Place="1 Oakleigh Avenue Hallow Worcester" />
+    <Row Id="26739053.00" StreetAddress="Post Office" Place="45 Gresham Road Worcester" />
+    <Row Id="26743125.00" StreetAddress="Post Office" Place="Martley Road Lower Broadheath Worcester" />
+    <Row Id="28319467.00" StreetAddress="Post Office" Place="Upton Road Callow End Worcester" />
+    <Row Id="27982265.00" StreetAddress="Post Office" Place="King Charles Place St. Johns Worcester" />
+  </Rows>
+</Table>
