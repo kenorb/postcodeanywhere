@@ -13,7 +13,7 @@ function postcodeanywhere_autocomplete($string = "") {
   // Make a string lowercase and remove all spaces.
   $addressfield = module_exists('postcodeanywhere_field') && module_exists('addressfield');
   try {
-    $data = (array) postcodeanywhere_findbypostcode($string, TRUE);
+    $data = postcodeanywhere_findbypostcode($string, TRUE);
     if (!empty($data)) {
       if ($addressfield) {
         $data = postcodeanywhere_autocomplete_addressfield($data, $string, TRUE);
@@ -49,11 +49,11 @@ function postcodeanywhere_autocomplete_addressfield($data = array(), $postcode =
   $outArray = array();
   foreach ($data as $key => $value) {
     // If we don't have a StreetAddress, this isn't a location.
-    if (isset($value->StreetAddress)) {
-      $buildArray[$value->Id] = $value->StreetAddress . ", " . $value->Place . ", " . strtoupper($postcode);
+    if (!empty($value['StreetAddress'])) {
+      $buildArray[$value['Id']] = $value['StreetAddress'] . ", " . $value['Place'] . ", " . strtoupper($postcode);
     }
-    elseif (isset($value->Place)) {
-      // @todo? Partial postcodede
+    elseif (!empty($value['Place'])) {
+      // @todo? Partial postcode.
       // $buildArray[$value->Id[0]] = $value->Place[0];
     }
     else {
@@ -104,7 +104,7 @@ function postcodeanywhere_findbypostcode($postcode = PCA_PC_TEST, $returnArray =
       watchdog_exception('postcodeanywhere', $e);
     }
   }
-  return $returnArray ? $data : drupal_json_output($data ?: array());
+  return $returnArray ? (array) $data : drupal_json_output($data ?: array());
 }
 
 /**
@@ -160,7 +160,7 @@ function _pca_get_cache($cid) {
   $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
   if ($cache = cache_get($cid, PCA_CACHE)) {
     // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
-    $data = $format == 'xmla.ws' ? json_decode($cache->data) : $cache->data;
+    $data = $format == 'xmla.ws' || $format == 'xmle.ws' ? json_decode($cache->data, TRUE) : $cache->data;
   }
   if (!empty($data)) {
     drupal_add_http_header('X-Cached-By', 'Drupal PCA');
@@ -177,5 +177,5 @@ function _pca_get_cache($cid) {
 function _pca_set_cache($cid, $data) {
   $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
   // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
-  return cache_set($cid, $format == 'xmla.ws' ? json_encode($data) : $data, PCA_CACHE);
+  return cache_set($cid, $format == 'xmla.ws' || $format == 'xmle.ws' ? json_encode($data) : $data, PCA_CACHE);
 }
