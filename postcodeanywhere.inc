@@ -47,6 +47,7 @@ function postcodeanywhere_autocomplete($string = "") {
 function postcodeanywhere_autocomplete_addressfield($data = array(), $postcode = "", $returnArray = FALSE) {
 
   $outArray = array();
+  $buildArray = array();
   foreach ($data as $key => $value) {
     // If we don't have a StreetAddress, this isn't a location.
     if (!empty($value['StreetAddress'])) {

@@ -212,7 +212,7 @@ function postcodeanywhere_parse_url($url, $format = 'json') {
       $api_url['host'] = parse_url(url(current_path(), array('absolute' => TRUE)), PHP_URL_HOST);
     }
     // TODO: Consider appending: &CallbackFunction=TestCallBack.
-    return sprintf("%s://%s%s%s?%s", $api_url['scheme'], $api_url['host'], $api_url['port'] ? ":{$api_url['port']}" : "", $arr['path'], $arr['query']);
+    return sprintf("%s://%s%s%s?%s", $api_url['scheme'], $api_url['host'], !empty($api_url['port']) ? ":{$api_url['port']}" : "", $arr['path'], $arr['query']);
   }
   else {
     // Return previous if we can't parse it.
