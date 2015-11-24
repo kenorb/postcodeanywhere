@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ *   Installation module file.
+ */
+
+
+/**
+ * Implements hook_schema().
+ */
+function postcodeanywhere_example_disable() {
+  variable_del('postcodeanywhere_example_test');
+}
+

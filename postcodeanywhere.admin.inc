@@ -23,6 +23,9 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#title' => t('PCA API Service key'),
     '#description' => t('Change this key into valid API Service Key.'),
     '#default_value' => variable_get('postcodeanywhere_licence', PCA_DEMO_KEY),
+    '#states' => array(
+      'disabled' => array(':input[name="postcodeanywhere_example_test"]' => array('checked' => TRUE)),
+    ),
   );
 
   $form['pca_service']['postcodeanywhere_url'] = array(
@@ -30,16 +33,32 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#title' => t('PCA callback URL.'),
     '#required' => TRUE,
     '#default_value' => variable_get('postcodeanywhere_url', PCA_URL),
+    '#states' => array(
+      'disabled' => array(':input[name="postcodeanywhere_example_test"]' => array('checked' => TRUE)),
+    ),
   );
 
   $form['pca_service']['postcodeanywhere_format'] = array(
     '#type' => 'select',
     '#title' => t('PCA callback format.'),
+    // TODO: JSON format needs some work by changes in classes and writing some function wrapper.
     '#options' => array('xmla.ws' => 'XML', 'json.ws' => 'JSON'),
-  // TODO: JSON format needs some work by changes in classes and writing some function wrapper.
     '#required' => TRUE,
     '#default_value' => variable_get('postcodeanywhere_format', PCA_FORMAT),
+    '#states' => array(
+      'disabled' => array(':input[name="postcodeanywhere_example_test"]' => array('checked' => TRUE)),
+    ),
   );
+
+  // Check if we can provide testing responses.
+  if (module_exists('postcodeanywhere_example')) {
+    $form['pca_service']['postcodeanywhere_example_test'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Use testing mode.'),
+      '#description' => t('This would use local sample responses to test the PCA widget.'),
+      '#default_value' => variable_get('postcodeanywhere_example_test', FALSE),
+    );
+  }
 
   // Field specific settings.
   if (module_exists('postcodeanywhere_field')) {

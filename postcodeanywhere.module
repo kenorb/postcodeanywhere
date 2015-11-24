@@ -204,15 +204,19 @@ function postcodeanywhere_parse_url($url, $format = 'json') {
     $wsdl = end($apath);
     $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
     if ($wsdl != $format) {
-      $arr['path'] = str_replace($wsdl, $format, $arr['path']);
       // Change format if necessary.
+      $arr['path'] = str_replace($wsdl, $format, $arr['path']);
+    }
+    if (variable_get('postcodeanywhere_example_test', FALSE)) {
+      $api_url['scheme'] = parse_url(url(current_path(), array('absolute' => TRUE)), PHP_URL_SCHEME);
+      $api_url['host'] = parse_url(url(current_path(), array('absolute' => TRUE)), PHP_URL_HOST);
     }
     // TODO: Consider appending: &CallbackFunction=TestCallBack.
     return sprintf("%s://%s%s%s?%s", $api_url['scheme'], $api_url['host'], $api_url['port'] ? ":{$api_url['port']}" : "", $arr['path'], $arr['query']);
   }
   else {
-    return $url;
     // Return previous if we can't parse it.
+    return $url;
   }
 }
 
