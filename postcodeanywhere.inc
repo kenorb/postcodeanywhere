@@ -46,14 +46,13 @@ function postcodeanywhere_autocomplete($string = "") {
  */
 function postcodeanywhere_autocomplete_addressfield($data = array(), $postcode = "", $returnArray = FALSE) {
 
-  $outArray = array();
   $buildArray = array();
   foreach ($data as $key => $value) {
     // If we don't have a StreetAddress, this isn't a location.
     if (!empty($value['StreetAddress'])) {
-      $buildArray[$value['Id']] = $value['StreetAddress'] . ", " . $value['Place'] . ", " . strtoupper($postcode);
+      $buildArray[$value['Id']] = $value['Place'];
     }
-    elseif (!empty($value['Place'])) {
+   if (!empty($value['Place'])) {
       // @todo? Partial postcode.
       // $buildArray[$value->Id[0]] = $value->Place[0];
     }
@@ -64,17 +63,12 @@ function postcodeanywhere_autocomplete_addressfield($data = array(), $postcode =
 
   $count_out = count($buildArray);
   if ($count_out > 0) {
-    $outArray = array_merge(
-        array('count-details' => t(":result found, keep typing to refine", array('result' => format_plural($count_out, t('1 result'), '@count ' . t('results.')))),
-          $buildArray,
-          array('no-match' => t("I can't see my address.")),
-        )
-      );
+   
+    $buildArray['no-match'] = t("I can't see my address.");
+     
   }
-
-  return $returnArray ? $outArray : drupal_json_output($outArray);
+  return  drupal_json_output($buildArray);
 }
-
 /**
  * Form element validate handler for PCA autocomplete element.
  */
