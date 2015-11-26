@@ -229,12 +229,23 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
+
+  if (module_exists('addressfield')) {
+    $form['other_settings']['postcodeanywhere_addressfield'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Address field integration.'),
+      '#default_value' => variable_get('postcodeanywhere_addressfield', FALSE),
+      '#description' => t('Enable if you are using PCA widget with the addressfield.'),
+    );
+  }
+
   $form['other_settings']['postcodeanywhere_id_country_uk_value'] = array(
     '#type' => 'textfield',
     '#title' => t('GB Country Key'),
     '#description' => t('Type here the value for uk in country select'),
     '#default_value' => variable_get('postcodeanywhere_id_country_uk_value', 'GB'),
   );
+
   $form['other_settings']['postcodeanywhere_submit_label_value'] = array(
     '#type' => 'textfield',
     '#title' => t('Submit button label'),

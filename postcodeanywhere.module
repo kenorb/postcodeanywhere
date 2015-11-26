@@ -176,7 +176,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
       'submit_label_value' => variable_get('postcodeanywhere_submit_label_value', 'Find Address'),
       'showAlert' => variable_get('postcodeanywhere_showalert', 1),
       'url' => variable_get('postcodeanywhere_url', PCA_URL),
-      'addressfield' => module_exists('postcodeanywhere_field') && module_exists('addressfield'),
+      'addressfield' => variable_get('postcodeanywhere_addressfield', FALSE) && module_exists('addressfield'),
     ),
   );
 
