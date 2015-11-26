@@ -33,6 +33,6 @@
     <Column Name="CountryISO3" Type="String" />
   </Columns>
   <Rows Items="1">
-    <Row Udprn="23747212" Company="Buckingham Palace" Department="" Line1="" Line2="" Line3="" Line4="" Line5="" PostTown="London" County="" Postcode="SW1A 1AA" Mailsort="72114" Barcode="(SW1A1AA1AL)" Type="LargeBusiness" DeliveryPointSuffix="1A" SubBuilding="" BuildingName="" BuildingNumber="" PrimaryStreet="" SecondaryStreet="" DoubleDependentLocality="" DependentLocality="" PoBox="" PrimaryStreetName="" PrimaryStreetType="" SecondaryStreetName="" SecondaryStreetType="" CountryName="England" CountryISO2="GB" CountryISO3="GBR" />
+    <Row Udprn="23747212" Company="Buckingham Palace" Department="" Line1="The Mall" Line2="Buckingham Palace Road" Line3="" Line4="" Line5="" PostTown="London" County="Greater London" Postcode="SW1A 1AA" Mailsort="72114" Barcode="(SW1A1AA1AL)" Type="LargeBusiness" DeliveryPointSuffix="1A" SubBuilding="" BuildingName="" BuildingNumber="" PrimaryStreet="" SecondaryStreet="" DoubleDependentLocality="" DependentLocality="" PoBox="" PrimaryStreetName="" PrimaryStreetType="" SecondaryStreetName="" SecondaryStreetType="" CountryName="England" CountryISO2="GB" CountryISO3="GBR" />
   </Rows>
 </Table>
