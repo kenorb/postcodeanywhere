@@ -44,6 +44,7 @@ class PostcodeAnywhere_Interactive_RetrieveByIds
     $url .= "&Key=" . urlencode($this->Key);
     $url .= "&Ids=" . urlencode($this->Ids);
     $url .= "&UserName=" . urlencode($this->UserName);
+    $url = postcodeanywhere_parse_url($url);
 
     // Make the request to Postcode Anywhere and parse the XML returned.
     $file = simplexml_load_file($url);

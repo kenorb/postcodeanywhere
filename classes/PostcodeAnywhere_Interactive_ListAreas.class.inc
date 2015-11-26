@@ -42,6 +42,7 @@ class PostcodeAnywhere_Interactive_ListAreas
     $url = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/ListAreas/v1.00/xmla.ws?";
     $url .= "&Key=" . urlencode($this->Key);
     $url .= "&UserName=" . urlencode($this->UserName);
+    $url = postcodeanywhere_parse_url($url);
 
     // Make the request to Postcode Anywhere and parse the XML returned.
     $file = simplexml_load_file($url);

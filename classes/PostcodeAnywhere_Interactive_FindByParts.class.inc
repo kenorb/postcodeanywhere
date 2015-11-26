@@ -54,6 +54,7 @@ class PostcodeAnywhere_Interactive_FindByParts
       $url .= "&Locality=" . urlencode($this->Locality);
       $url .= "&Postcode=" . urlencode($this->Postcode);
       $url .= "&UserName=" . urlencode($this->UserName);
+      $url = postcodeanywhere_parse_url($url);
 
       //Make the request to Postcode Anywhere and parse the XML returned
       $file = simplexml_load_file($url);

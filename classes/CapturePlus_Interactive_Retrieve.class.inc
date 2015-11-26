@@ -45,6 +45,7 @@ class CapturePlus_Interactive_Retrieve
     $url = "http://services.postcodeanywhere.co.uk/CapturePlus/Interactive/Retrieve/v2.10/xmla.ws?";
     $url .= "&Key=" . urlencode($this->Key);
     $url .= "&Id=" . urlencode($this->Id);
+    $url = postcodeanywhere_parse_url($url);
 
     // Make the request to Postcode Anywhere and parse the XML returned.
     $file = simplexml_load_file($url);

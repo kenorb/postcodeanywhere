@@ -71,6 +71,7 @@ class CapturePlus_Interactive_Find
     $url .= "&LanguagePreference=" . urlencode($this->LanguagePreference);
     $url .= "&MaxSuggestions=" . urlencode($this->MaxSuggestions);
     $url .= "&MaxResults=" . urlencode($this->MaxResults);
+    $url = postcodeanywhere_parse_url($url);
 
     // Make the request to Postcode Anywhere and parse the XML returned.
     $file = simplexml_load_file($url);

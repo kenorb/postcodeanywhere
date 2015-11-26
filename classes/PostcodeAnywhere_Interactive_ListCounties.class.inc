@@ -39,6 +39,7 @@ class PostcodeAnywhere_Interactive_ListCounties
     $url = "http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/ListCounties/v1.00/xmla.ws?";
     $url .= "&Key=" . urlencode($this->Key);
     $url .= "&UserName=" . urlencode($this->UserName);
+    $url = postcodeanywhere_parse_url($url);
 
     // Make the request to Postcode Anywhere and parse the XML returned.
     $file = simplexml_load_file($url);
