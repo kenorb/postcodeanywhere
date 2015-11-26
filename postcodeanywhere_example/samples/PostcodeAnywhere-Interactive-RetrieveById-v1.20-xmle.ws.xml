@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Table>
+  <Row>
+    <Udprn>23747212</Udprn>
+    <Company>Buckingham Palace</Company>
+    <Department />
+    <Line1 />
+    <Line2 />
+    <Line3 />
+    <Line4 />
+    <Line5 />
+    <PostTown>London</PostTown>
+    <County />
+    <Postcode>SW1A 1AA</Postcode>
+    <Mailsort>72114</Mailsort>
+    <Barcode>(SW1A1AA1AL)</Barcode>
+    <Type>LargeBusiness</Type>
+    <DeliveryPointSuffix>1A</DeliveryPointSuffix>
+    <SubBuilding />
+    <BuildingName />
+    <BuildingNumber />
+    <PrimaryStreet />
+    <SecondaryStreet />
+    <DoubleDependentLocality />
+    <DependentLocality />
+    <PoBox />
+    <PrimaryStreetName />
+    <PrimaryStreetType />
+    <SecondaryStreetName />
+    <SecondaryStreetType />
+    <CountryName>England</CountryName>
+    <CountryISO2>GB</CountryISO2>
+    <CountryISO3>GBR</CountryISO3>
+  </Row>
+</Table>
