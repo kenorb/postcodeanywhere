@@ -11,7 +11,7 @@
 function postcodeanywhere_example_response() {
   $uri = parse_url(request_uri(), PHP_URL_PATH);
   $path = drupal_get_path('module', 'postcodeanywhere_example') . '/samples';
-  $file = substr(str_replace('/', '-', $uri), 1);
+  $file = basename(substr(str_replace('/', '-', $uri), 1));
   if (strpos($file, 'xml')) {
     drupal_add_http_header('Content-Type', 'text/xml; utf-8');
     $file .= '.xml';
