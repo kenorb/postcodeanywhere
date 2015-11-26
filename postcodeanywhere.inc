@@ -9,66 +9,23 @@
  * AJAX callback to lists address records for the given postcode.
  */
 function postcodeanywhere_autocomplete($string = "") {
-  $string = str_replace(array(' ', '%20'), '', strtolower($string));
   // Make a string lowercase and remove all spaces.
-  $addressfield = module_exists('postcodeanywhere_field') && module_exists('addressfield');
+  $string = str_replace(' ', '', strtolower($string));
   try {
-    $data = postcodeanywhere_findbypostcode($string, TRUE);
-    if (!empty($data)) {
-      if ($addressfield) {
-        $data = postcodeanywhere_autocomplete_addressfield($data, $string, TRUE);
-      }
-      else {
-        $data = array('count-details' => t(":result found, keep typing to refine", array('result' => format_plural(count($data), t('1 result'), '@count ' . t('results.')))));
-      }
+    foreach (postcodeanywhere_findbypostcode($string, TRUE) as $row) {
+      $data[$row['Id']] = $row['Place'] ?: $value['StreetAddress'];
+    }
+    if (count($data) > 2) {
+      $data[''] = t('%result found, keep typing to refine', array('%result' => format_plural(count($data), t('1 result'), '@count ' . t('results.'))));
     }
   }
   catch (Exception $e) {
     // Check logs for further details.
-    $data = array('no-match' => t("I can't see my address."));
+    $data = array('' => t("I can't see the address."));
   }
   drupal_json_output($data);
-
-  /*
-  if (strlen($string) >= 5) { // If postcode is 5 chars in length or more, it's full post code ...
-  postcodeanywhere_findbypostcode($string);
-  }
-  else if (strlen($string) >= 2) { // ... otherwise if it's 3-4 in length, it's partial.
-  postcodeanywhere_findbypartialpostcode($string);
-  } else {
-  drupal_json_output($matches);
-  }
-   */
 }
 
-/**
- * Help function to parse postcode data for addressfield.
- */
-function postcodeanywhere_autocomplete_addressfield($data = array(), $postcode = "", $returnArray = FALSE) {
-
-  $buildArray = array();
-  foreach ($data as $key => $value) {
-    // If we don't have a StreetAddress, this isn't a location.
-    if (!empty($value['StreetAddress'])) {
-      $buildArray[$value['Id']] = $value['Place'];
-    }
-   if (!empty($value['Place'])) {
-      // @todo? Partial postcode.
-      // $buildArray[$value->Id[0]] = $value->Place[0];
-    }
-    else {
-      // Nothing.
-    }
-  }
-
-  $count_out = count($buildArray);
-  if ($count_out > 0) {
-   
-    $buildArray['no-match'] = t("I can't see my address.");
-     
-  }
-  return  drupal_json_output($buildArray);
-}
 /**
  * Form element validate handler for PCA autocomplete element.
  */
