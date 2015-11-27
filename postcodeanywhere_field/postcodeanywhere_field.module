@@ -43,14 +43,27 @@ function postcodeanywhere_field_theme($format) {
  * Implements hook_element_info().
  */
 function postcodeanywhere_field_element_info() {
-  $types['postcodeanywhere'] = array(
+
+  $types['postcodeanywhere_text'] = array(
+    '#input' => TRUE,
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#process' => array('postcodeanywhere_field_process_form'),
+    '#theme' => array('textfield'),
+    '#theme_wrappers' => array('form_element'),
+    '#autocomplete_path' => FALSE,
+  );
+
+  $types['postcodeanywhere_autocomplete'] = array(
     '#input' => TRUE,
     '#size' => 60,
     '#maxlength' => 128,
     '#process' => array('ajax_process_form', 'postcodeanywhere_field_process_form'),
-    '#theme' => 'postcodeanywhere',
+    '#theme' => array('textfield'),
     '#theme_wrappers' => array('form_element'),
+    '#autocomplete_path' => 'pca/autocomplete',
   );
+
   return $types;
 }
 
@@ -257,17 +270,24 @@ function postcodeanywhere_field_field_widget_info() {
   return array(
     'postcodeanywhere_text' => array(
       'label' => t('PCA (text field)'),
-      'field types' => array('postcodeanywhere'),
+      'field types' => array('text'),
       'settings' => array(
         'size' => 60,
+      ),
+      'behaviors' => array(
+        'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+        'default value' => FIELD_BEHAVIOR_DEFAULT,
       ),
     ),
     'postcodeanywhere_autocomplete' => array(
       'label' => t('PCA (autocomplete)'),
-      'field types' => array('postcodeanywhere'),
+      'field types' => array('text'),
       'settings' => array(
-        'autocomplete_path' => 'pca/autocomplete',
         'size' => 60,
+      ),
+      'behaviors' => array(
+        'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+        'default value' => FIELD_BEHAVIOR_DEFAULT,
       ),
     ),
   );
@@ -306,6 +326,7 @@ function postcodeanywhere_field_field_widget_settings_form($field, $instance) {
  * Implements hook_field_widget_form().
  */
 function postcodeanywhere_field_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+
   $summary_widget = array();
   $main_widget = array();
 
@@ -329,7 +350,7 @@ function postcodeanywhere_field_field_widget_form(&$form, &$form_state, $field, 
         '#maxlength' => $field['settings']['max_length'],
         '#attributes' => array('class' => array('text-autocomplete')),
         '#process' => array('ajax_process_form'),
-        '#autocomplete_path' => $instance['widget']['settings']['autocomplete_path'],
+        '#autocomplete_path' => 'pca/autocomplete',
         '#element_validate' => array('postcodeanywhere_autocomplete_validate'),
       );
       break;
@@ -395,19 +416,31 @@ function postcodeanywhere_field_filter_format_disable($format) {
  *   The processed element.
  */
 function postcodeanywhere_field_process_form($element, &$form_state) {
-  $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
-  if (empty($key) && user_access('administer postcodeanywhere')) {
-    drupal_set_message(t('You need to configure your Web service Key in the settings page.'), 'warning');
+
+  if (!empty($element['#type'])) {
+    switch ($element['#type']) {
+      case 'postcodeanywhere_text':
+          $id = $element['#id'];
+          $name = $element['#name'];
+          $settings = array(
+            'id_wrapper' => ".form-item-" . $name,
+            'id_postcode' => "input[id*='$id']",
+            'id_lookup_button' => "input[id='postcodeanywhere-lookup-button']",
+          );
+          postcodeanywhere_form_add_js($settings);
+        break;
+      case 'postcodeanywhere_autocomplete':
+          $id = $element['#id'];
+          $name = $element['#name'];
+          $settings = array(
+            'id_wrapper' => ".form-item-" . $name,
+            'id_postcode' => "input[id*='$id']",
+          );
+          $element['#autocomplete_path'] = 'pca/autocomplete';
+          postcodeanywhere_form_add_js($settings);
+        break;
+    }
   }
-  if (isset($element['#type']) && $element['#type'] == 'postcodeanywhere') {
-    $id = $element['#id'];
-    $name = $element['#name'];
-    $settings = array(
-      'id_wrapper' => ".form-item-" . $name,
-      'id_postcode' => "input[id*='$id']",
-      'id_lookup_button' => "input[id='postcodeanywhere-lookup-button']",
-    );
-    postcodeanywhere_form_add_js($settings);
-  }
+
   return $element;
 }
