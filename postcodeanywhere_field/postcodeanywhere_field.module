@@ -30,9 +30,13 @@ function postcodeanywhere_field_help($path, $arg) {
 /**
  * Implements hook_theme().
  */
-function postcodeanywhere_field_theme($format) {
+function postcodeanywhere_field_theme($existing, $type, $theme, $path) {
   return array(
-    'postcodeanywhere' => array(
+    'postcodeanywhere_text' => array(
+      'render element' => 'element',
+      'file' => 'postcodeanywhere_field.theme.inc',
+    ),
+    'postcodeanywhere_autocomplete' => array(
       'render element' => 'element',
       'file' => 'postcodeanywhere_field.theme.inc',
     ),
@@ -49,7 +53,7 @@ function postcodeanywhere_field_element_info() {
     '#size' => 60,
     '#maxlength' => 128,
     '#process' => array('postcodeanywhere_field_process_form'),
-    '#theme' => array('textfield'),
+    '#theme' => array('postcodeanywhere_text'),
     '#theme_wrappers' => array('form_element'),
     '#autocomplete_path' => FALSE,
   );
@@ -58,8 +62,8 @@ function postcodeanywhere_field_element_info() {
     '#input' => TRUE,
     '#size' => 60,
     '#maxlength' => 128,
-    '#process' => array('ajax_process_form', 'postcodeanywhere_field_process_form'),
-    '#theme' => array('textfield'),
+    '#process' => array('postcodeanywhere_field_process_form', 'ajax_process_form'),
+    '#theme' => array('postcodeanywhere_autocomplete'),
     '#theme_wrappers' => array('form_element'),
     '#autocomplete_path' => 'pca/autocomplete',
   );
@@ -338,6 +342,9 @@ function postcodeanywhere_field_field_widget_form(&$form, &$form_state, $field, 
         '#size' => $instance['widget']['settings']['size'],
         '#maxlength' => $field['settings']['max_length'],
         '#attributes' => array('class' => array('text-full')),
+        '#process' => array('postcodeanywhere_field_process_form'),
+        '#theme' => array('postcodeanywhere_text'),
+        '#theme_wrappers' => array('form_element'),
         '#autocomplete_path' => FALSE,
       );
       break;
@@ -349,7 +356,9 @@ function postcodeanywhere_field_field_widget_form(&$form, &$form_state, $field, 
         '#size' => $instance['widget']['settings']['size'],
         '#maxlength' => $field['settings']['max_length'],
         '#attributes' => array('class' => array('text-autocomplete')),
-        '#process' => array('ajax_process_form'),
+        '#process' => array('postcodeanywhere_field_process_form', 'ajax_process_form'),
+        '#theme' => array('postcodeanywhere_autocomplete'),
+        '#theme_wrappers' => array('form_element'),
         '#autocomplete_path' => 'pca/autocomplete',
         '#element_validate' => array('postcodeanywhere_autocomplete_validate'),
       );
