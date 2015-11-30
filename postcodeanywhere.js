@@ -29,7 +29,7 @@
           var postcodeanywhereLookupButton = '<input type="button" name="postcodeanywhere-lookup-button" id="postcodeanywhere-lookup-button" value="' +
                             Drupal.t(Drupal.settings.postcodeanywhere.submit_label_value) + '">';
           // Create address list list on the fly.
-          var postcodeanywhereAddressList = '<div style="display:none;" size="10" name="postcodeanywhere-address-list" id="postcodeanywhere-address-list">';
+          // @fixme // var postcodeanywhereAddressList = '<div style="display:none;" size="10" name="postcodeanywhere-address-list" id="postcodeanywhere-address-list">';
           // Create spinner container.
           var postcodeanywhereloader = '<div id="postcodeloading" class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div><div class="message">Please wait...</div></div>';
         }
@@ -52,11 +52,11 @@
 
         // Changes to PCA autocomplete widget.
         // Hide the manual fields on start
-        $('.group-pca-autocomplete').find('#edit-field-address').hide();
+        // @fixme // $('.group-pca-autocomplete').find('#edit-field-address').hide();
         // Create the div which populates with the text version of the address.
         $('.group-pca-autocomplete').find('#edit-field-address').before('<div class="postcodeanywhere-autocomplete-output-text" id="postcodeanywhere-autocomplete-output-text"></div>');
-        $('.group-pca-autocomplete').find('.postcodeanywhere-autocomplete-output-text').hide();
-        $('.group-pca-autocomplete').find('.postcodeanywhere-autocomplete-output-text').html('<p class="thoroughfare pca-text"></p><p class="premise pca-text"></p><p class="postal-code pca-text"></p><p class="pca-change-address"><a href="#">Change Address</a></p>');
+        // @fixme // $('.group-pca-autocomplete').find('.postcodeanywhere-autocomplete-output-text').hide();
+        // @fixme // $('.group-pca-autocomplete').find('.postcodeanywhere-autocomplete-output-text').html('<p class="thoroughfare pca-text"></p><p class="premise pca-text"></p><p class="postal-code pca-text"></p><p class="pca-change-address"><a href="#">Change Address</a></p>');
 
         // Add the onclick event to change the address.
         $('.group-pca-autocomplete').find('.pca-change-address').on('click','a',function(event){
@@ -93,8 +93,8 @@
             else if (!isNaN(pca_id)) {
 
               // Make sure this is hidden.
-              $(pca_input_group).find('#edit-field-address').hide();
-              $(pca_output_div).slideUp('Slow');
+              // @fixme // $(pca_input_group).find('#edit-field-address').hide();
+              // @fixme // $(pca_output_div).slideUp('Slow');
 
               // Call the PCA service to get a full address by ID.
               $.getJSON(Drupal.settings.basePath + "pca/retrievebyid/" + pca_id, function(data){
@@ -227,7 +227,7 @@
                       $(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
 
                       // Hide the list.
-                      $('#postcodeanywhere-address-list').hide();
+                      // @fixme // $('#postcodeanywhere-address-list').hide();
                     });
                   }
                 }
