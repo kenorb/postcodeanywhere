@@ -18,6 +18,7 @@ function postcodeanywhere_autocomplete($string = "") {
     if (count($data) > 2) {
       $data[''] = t('%result found, keep typing to refine', array('%result' => format_plural(count($data), t('1 result'), '@count ' . t('results.'))));
     }
+      $data['cantSeeMyAddress'] = t("I can't see my address");
   }
   catch (Exception $e) {
     // Check logs for further details.
