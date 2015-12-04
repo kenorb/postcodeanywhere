@@ -89,9 +89,9 @@
             if (pca_id == "no-match") {
               $(pca_input_group).find('#edit-field-address').slideDown('Slow');
               $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text').hide();
-              $('[class *=address-und-address-line-1').slideDown('Slow')
-              $('[class *=address-und-address-line-2').slideDown('Slow')
-              $('[class *=address-und-town').slideDown('Slow')
+              $(Drupal.settings.postcodeanywhere.id_line1).slideDown('Slow')
+              $(Drupal.settings.postcodeanywhere.id_line2).slideDown('Slow')
+              $(Drupal.settings.postcodeanywhere.id_town).slideDown('Slow')
               $('[class *=add-address').show();
               $('[class *=cancel-address').show();
 
