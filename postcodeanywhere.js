@@ -79,6 +79,7 @@
             var pca_id = $(node).data('autocompleteValue');
             var pca_input_group = $(pca_input).closest('.group-pca-autocomplete');
             var pca_output_div = $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text');
+            var outputAddress ='';
 
             // Clear the address fields.
             $(pca_input_group).find('input').val('');
@@ -88,6 +89,11 @@
             if (pca_id == "no-match") {
               $(pca_input_group).find('#edit-field-address').slideDown('Slow');
               $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text').hide();
+              $('[class *=address-und-address-line-1').slideDown('Slow')
+              $('[class *=address-und-address-line-2').slideDown('Slow')
+              $('[class *=address-und-town').slideDown('Slow')
+              $('[class *=add-address').show();
+              $('[class *=cancel-address').show();
 
             }
             else if (!isNaN(pca_id)) {
@@ -98,24 +104,26 @@
 
               // Call the PCA service to get a full address by ID.
               $.getJSON(Drupal.settings.basePath + "pca/retrievebyid/" + pca_id, function(data){
-
                 if (data.length > 0 && data['error'] == null) {
+                 if($('.pca-text').length<7){
+                   outputAddress = $('<p class="thoroughfare pca-text">'+ data[0].Line1[0] + '</p><p class="premise pca-text">'+ data[0].Line2[0] +'</p><p class="premise pca-text">'+ data[0].PostTown[0] +'</p><p class="postal-code pca-text">'+ data[0].Postcode[0] +'</p><p class="pca-change-address"><a href="#!">Use another address</a></p>');
+
+                   $('[class *=address-und-postcode').hide();
+                 }
+
                   // Find the address field and populate them.
                   if (Drupal.settings.postcodeanywhere.addressfield) {
 
                     $(pca_input_group).find('.thoroughfare').val(data[0].Line1[0]);
                     $(pca_output_div).find('.thoroughfare').html(data[0].Line1[0]);
+
                     // Block element.
                     $(pca_input_group).find('.premise').val(data[0].Line2[0]);
                     $(pca_output_div).find('.premise').html(data[0].Line2[0]);
-
                     $(pca_input_group).find('.locality').val(data[0].County[0]);
-
                     $(pca_input_group).find('.state').val(data[0].PostTown[0]);
-
                     $(pca_input_group).find('.postal-code').val(data[0].Postcode[0]);
                     $(pca_output_div).find('.postal-code').html(data[0].Postcode[0]);
-
                     $(pca_input).val('');
 
                     $(pca_input).closest('.field-type-postcodeanywhere').slideUp('Slow',function(){
