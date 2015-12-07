@@ -106,16 +106,15 @@
               $.getJSON(Drupal.settings.basePath + "pca/retrievebyid/" + pca_id, function(data){
                 if (data.length > 0 && data['error'] == null) {
                      outputAddress = $('<div class="pca-output"><p class="thoroughfare pca-text">'+ data[0].Line1[0] + '</p><p class="premise pca-text">'+ data[0].Line2[0] +'</p><p class="premise pca-text">'+ data[0].PostTown[0] +'</p><p class="postal-code pca-text">'+ data[0].Postcode[0] +'</p><p class="pca-change-address"><a href="#!">Use another address</a></p></div>');
-                 
-                 if($('.pca-text').length<1){
-                   
-                   $('[class *=address-und-postcode').hide();
-                   $('.field-type-engage-address-field').append(outputAddress);
-                   
-                 }else{
-                  $('[class *=address-und-postcode').hide();
-                  $('.pca-output').html(outputAddress);
-                }
+
+                  if ($('.pca-text').length < 1){
+                    $('[class *=address-und-postcode').hide();
+                    $('.field-type-engage-address-field').append(outputAddress);
+                  } else {
+                    $('[class *=address-und-postcode').hide();
+                    $('.pca-output').html(outputAddress);
+                  }
+
                   // Find the address field and populate them.
                   if (Drupal.settings.postcodeanywhere.addressfield) {
 
