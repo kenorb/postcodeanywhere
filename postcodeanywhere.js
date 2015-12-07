@@ -108,11 +108,9 @@
                      outputAddress = $('<div class="pca-output"><p class="thoroughfare pca-text">'+ data[0].Line1[0] + '</p><p class="premise pca-text">'+ data[0].Line2[0] +'</p><p class="premise pca-text">'+ data[0].PostTown[0] +'</p><p class="postal-code pca-text">'+ data[0].Postcode[0] +'</p><p class="pca-change-address"><a href="#!">Use another address</a></p></div>');
 
                   if ($('.pca-text').length < 1){
-                    $('[class *=address-und-postcode').hide();
-                    $('.field-type-engage-address-field').append(outputAddress);
+                    $(pca_output_div).append(outputAddress);
                   } else {
-                    $('[class *=address-und-postcode').hide();
-                    $('.pca-output').html(outputAddress);
+                    $(pca_output_div).html(outputAddress);
                   }
 
                   // Find the address field and populate them.
