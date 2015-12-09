@@ -16,13 +16,13 @@ function postcodeanywhere_autocomplete($string = "") {
       $data[$row['Id']] = $row['Place'] ?: $value['StreetAddress'];
     }
     if (count($data) > 2) {
-      $data[''] = t('%result found, keep typing to refine', array('%result' => format_plural(count($data), t('1 result'), '@count ' . t('results.'))));
+      $data['number-results'] = t('%result found, keep typing to refine', array('%result' => format_plural(count($data), t('1 result'), '@count ' . t('results.'))));
     }
     $data['no-match'] = t("I can't see my address");
   }
   catch (Exception $e) {
     // Check logs for further details.
-    $data = array('' => t("I can't see the address."));
+    $data = array('no-match' => t("I can't see the address."));
   }
   drupal_json_output($data);
 }
