@@ -84,6 +84,7 @@
             // Clear the address fields.
             $(pca_input_group).find('input').val('');
             $(pca_input_group).find('.pca-text').html('');
+            $('.js-postcodeanywhere-number-results').remove();
 
             // If this is no-match then show the fields.
             if (pca_id == "no-match") {
@@ -94,6 +95,8 @@
               $(Drupal.settings.postcodeanywhere.id_town).slideDown('Slow')
               $('[class *=add-address').show();
               $('[class *=cancel-address').show();
+              $('.js-manual-address-container').slideDown();
+              $(Drupal.settings.postcodeanywhere.id_postcode).hide();
 
             }
             else if (!isNaN(pca_id)) {
@@ -107,11 +110,19 @@
                 if (data.length > 0 && data['error'] == null) {
                      outputAddress = $('<div class="pca-output"><p class="thoroughfare pca-text">'+ data[0].Line1[0] + '</p><p class="premise pca-text">'+ data[0].Line2[0] +'</p><p class="premise pca-text">'+ data[0].PostTown[0] +'</p><p class="postal-code pca-text">'+ data[0].Postcode[0] +'</p><p class="pca-change-address"><a href="#!">Use another address</a></p></div>');
 
-                  if ($('.pca-text').length < 1){
+                  if ($('.pca-output').length < 1){
+                    $(Drupal.settings.postcodeanywhere.id_postcode).hide();
                     $(pca_output_div).append(outputAddress);
                   } else {
+                    $(Drupal.settings.postcodeanywhere.id_postcode).hide();
                     $(pca_output_div).html(outputAddress);
                   }
+
+                  $(Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1[0]);
+                  $(Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2[0]);
+                  $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]);
+                  $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]);
+                  $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]);
 
                   // Find the address field and populate them.
                   if (Drupal.settings.postcodeanywhere.addressfield) {
