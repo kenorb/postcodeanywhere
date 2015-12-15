@@ -2,13 +2,15 @@
 
 /**
  * @file
- *   PCA Predict module file.
+ * PCA Predict module file.
  */
 
 define('PCA_DEMO_KEY', 'RA24-BZ17-JR72-WN38');
-define('PCA_PC_TEST', 'WR2 6NJ'); // WR2 6NJ is a test code (no credits are needed).
+// Define test postode; WR2 6NJ is a test code (no credits are needed).
+define('PCA_PC_TEST', 'WR2 6NJ');
 define('PCA_URL', 'http://services.postcodeanywhere.co.uk/');
-define('PCA_FORMAT', 'xmla.ws'); // Supported formats: xmla.ws or json.ws (needs some work).
+// Define PCA format. Supported formats: xmla.ws or json.ws (needs some work).
+define('PCA_FORMAT', 'xmla.ws');
 define('PCA_CACHE', 'cache_postcodeanywhere');
 
 /**
@@ -190,7 +192,8 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
     }
   }
 
-  drupal_add_js($settings, 'setting'); // Append settings into JS file.
+  // Append settings into JS file.
+  drupal_add_js($settings, 'setting');
   drupal_add_js(drupal_get_path('module', 'postcodeanywhere') . '/postcodeanywhere.js', 'file');
 }
 

@@ -2,7 +2,7 @@
 
 /**
  * @file
- *  Provides PCA db schema, installation process and requirements.
+ * Provides PCA db schema, installation process and requirements.
  */
 
 /**
@@ -45,4 +45,3 @@ function postcodeanywhere_requirements($phase) {
 
   return $requirements;
 }
-
