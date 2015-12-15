@@ -164,6 +164,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
       'id_lookup_button' => '#postcodeanywhere-lookup-button',
       'id_company' => variable_get('postcodeanywhere_id_company', ''),
       'id_company_wrapper' => variable_get('postcodeanywhere_id_company_wrapper', ''),
+      'id_address_wrapper' => variable_get('postcodeanywhere_id_address_wrapper', ".id_address_wrapper"),
       'id_line1' => variable_get('postcodeanywhere_id_line1', ''),
       'id_line1_wrapper' => variable_get('postcodeanywhere_id_line1_wrapper', ''),
       'id_line2' => variable_get('postcodeanywhere_id_line2', ''),
