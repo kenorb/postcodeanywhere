@@ -160,6 +160,13 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#description' => t('jQuery selector for existing input field for Company Wrapper.'),
   );
 
+  $form['form_settings']['postcodeanywhere_id_address_wrapper'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Address Wrapper'),
+    '#default_value' => variable_get('postcodeanywhere_id_address_wrapper', ".id_address_wrapper"),
+    '#description' => t('jQuery selector for div that wraps existing input fields.'),
+  );
+
   $form['form_settings']['postcodeanywhere_id_line1'] = array(
     '#type' => 'textarea',
     '#title' => t('Address Line 1'),
