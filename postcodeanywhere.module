@@ -14,7 +14,7 @@ define('POSTCODEANYWHERE_FORMAT', 'xmla.ws');
 define('POSTCODEANYWHERE_CACHE', 'cache_postcodeanywhere');
 
 /**
- * Implementation of hook_menu().
+ * Implements hook_menu().
  */
 function postcodeanywhere_menu() {
   $items = array();
@@ -78,7 +78,7 @@ function postcodeanywhere_menu() {
 }
 
 /**
- * Implementation of hook_permission().
+ * Implements hook_permission().
  */
 function postcodeanywhere_permission() {
   return array(
@@ -94,7 +94,7 @@ function postcodeanywhere_permission() {
 }
 
 /**
- * Implementation of hook_form_alter().
+ * Implements hook_form_alter().
  */
 function postcodeanywhere_form_alter(&$form, &$form_state, $form_id) {
 
@@ -132,7 +132,7 @@ function postcodeanywhere_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Implementation of #after_build function
+ * Implements #after_build function
  * Helper function to include postcodeanywhere js files after form is built.
  */
 function postcodeanywhere_form_after_build($form_element, &$form_state) {
