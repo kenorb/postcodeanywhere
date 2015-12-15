@@ -132,7 +132,8 @@ function postcodeanywhere_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Implements #after_build function
+ * Implements #after_build function.
+ *
  * Helper function to include postcodeanywhere js files after form is built.
  */
 function postcodeanywhere_form_after_build($form_element, &$form_state) {
@@ -187,7 +188,8 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
     foreach ($extra_settings as $key => $value) {
       $settings['postcodeanywhere'][$key] .= ',' . $value;
 
-      // Set as already loaded, so don't try to load it again (e.g. hook_form_alter).
+      // Set as already loaded,
+      // so don't try to load it again (e.g. hook_form_alter).
       $pca_loaded = TRUE;
     }
   }
@@ -234,12 +236,7 @@ function postcodeanywhere_make_request() {
  * Topic index callback.
  */
 function postcodeanywhere_index_page() {
-  /*
-  $output = theme('advanced_help_topic', array(
-    'module' => 'help_example',
-    'topic' => 'about-php',
-  ));
-  */
+  $output = '';
   $output .= '&nbsp;' . t('Click the help icon to view help about the PCA Predict (formely Postcode Anywhere).');
   return $output;
 }

@@ -29,18 +29,7 @@ function postcodeanywhere_requirements($phase) {
 
   if ($phase == 'runtime') {
 
-    /*
-    $key = variable_get('postcodeanywhere_licence', POSTCODEANYWHERE_DEMO_KEY);
-    if (empty($key) && user_access('administer postcodeanywhere')) {
-      drupal_set_message(t('You need to configure your Web service Key in the settings page.'), 'warning');
-    }
-    $requirements['paypoint_advanced_connectivity_test'] = array(
-      'title' => t('Postcode Anywhere licence'),
-      'value' => empty($key) ? "PCA license is empty" : "PCA license is filled.",
-      'severity' => empty($key) ? REQUIREMENT_ERROR : REQUIREMENT_OK,
-    );
-    */
-
+    // @todo
   }
 
   return $requirements;

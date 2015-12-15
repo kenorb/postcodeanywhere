@@ -59,7 +59,7 @@ before_script:
 # - mysql -e 'create database drupal'
 
 script:
-  - phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,js,css,info,txt,md $(drush dd $TEST_MODULE)
+  - phpcs -n --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,js,css,info,txt,md $(drush dd $TEST_MODULE)
   - drush core-requirements --severity=2 | grep -i error
   - phpunit .
 
