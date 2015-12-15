@@ -40,9 +40,9 @@ function postcodeanywhere_autocomplete_validate($element, &$form_state) {
 /**
  * AJAX callback to lists address records for the given postcode.
  */
-function postcodeanywhere_findbypostcode($postcode = PCA_PC_TEST, $returnArray = FALSE) {
+function postcodeanywhere_findbypostcode($postcode = POSTCODEANYWHERE_PC_TEST, $returnArray = FALSE) {
   require_once drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPostcode.class.inc";
-  $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
+  $key = variable_get('postcodeanywhere_licence', POSTCODEANYWHERE_DEMO_KEY);
   $cid = str_replace(' ', '', "pca_pc_" . $postcode);
 
   if (!($data = _pca_get_cache($cid))) {
@@ -65,7 +65,7 @@ function postcodeanywhere_findbypostcode($postcode = PCA_PC_TEST, $returnArray =
  */
 function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2", $returnArray = FALSE) {
   require_once drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_FindByPartialPostcode.class.inc";
-  $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
+  $key = variable_get('postcodeanywhere_licence', POSTCODEANYWHERE_DEMO_KEY);
   $cid = str_replace(' ', '', "pca_pc_" . $PartialPostcode);
 
   if (!($data = _pca_get_cache($cid))) {
@@ -88,7 +88,7 @@ function postcodeanywhere_findbypartialpostcode($PartialPostcode = "WR2", $retur
  */
 function postcodeanywhere_retrievebyid($id) {
   require_once drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_RetrieveById.class.inc";
-  $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
+  $key = variable_get('postcodeanywhere_licence', POSTCODEANYWHERE_DEMO_KEY);
   $cid = str_replace(' ', '', "pca_id_" . $id);
 
   if (!($data = _pca_get_cache($cid))) {
@@ -110,8 +110,8 @@ function postcodeanywhere_retrievebyid($id) {
  * Helper function to get results from cache.
  */
 function _pca_get_cache($cid) {
-  $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
-  if ($cache = cache_get($cid, PCA_CACHE)) {
+  $format = variable_get('postcodeanywhere_format', POSTCODEANYWHERE_FORMAT);
+  if ($cache = cache_get($cid, POSTCODEANYWHERE_CACHE)) {
     // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
     $data = $format == 'xmla.ws' || $format == 'xmle.ws' ? json_decode($cache->data, TRUE) : $cache->data;
   }
@@ -128,7 +128,7 @@ function _pca_get_cache($cid) {
  * Helper function to cache the results.
  */
 function _pca_set_cache($cid, $data) {
-  $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
+  $format = variable_get('postcodeanywhere_format', POSTCODEANYWHERE_FORMAT);
   // Serialization of SimpleXMLElement is not alloweḑ, so doing some workaround.
-  return cache_set($cid, $format == 'xmla.ws' || $format == 'xmle.ws' ? json_encode($data) : $data, PCA_CACHE);
+  return cache_set($cid, $format == 'xmla.ws' || $format == 'xmle.ws' ? json_encode($data) : $data, POSTCODEANYWHERE_CACHE);
 }

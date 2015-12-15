@@ -30,7 +30,7 @@ function postcodeanywhere_requirements($phase) {
   if ($phase == 'runtime') {
 
     /*
-    $key = variable_get('postcodeanywhere_licence', PCA_DEMO_KEY);
+    $key = variable_get('postcodeanywhere_licence', POSTCODEANYWHERE_DEMO_KEY);
     if (empty($key) && user_access('administer postcodeanywhere')) {
       drupal_set_message(t('You need to configure your Web service Key in the settings page.'), 'warning');
     }

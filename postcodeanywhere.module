@@ -5,13 +5,13 @@
  * PCA Predict module file.
  */
 
-define('PCA_DEMO_KEY', 'RA24-BZ17-JR72-WN38');
+define('POSTCODEANYWHERE_DEMO_KEY', 'RA24-BZ17-JR72-WN38');
 // Define test postode; WR2 6NJ is a test code (no credits are needed).
-define('PCA_PC_TEST', 'WR2 6NJ');
-define('PCA_URL', 'http://services.postcodeanywhere.co.uk/');
+define('POSTCODEANYWHERE_PC_TEST', 'WR2 6NJ');
+define('POSTCODEANYWHERE_URL', 'http://services.postcodeanywhere.co.uk/');
 // Define PCA format. Supported formats: xmla.ws or json.ws (needs some work).
-define('PCA_FORMAT', 'xmla.ws');
-define('PCA_CACHE', 'cache_postcodeanywhere');
+define('POSTCODEANYWHERE_FORMAT', 'xmla.ws');
+define('POSTCODEANYWHERE_CACHE', 'cache_postcodeanywhere');
 
 /**
  * Implementation of hook_menu().
@@ -157,7 +157,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
   $settings = array(
     'postcodeanywhere' => array(
       'account_code' => variable_get('postcodeanywhere_account_code', ''),
-      'licence' => variable_get('postcodeanywhere_licence', PCA_DEMO_KEY),
+      'licence' => variable_get('postcodeanywhere_licence', POSTCODEANYWHERE_DEMO_KEY),
       'id_wrapper' => variable_get('postcodeanywhere_id_wrapper', ''),
       'id_postcode' => variable_get('postcodeanywhere_id_postcode', ''),
       'id_lookup_button' => '#postcodeanywhere-lookup-button',
@@ -177,7 +177,7 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
       'id_country_uk_value' => variable_get('postcodeanywhere_id_country_uk_value', 'GB'),
       'submit_label_value' => variable_get('postcodeanywhere_submit_label_value', 'Find Address'),
       'showAlert' => variable_get('postcodeanywhere_showalert', 1),
-      'url' => variable_get('postcodeanywhere_url', PCA_URL),
+      'url' => variable_get('postcodeanywhere_url', POSTCODEANYWHERE_URL),
       'addressfield' => variable_get('postcodeanywhere_addressfield', FALSE) && module_exists('addressfield'),
     ),
   );
@@ -202,10 +202,10 @@ function postcodeanywhere_form_add_js($extra_settings = NULL) {
  */
 function postcodeanywhere_parse_url($url, $format = 'json') {
   $arr = parse_url($url);
-  if ($api_url = parse_url(variable_get('postcodeanywhere_url', PCA_URL))) {
+  if ($api_url = parse_url(variable_get('postcodeanywhere_url', POSTCODEANYWHERE_URL))) {
     $apath = explode('/', $arr['path']);
     $wsdl = end($apath);
-    $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
+    $format = variable_get('postcodeanywhere_format', POSTCODEANYWHERE_FORMAT);
     if ($wsdl != $format) {
       // Change format if necessary.
       $arr['path'] = str_replace($wsdl, $format, $arr['path']);
@@ -227,7 +227,7 @@ function postcodeanywhere_parse_url($url, $format = 'json') {
  * Helper function to parse data from PCA.
  */
 function postcodeanywhere_make_request() {
-  $format = variable_get('postcodeanywhere_format', PCA_FORMAT);
+  $format = variable_get('postcodeanywhere_format', POSTCODEANYWHERE_FORMAT);
 }
 
 /**
