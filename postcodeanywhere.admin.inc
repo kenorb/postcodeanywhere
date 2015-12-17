@@ -139,6 +139,14 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
+  $form['form_settings']['postcodeanywhere_id_manual-postcode'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Postcode Input - Manual'),
+      '#default_value' => variable_get('postcodeanywhere_id_manual-postcode', "input[id*='edit-address-manual-postcode']"),
+      '#description' => t('jQuery selector for the manual postcode input field that is shown with the other manual address fields'),
+      '#required' => TRUE,
+  );
+
   $form['form_settings']['postcodeanywhere_id_country'] = array(
     '#type' => 'textarea',
     '#title' => t('Country'),
