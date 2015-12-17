@@ -87,6 +87,8 @@
 
             // If this is no-match then show the fields.
             if (pca_id == "no-match") {
+              //$('.js-manual-postcode').show();
+              $(Drupal.settings.postcodeanywhere.id_postcode_manual).show();
               $(Drupal.settings.postcodeanywhere.id_address_wrapper).slideDown();
               $(Drupal.settings.postcodeanywhere.id_postcode).parent().hide();
             }
@@ -116,6 +118,7 @@
                   $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]);
                   $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]);
                   $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]);
+                  $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode[0]);
 
 
                   // Find the address field and populate them.
@@ -152,6 +155,7 @@
                       }
                       $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County).change();
                       $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode).change();
+                      $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode).change();
                     }
                     // If the results are objects.
                     if (typeof data[0].Company == 'object') {
@@ -162,6 +166,7 @@
                       $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]).change();
                       $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]).change();
                       $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]).change();
+                      $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode[0]).change();
 
                     }
                   }
@@ -174,6 +179,7 @@
 
 
           };// end: Drupal.jsAC
+
           /**
            * Positions the suggestions popup and starts a search.
            */
@@ -294,6 +300,7 @@
                         }
                         $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County).change();
                         $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode).change();
+                        $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode).change();
                       }
                       // If the results are objects.
                       if (typeof data[0].Company == 'object') {
@@ -304,6 +311,7 @@
                         $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]).change();
                         $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]).change();
                         $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]).change();
+                        $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode[0]).change();
                       }
                     });
 
@@ -314,6 +322,7 @@
                     $(Drupal.settings.postcodeanywhere.id_line3_wrapper).show();
                     $(Drupal.settings.postcodeanywhere.id_town_wrapper).show();
                     $(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
+                    $(Drupal.settings.postcodeanywhere.id_postcode_manual).show();
 
                     // Hide the list.
                     $('#postcodeanywhere-address-list').hide();
