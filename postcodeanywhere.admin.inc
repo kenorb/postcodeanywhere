@@ -22,7 +22,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('PCA API Service key'),
     '#description' => t('Change this key into valid API Service Key.'),
-    '#default_value' => variable_get('postcodeanywhere_licence', PCA_DEMO_KEY),
+    '#default_value' => variable_get('postcodeanywhere_licence', POSTCODEANYWHERE_DEMO_KEY),
     '#states' => array(
       'disabled' => array(':input[name="postcodeanywhere_example_test"]' => array('checked' => TRUE)),
     ),
@@ -32,7 +32,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('PCA callback URL.'),
     '#required' => TRUE,
-    '#default_value' => variable_get('postcodeanywhere_url', PCA_URL),
+    '#default_value' => variable_get('postcodeanywhere_url', POSTCODEANYWHERE_URL),
     '#states' => array(
       'disabled' => array(':input[name="postcodeanywhere_example_test"]' => array('checked' => TRUE)),
     ),
@@ -44,7 +44,7 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     // TODO: JSON format needs some work by changes in classes and writing some function wrapper.
     '#options' => array('xmla.ws' => 'XML', 'json.ws' => 'JSON'),
     '#required' => TRUE,
-    '#default_value' => variable_get('postcodeanywhere_format', PCA_FORMAT),
+    '#default_value' => variable_get('postcodeanywhere_format', POSTCODEANYWHERE_FORMAT),
     '#states' => array(
       'disabled' => array(':input[name="postcodeanywhere_example_test"]' => array('checked' => TRUE)),
     ),
@@ -78,7 +78,15 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     }
     else {
       $options = array(t('Show on every page except the listed pages.'), t('Show on only the listed pages.'));
-      $description = t("Enter one page per line as Drupal paths. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>'));
+      $description = t("Enter one page per line as Drupal paths.
+          The '*' character is a wildcard.
+          Example paths are %blog for the blog page and %blog-wildcard for every personal blog.
+          %front is the front page.",
+          array(
+            '%blog' => 'blog',
+            '%blog-wildcard' => 'blog/*',
+            '%front' => '<front>'
+            ));
 
       if ($access) {
         $options[] = t('Show if the following PHP code returns <code>TRUE</code> (PHP-mode, experts only).');
@@ -131,6 +139,14 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
+  $form['form_settings']['postcodeanywhere_id_manual-postcode'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Postcode Input - Manual'),
+      '#default_value' => variable_get('postcodeanywhere_id_manual-postcode', "input[id*='edit-address-manual-postcode']"),
+      '#description' => t('jQuery selector for the manual postcode input field that is shown with the other manual address fields'),
+      '#required' => TRUE,
+  );
+
   $form['form_settings']['postcodeanywhere_id_country'] = array(
     '#type' => 'textarea',
     '#title' => t('Country'),
@@ -150,6 +166,13 @@ function postcodeanywhere_settings_form($form, &$form_state) {
     '#title' => t('Company Wrapper'),
     '#default_value' => variable_get('postcodeanywhere_id_company_wrapper', "div.form-item-address-company"),
     '#description' => t('jQuery selector for existing input field for Company Wrapper.'),
+  );
+
+  $form['form_settings']['postcodeanywhere_id_address_wrapper'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Address Wrapper'),
+    '#default_value' => variable_get('postcodeanywhere_id_address_wrapper', ".id_address_wrapper"),
+    '#description' => t('jQuery selector for div that wraps existing input fields.'),
   );
 
   $form['form_settings']['postcodeanywhere_id_line1'] = array(

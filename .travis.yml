@@ -32,9 +32,8 @@ env:
     - PATH=${PATH//:\.\/node_modules\/\.bin/} # Fixes Travis bug: https://github.com/travis-ci/travis-ci/issues/4862
 
   matrix:
-    - CORE=6 TEST_MODULE="postcodeanywhere-6.x-1.0"
-    - CORE=6 TEST_MODULE="postcodeanywhere-6.x-1.x-dev"
-    - CORE=7 TEST_MODULE="postcodeanywhere-7.x-1.x-dev"
+    - CORE=7 TEST_MODULE="postcodeanywhere" DOWNLOAD="postcodeanywhere"
+    - CORE=7 TEST_MODULE="postcodeanywhere" DOWNLOAD="postcodeanywhere-7.x-1.x-dev"
   fast_finish: true # Don't wait for the allowed failures to build.
 
 mysql:
@@ -49,7 +48,9 @@ before_install:
 install:
   - gem install mailcatcher && mailcatcher -v && echo 'sendmail_path="/usr/bin/env catchmail"' | tee -a "$(php --ini | grep "Loaded Configuration" | awk '{print $4}')"
   - composer global require drush/drush:dev-master drupal/coder && drush --version
-  - drush qd --yes --server=$URL --no-server --watchdog --core=drupal-$CORE testsite $TEST_MODULE && cd testsite/drupal-*
+  - drush qd --yes --server=$URL --no-server --watchdog --core=drupal-$CORE testsite && cd testsite/drupal-*
+  - drush -vy dl $DOWNLOAD
+  - drush -vy en $TEST_MODULE
 
 before_script:
   - drush -v rs $URL &
@@ -58,7 +59,7 @@ before_script:
 # - mysql -e 'create database drupal'
 
 script:
-  - phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,js,css,info,txt,md $(drush dd $TEST_MODULE)
+  - phpcs -n --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,js,css,info,txt,md $(drush dd $TEST_MODULE)
   - drush core-requirements --severity=2 | grep -i error
   - phpunit .
 
