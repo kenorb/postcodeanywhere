@@ -20,7 +20,7 @@ function theme_postcodeanywhere_text($variables) {
   $lookup_button['type'] = 'button';
   $lookup_button['id'] = $element['#attributes']['id'] . '-lookup-button';
   $lookup_button['value'] = variable_get('postcodeanywhere_submit_label_value', 'find address');
-  $extra .= '<input' . drupal_attributes($lookup_button) . ' />';
+  $extra = '<input' . drupal_attributes($lookup_button) . ' />';
 
   // Append address list field.
   $address_list = array();
