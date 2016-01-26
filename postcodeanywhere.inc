@@ -13,7 +13,7 @@ function postcodeanywhere_autocomplete($string = "") {
   $string = str_replace(' ', '', strtolower($string));
   try {
     foreach (postcodeanywhere_findbypostcode($string, TRUE) as $row) {
-      $data[$row['Id']] = $row['Place'] ?: $value['StreetAddress'];
+      $data[$row['Id']] = "${row['Place']}, ${row['StreetAddress']}";
     }
     if (count($data) > 2) {
       $data['number-results'] = t('%result found, keep typing to refine',
