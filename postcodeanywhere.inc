@@ -12,8 +12,13 @@ function postcodeanywhere_autocomplete($string = "") {
   // Make a string lowercase and remove all spaces.
   $string = str_replace(' ', '', strtolower($string));
   try {
-    foreach (postcodeanywhere_findbypostcode($string, TRUE) as $row) {
-      $data[$row['Id']] = "${row['Place']}, ${row['StreetAddress']}";
+    $response = strlen($string) >= 5 ? postcodeanywhere_findbypostcode($string, TRUE) : postcodeanywhere_findbypartialpostcode($string, TRUE);
+    $data = [];
+    foreach ($response as $row) {
+      $id = is_array($row['Id']) ? current($row['Id']) : $row['Id'];
+      $place = is_array($row['Place']) ? current($row['Place']) : $row['Place'];
+      $street = is_array($row['StreetAddress']) ? current($row['StreetAddress']) : $row['StreetAddress'];
+      $data[$id] = $place . (!empty($street) ? ", " . $street : '');
     }
     if (count($data) > 2) {
       $data['number-results'] = t('%result found, keep typing to refine',
