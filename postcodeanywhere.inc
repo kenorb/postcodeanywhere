@@ -12,12 +12,11 @@ function postcodeanywhere_autocomplete($string = "") {
   // Make a string lowercase and remove all spaces.
   $string = str_replace(' ', '', strtolower($string));
   try {
-    $response = strlen($string) >= 5 ? postcodeanywhere_findbypostcode($string, TRUE) : postcodeanywhere_findbypartialpostcode($string, TRUE);
     $data = [];
-    foreach ($response as $row) {
-      $id = is_array($row['Id']) ? current($row['Id']) : $row['Id'];
-      $place = is_array($row['Place']) ? current($row['Place']) : $row['Place'];
-      $street = is_array($row['StreetAddress']) ? current($row['StreetAddress']) : $row['StreetAddress'];
+    foreach (postcodeanywhere_find($string, TRUE) as $row) {
+      $id = !empty($row['Id']) ? current($row['Id']) : 0;
+      $place = !empty($row['Place']) ? current($row['Place']) : '';
+      $street = !empty($row['StreetAddress']) ? current($row['StreetAddress']) : '';
       $data[$id] = $place . (!empty($street) ? ", " . $street : '');
     }
     if (count($data) > 2) {
@@ -45,6 +44,30 @@ function postcodeanywhere_autocomplete_validate($element, &$form_state) {
   // @todo? strlen($string) <= 3
   // form_error($form['node'], t('Sorry, the post code is too short.'));
 }
+
+/**
+ * AJAX callback to lists address records matching the specified search term.
+ */
+function postcodeanywhere_find($postcode = POSTCODEANYWHERE_PC_TEST, $ret_array = FALSE) {
+  require_once drupal_get_path('module', 'postcodeanywhere') . "/classes/PostcodeAnywhere_Interactive_Find.class.inc";
+  $key = variable_get('postcodeanywhere_licence', POSTCODEANYWHERE_DEMO_KEY);
+  $cid = str_replace(' ', '', "pca_pc_" . $postcode);
+
+  if (!($data = _pca_get_cache($cid))) {
+    try {
+      $pca = new PostcodeAnywhere_Interactive_Find($key, $postcode, "");
+      $pca->MakeRequest();
+      if ($data = $pca->HasData()) {
+        _pca_set_cache($cid, $data);
+      }
+    }
+    catch (Exception $e) {
+      watchdog_exception('postcodeanywhere', $e);
+    }
+  }
+  return $ret_array ? (array) $data : drupal_json_output($data ?: array());
+}
+
 
 /**
  * AJAX callback to lists address records for the given postcode.
