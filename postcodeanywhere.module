@@ -6,8 +6,8 @@
  */
 
 define('POSTCODEANYWHERE_DEMO_KEY', 'RA24-BZ17-JR72-WN38');
-// Define test postode; WR2 6NJ is a test code (no credits are needed).
-define('POSTCODEANYWHERE_PC_TEST', 'WR2 6NJ');
+// Define test postode; WR5 3DA is a test code (no credits are needed).
+define('POSTCODEANYWHERE_PC_TEST', 'WR5 3DA');
 define('POSTCODEANYWHERE_URL', 'http://services.postcodeanywhere.co.uk/');
 // Define PCA format. Supported formats: xmla.ws or json.ws (needs some work).
 define('POSTCODEANYWHERE_FORMAT', 'xmla.ws');
