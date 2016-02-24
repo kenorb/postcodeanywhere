@@ -19,14 +19,14 @@
           $(Drupal.settings.postcodeanywhere.id_county_wrapper).hide();
         }
 
-        if ($(Drupal.settings.postcodeanywhere.addressfield)) {
+        if ($(Drupal.settings.postcodeanywhere.addressfield) && Drupal.settings.postcodeanywhere.addressfield) {
           var postcodeanywhereLookupButton = '';
           var postcodeanywhereAddressList = '';
           var postcodeanywhereloader = '';
         }
         else {
           // Create a lookup button.
-          var postcodeanywhereLookupButton = '<input type="button" name="postcodeanywhere-lookup-button" id="postcodeanywhere-lookup-button" value="' +
+          var postcodeanywhereLookupButton = '<input type="button" name="postcodeanywhere-lookup-button" class="btn btn-default" id="postcodeanywhere-lookup-button" value="' +
               Drupal.t(Drupal.settings.postcodeanywhere.submit_label_value) + '">';
           // Create address list list on the fly.
           var postcodeanywhereAddressList = '<div style="display:none;" size="10" name="postcodeanywhere-address-list" id="postcodeanywhere-address-list">';
@@ -313,16 +313,18 @@
                         $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]).change();
                         $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode[0]).change();
                       }
+                    }).done(function(data){
+                      // Show the Wrappers.
+                      $(Drupal.settings.postcodeanywhere.id_company_wrapper).show();
+                      $(Drupal.settings.postcodeanywhere.id_line1_wrapper).show();
+                      $(Drupal.settings.postcodeanywhere.id_line2_wrapper).show();
+                      $(Drupal.settings.postcodeanywhere.id_line3_wrapper).show();
+                      $(Drupal.settings.postcodeanywhere.id_town_wrapper).show();
+                      $(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
+                      $(Drupal.settings.postcodeanywhere.id_postcode_manual).show();
+                      $(Drupal.settings.postcodeanywhere.id_lookup_button).hide();
+                      $('#postcodeloading').hide();
                     });
-
-                    // Show the Wrappers.
-                    $(Drupal.settings.postcodeanywhere.id_company_wrapper).show();
-                    $(Drupal.settings.postcodeanywhere.id_line1_wrapper).show();
-                    $(Drupal.settings.postcodeanywhere.id_line2_wrapper).show();
-                    $(Drupal.settings.postcodeanywhere.id_line3_wrapper).show();
-                    $(Drupal.settings.postcodeanywhere.id_town_wrapper).show();
-                    $(Drupal.settings.postcodeanywhere.id_county_wrapper).show();
-                    $(Drupal.settings.postcodeanywhere.id_postcode_manual).show();
 
                     // Hide the list.
                     $('#postcodeanywhere-address-list').hide();
@@ -356,3 +358,4 @@
     }
   };
 }(jQuery));
+
