@@ -73,24 +73,26 @@
 
             this.input.value = this.input.value;
 
+            var addressField = $(node).parent().parent().parent();
+            var addressFieldId = '#' + addressField.attr('id');
+
             // Set some selectors.
             var pca_input = this.input;
             var pca_id = $(node).data('autocompleteValue');
-            var pca_input_group = $(pca_input).closest('.group-pca-autocomplete');
-            var pca_output_div = $(pca_input_group).find('.postcodeanywhere-autocomplete-output-text');
+            var pca_input_group = $(pca_input).closest(addressFieldId + ' .group-pca-autocomplete');
+            var pca_output_div = $(pca_input_group).find(addressFieldId + ' .postcodeanywhere-autocomplete-output-text');
             var outputAddress ='';
 
             // Clear the address fields.
             $(pca_input_group).find('input').val('');
             $(pca_input_group).find('.pca-text').html('');
-            $('.js-postcodeanywhere-number-results').remove();
+            $(addressFieldId + ' .js-postcodeanywhere-number-results').remove();
 
             // If this is no-match then show the fields.
             if (pca_id == "no-match") {
-              //$('.js-manual-postcode').show();
-              $(Drupal.settings.postcodeanywhere.id_postcode_manual).show();
-              $(Drupal.settings.postcodeanywhere.id_address_wrapper).slideDown();
-              $(Drupal.settings.postcodeanywhere.id_postcode).parent().hide();
+              $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_postcode_manual).show();
+              $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_address_wrapper).slideDown();
+              $(pca_input).parent().hide();
             }
             else if (!isNaN(pca_id)) {
 
@@ -104,25 +106,29 @@
 
                   outputAddress = $('<div class="pca-output"><p class="thoroughfare pca-text">'+ data[0].Line1[0] + '</p><p class="premise pca-text">'+ data[0].Line2[0] +'</p><p class="premise pca-text">'+ data[0].PostTown[0] +'</p><p class="postal-code pca-text">'+ data[0].Postcode[0] +'</p><p class="pca-change-address"><a href="#!">Use another address</a></p></div>');
 
-                  if ($('.pca-output').length < 1) {
+                  if ($(addressFieldId + ' .pca-output').length < 1) {
 
-                    $(Drupal.settings.postcodeanywhere.id_postcode).parent().hide();
-                    $(Drupal.settings.postcodeanywhere.id_address_wrapper).parent().append(outputAddress);
+                    $(pca_input).parent().hide();
+                    $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_address_wrapper).parent().append(outputAddress);
 
                   }else{
-                    $(Drupal.settings.postcodeanywhere.id_postcode).parent().hide();
-                    $('.pca-output').html(outputAddress);
+                    $(pca_input).parent().hide();
+                    $(pca_input).parent().hide();
+                    $(addressFieldId + ' ' + ' .pca-output').html(outputAddress);
                   }
-                  $(Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1[0]);
-                  $(Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2[0]);
-                  $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]);
-                  $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]);
-                  $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]);
-                  $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode[0]);
+                  $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1[0]);
+                  $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2[0]);
+                  $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]);
+                  $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]);
+
+
+                  $(pca_input).val(data[0].Postcode[0]);
+                  $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode[0]);
+                  $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_postcode_manual).show();
 
 
                   // Find the address field and populate them.
-                  if (Drupal.settings.postcodeanywhere.addressfield) {
+                  if (addressFieldId + ' ' + Drupal.settings.postcodeanywhere.addressfield) {
 
                     $(pca_input_group).find('.thoroughfare').val(data[0].Line1[0]);
                     $(pca_output_div).find('.thoroughfare').html(data[0].Line1[0]);
@@ -136,37 +142,37 @@
                     $(pca_output_div).find('.postal-code').html(data[0].Postcode[0]);
                     $(pca_input).val('');
 
-                    $(pca_input).closest('.field-type-postcodeanywhere').slideUp('Slow',function(){
-                      $(pca_output_div).slideDown('Slow');
-                    });
+                    $(pca_input).parent().hide();
+                    $(pca_output_div).slideDown('Slow');
+
                   } else {
                     // Set the values for non address field.
                     // Check if the results are strings.
                     if (typeof data[0].Company == 'string') {
-                      $(Drupal.settings.postcodeanywhere.id_company).val(data[0].Company).change();
-                      if ($(Drupal.settings.postcodeanywhere.addressfield)) {
-                        $(Drupal.settings.postcodeanywhere.id_laddress - level2).val(data[0].PostTown).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_company).val(data[0].Company).change();
+                      if ($(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.addressfield)) {
+                        $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_laddress - level2).val(data[0].PostTown).change();
                       }
                       else {
-                        $(Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1).change();
-                        $(Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2).change();
-                        $(Drupal.settings.postcodeanywhere.id_line3).val(data[0].Line3).change();
-                        $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown).change();
+                        $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1).change();
+                        $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2).change();
+                        $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_line3).val(data[0].Line3).change();
+                        $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown).change();
                       }
-                      $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County).change();
-                      $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode).change();
-                      $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_county).val(data[0].County).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode).change();
                     }
                     // If the results are objects.
                     if (typeof data[0].Company == 'object') {
-                      $(Drupal.settings.postcodeanywhere.id_company).val(data[0].Company[0]).change();
-                      $(Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1[0]).change();
-                      $(Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2[0]).change();
-                      $(Drupal.settings.postcodeanywhere.id_line3).val(data[0].Line3[0]).change();
-                      $(Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]).change();
-                      $(Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]).change();
-                      $(Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]).change();
-                      $(Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode[0]).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_company).val(data[0].Company[0]).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_line1).val(data[0].Line1[0]).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_line2).val(data[0].Line2[0]).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_line3).val(data[0].Line3[0]).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_town).val(data[0].PostTown[0]).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_county).val(data[0].County[0]).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_postcode).val(data[0].Postcode[0]).change();
+                      $(addressFieldId + ' ' + Drupal.settings.postcodeanywhere.id_postcode_manual).val(data[0].Postcode[0]).change();
 
                     }
                   }
@@ -219,7 +225,7 @@
               if (key == 'number-results') {
                 $('.js-postcodeanywhere-number-results').remove();
                 var numberOfResults = $('<div class="form__input-sub-info js-postcodeanywhere-number-results"></div>').html(matches[key]);
-                $(Drupal.settings.postcodeanywhere.id_postcode).parent().append(numberOfResults);
+                //$(Drupal.settings.postcodeanywhere.id_postcode).parent().append(numberOfResults);
               } else {
                 var listElement = '';
                 $('<li></li>')
